@@ -104,7 +104,7 @@ sequenceDiagram
 The application works through four main components that interact seamlessly to provide a realistic teaching simulation:
 
 1. **User Interface**: Handles teacher interactions through both terminal and web interfaces
-2. **AI Engine**: Processes inputs and generates contextual responses using LLM technology
+2. **AI Engine**: Uses LLM to understand responses, generate context-aware chat initiations and replies, perform semantic matching with expert benchmarks, and output detailed pedagogical scores.
 3. **Knowledge Base**: Stores educational content, teaching standards, and response patterns
 4. **Memory**: Maintains chat history, session states, and interaction records
 
