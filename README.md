@@ -4,7 +4,7 @@ An AI-powered second-grade student simulator for teacher training, designed to h
 
 ## Overview
 
-This simulator creates realistic classroom scenarios and provides immediate feedback on teaching strategies. It uses natural language processing and a knowledge base of educational best practices to evaluate teacher responses and simulate student reactions.
+This simulator creates realistic classroom scenarios and provides immediate feedback on teaching strategies. It uses advanced AI including LLMs, speech synthesis, and computer vision to create an immersive training environment.
 
 ## Key Features
 
@@ -60,7 +60,7 @@ graph TB
     end
 
     subgraph Core["Core Processing Layer"]
-        Chat[TeacherTrainingChatbot]
+        Chat[EduAgent]
         Eval[Response Evaluator]
         Sim[Student Simulator]
         Scen[Scenario Generator]
@@ -215,52 +215,73 @@ graph TB
 
 ### Components
 
-1. `TeacherTrainingChatbot`
-   - Core simulation engine powered by LLM technology
-   - **LLM Integration**:
+1. `EduAgent` (formerly TeacherTrainingChatbot)
+   - Core simulation engine powered by multimodal AI technology
+   - **AI Integration**:
      ```mermaid
      graph TB
-         subgraph Chatbot["TeacherTrainingChatbot"]
+         subgraph Agent["EduAgent System"]
              direction TB
-             Input[Teacher Input]
+             Input[["Multimodal Input"]]
              Context[Scenario Context]
-             LLM[LLM Engine]
+             AI[AI Engine]
              KB[Knowledge Base]
-             Output[Response & Feedback]
+             Output[["Multimodal Output"]]
              
-             Input --> LLM
-             Context --> LLM
-             KB --> LLM
-             LLM --> Output
+             subgraph Inputs["Input Processing"]
+                 Text[Text Input]
+                 Voice[Voice Input]
+                 Visual[Visual Input]
+             end
+             
+             subgraph Outputs["Output Generation"]
+                 Speech[Speech Synthesis]
+                 Animation[Visual Feedback]
+                 Text2[Text Response]
+             end
+             
+             Inputs --> Input
+             Input --> AI
+             Context --> AI
+             KB --> AI
+             AI --> Output
+             Output --> Outputs
          end
+
+         style Inputs fill:#f9f,stroke:#333,stroke-width:2px
+         style Outputs fill:#bfb,stroke:#333,stroke-width:2px
      ```
-   - **Key LLM Functions**:
-     - Scenario generation using contextual prompting
-     - Student personality simulation
-     - Response evaluation and scoring
-     - Teaching strategy analysis
-     - Real-time feedback generation
-   - **LLM Processing Pipeline**:
+   - **Key AI Capabilities**:
+     - Natural Language Processing (Text & Voice)
+     - Speech Synthesis for realistic student voices
+     - Visual Avatar Generation
+     - Gesture and Expression Synthesis
+     - Real-time Interaction Processing
+   
+   - **Multimodal Processing Pipeline**:
      ```
-     1. Context Preparation:
-        Teacher Input + Scenario Context + Student State → Formatted Prompt
+     1. Input Processing:
+        - Text Input: Natural Language Processing
+        - Voice Input: Speech-to-Text + Tone Analysis
+        - Visual Input: Gesture/Expression Recognition
      
-     2. LLM Processing:
-        - Primary evaluation using main LLM (Mistral/Llama/etc.)
-        - Semantic search using embedding model
-        - Strategy matching from knowledge base
+     2. AI Processing:
+        - Core LLM Processing (Mistral/Llama/etc.)
+        - Emotional State Modeling
+        - Behavioral Pattern Analysis
+        - Context Integration
      
-     3. Response Generation:
-        - Student reaction synthesis
-        - Feedback compilation
-        - Score calculation
+     3. Output Generation:
+        - Text Generation
+        - Speech Synthesis
+        - Visual Avatar Animation
+        - Emotional Expression Rendering
      ```
-   - **Model Selection**:
-     - Automatically chooses appropriate model based on:
-       - Scenario complexity
-       - Response requirements
-       - Available system resources
-     - Supports dynamic model switching for optimal performance
+   - **Interaction Modes**:
+     - Text-only (Current)
+     - Voice-enabled (Planned)
+     - Visual Avatar (Planned)
+     - Full Multimodal (Future)
 
 2. `KnowledgeManager`
    - Processes teaching resources
