@@ -1,13 +1,13 @@
 """Interactive interface for teacher training simulation."""
-from chatbot import TeacherTrainingChatbot
+from chatbot import AIAgent
 
 def main():
     print("Welcome to the Second Grade Teacher Training Simulator!")
     print("\nThis simulator will help you practice handling various classroom scenarios.")
     print("You'll interact with a simulated second-grade student with realistic behaviors and responses.")
     
-    # Create chatbot
-    bot = TeacherTrainingChatbot()
+    # Create AI agent
+    agent = AIAgent()
     
     while True:
         print("\nAvailable Scenario Categories:")
@@ -19,11 +19,11 @@ def main():
         choice = input("\nChoose a category (1-4): ").strip()
         
         if choice == "1":
-            bot.start_interactive_session("attention")
+            agent.start_interactive_session("attention")
         elif choice == "2":
-            bot.start_interactive_session("participation")
+            agent.start_interactive_session("participation")
         elif choice == "3":
-            bot.start_interactive_session()
+            agent.start_interactive_session()
         elif choice == "4":
             print("\nThank you for using the Teacher Training Simulator!")
             break

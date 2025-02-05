@@ -21,9 +21,9 @@ from knowledge_base import SECOND_GRADE_CHARACTERISTICS, TEACHING_STRATEGIES
 from evaluator import evaluate_teacher_response
 from knowledge_manager import KnowledgeManager
 
-class TeacherTrainingChatbot:
+class AIAgent:
     """
-    Core simulation engine for teacher training.
+    Core AI simulation engine for teacher training.
     
     This class manages the entire simulation process, including:
     - Scenario generation
