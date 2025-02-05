@@ -1,5 +1,5 @@
 """Interactive interface for teacher training simulation."""
-from chatbot import AIAgent
+from ai_agent import AIAgent
 
 def main():
     print("Welcome to the Second Grade Teacher Training Simulator!")

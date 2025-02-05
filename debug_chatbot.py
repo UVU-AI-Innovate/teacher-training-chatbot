@@ -1,4 +1,4 @@
-from chatbot import TeacherTrainingChatbot
+from ai_agent import AIAgent
 import json
 from colorama import init, Fore, Style
 from termcolor import colored
@@ -12,7 +12,7 @@ init()
 
 class TeacherTrainingSimulator:
     def __init__(self):
-        self.chatbot = TeacherTrainingChatbot()
+        self.chatbot = AIAgent()
         self.session = SimulatorSession()
         self.current_scenario = None
         

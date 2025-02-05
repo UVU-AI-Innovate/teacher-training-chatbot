@@ -1,5 +1,5 @@
 """Terminal interface for the teacher training simulator."""
-from chatbot import AIAgent
+from ai_agent import AIAgent
 from termcolor import colored
 import os
 from datetime import datetime

@@ -4,7 +4,7 @@ Provides an interactive interface for teachers to practice and analyze teaching 
 """
 
 import streamlit as st
-from chatbot import AIAgent
+from ai_agent import AIAgent
 import pandas as pd
 import plotly.express as px
 from datetime import datetime
