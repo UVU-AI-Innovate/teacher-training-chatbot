@@ -1,4 +1,4 @@
-# Teacher Training Simulator 🎓
+# UTTA Development
 
 An AI-powered educational simulation system designed to help teachers develop and refine their teaching strategies through interactive practice with a simulated second-grade student.
 
