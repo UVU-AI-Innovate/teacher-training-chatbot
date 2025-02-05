@@ -50,6 +50,169 @@ Evaluates teacher responses across four dimensions:
 
 ## Technical Architecture
 
+### System Overview
+
+```mermaid
+graph TB
+    subgraph Frontend["Frontend Layer"]
+        UI[Terminal Interface]
+        Session[Session Manager]
+    end
+
+    subgraph Core["Core Processing Layer"]
+        Chat[TeacherTrainingChatbot]
+        Eval[Response Evaluator]
+        Sim[Student Simulator]
+        Scen[Scenario Generator]
+    end
+
+    subgraph Models["Model Layer"]
+        LLM[Primary LLM]
+        Emb[Embedding Model]
+    end
+
+    subgraph Knowledge["Knowledge Layer"]
+        KB[Knowledge Base]
+        VS[Vector Store]
+        Meta[Metadata Store]
+    end
+
+    UI --> Session
+    Session --> Chat
+    Chat --> Eval
+    Chat --> Sim
+    Chat --> Scen
+    
+    Eval --> LLM
+    Sim --> LLM
+    Scen --> LLM
+    
+    KB --> VS
+    VS --> Emb
+    KB --> Meta
+    
+    Eval --> VS
+    Sim --> VS
+    Scen --> VS
+
+    style Frontend fill:#f9f,stroke:#333,stroke-width:2px
+    style Core fill:#bbf,stroke:#333,stroke-width:2px
+    style Models fill:#bfb,stroke:#333,stroke-width:2px
+    style Knowledge fill:#fbb,stroke:#333,stroke-width:2px
+```
+
+### Data Flow Architecture
+
+```mermaid
+sequenceDiagram
+    participant T as Teacher
+    participant UI as Interface
+    participant C as Chatbot Core
+    participant LLM as Language Model
+    participant K as Knowledge Base
+
+    T->>UI: Input Response
+    UI->>C: Process Input
+    
+    par Knowledge Retrieval
+        C->>K: Fetch Relevant Strategies
+        K-->>C: Return Matched Strategies
+    and LLM Processing
+        C->>LLM: Generate Evaluation
+        LLM-->>C: Return Analysis
+    end
+    
+    C->>UI: Generate Feedback
+    UI->>T: Display Results
+```
+
+### Knowledge Processing Pipeline
+
+```mermaid
+graph LR
+    subgraph Input["Input Processing"]
+        R[Raw Files] --> E[Extraction]
+        E --> C[Chunking]
+    end
+
+    subgraph Embedding["Embedding Generation"]
+        C --> V[Vector Creation]
+        V --> S[Similarity Indexing]
+    end
+
+    subgraph Storage["Storage Layer"]
+        S --> VS[Vector Store]
+        S --> M[Metadata DB]
+    end
+
+    style Input fill:#f9f,stroke:#333,stroke-width:2px
+    style Embedding fill:#bbf,stroke:#333,stroke-width:2px
+    style Storage fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+### LLM Integration Architecture
+
+```mermaid
+graph TB
+    subgraph Input["Input Layer"]
+        TR[Teacher Response]
+        SC[Scenario Context]
+    end
+
+    subgraph Processing["LLM Processing"]
+        direction TB
+        PE[Primary Evaluation]
+        SM[Strategy Matching]
+        CA[Context Analysis]
+    end
+
+    subgraph Output["Output Generation"]
+        SR[Student Response]
+        FB[Feedback]
+        MS[Metrics & Scores]
+    end
+
+    TR --> PE
+    SC --> PE
+    PE --> SM
+    PE --> CA
+    
+    SM --> SR
+    CA --> FB
+    SM & CA --> MS
+
+    style Input fill:#f9f,stroke:#333,stroke-width:2px
+    style Processing fill:#bbf,stroke:#333,stroke-width:2px
+    style Output fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+### Model Deployment Options
+
+```mermaid
+graph TB
+    subgraph HP["High Performance"]
+        M7B[Mistral 7B]
+        MiniLM1[MiniLM-L6-v2]
+        RAM1[18GB RAM]
+    end
+
+    subgraph BA["Balanced"]
+        PHI[Phi-2]
+        MiniLM2[MiniLM-L6-v2]
+        RAM2[8GB RAM]
+    end
+
+    subgraph LW["Lightweight"]
+        TL[TinyLlama-1.1B]
+        MiniLM3[MiniLM-L6-v2]
+        RAM3[6GB RAM]
+    end
+
+    style HP fill:#bfb,stroke:#333,stroke-width:2px
+    style BA fill:#bbf,stroke:#333,stroke-width:2px
+    style LW fill:#f9f,stroke:#333,stroke-width:2px
+```
+
 ### Components
 
 1. `TeacherTrainingChatbot`
