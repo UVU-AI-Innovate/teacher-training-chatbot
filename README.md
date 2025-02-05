@@ -777,3 +777,211 @@ Feel free to contribute by:
 2. Enhancing evaluation criteria
 3. Improving student responses
 4. Adding new subjects/behaviors
+
+## Interface Architecture
+
+```mermaid
+graph TB
+    subgraph Current["Current Implementation"]
+        direction TB
+        T[Terminal Interface]
+        TC[Terminal Controller]
+        TU[Terminal UI]
+        
+        T --> TC
+        TC --> TU
+    end
+
+    subgraph Future["Future Web Implementation"]
+        direction TB
+        S[Streamlit App]
+        API[FastAPI Backend]
+        WS[WebSocket Handler]
+        
+        S --> API
+        S --> WS
+    end
+
+    subgraph Core["Core System"]
+        direction TB
+        CE[Chatbot Engine]
+        KM[Knowledge Manager]
+        LLM[LLM Handler]
+        
+        CE --> KM
+        CE --> LLM
+    end
+
+    Current --> Core
+    Future --> Core
+
+    style Current fill:#bbf,stroke:#333,stroke-width:2px
+    style Future fill:#fbb,stroke:#333,stroke-width:2px
+    style Core fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+### Current Terminal Implementation
+
+The current implementation uses a terminal-based interface for optimal performance:
+
+```mermaid
+sequenceDiagram
+    participant T as Teacher
+    participant TI as Terminal Interface
+    participant CE as Chatbot Engine
+    participant LLM as LLM Handler
+    
+    T->>TI: Enter Response
+    TI->>CE: Process Input
+    CE->>LLM: Generate Analysis
+    LLM-->>CE: Return Evaluation
+    CE-->>TI: Format Output
+    TI-->>T: Display Results
+    
+    Note over TI,CE: Direct Communication
+    Note over CE,LLM: No Network Latency
+```
+
+#### Terminal Benefits
+- **Performance**: Direct system access without web overhead
+- **Low Latency**: Minimal communication layers
+- **Resource Efficiency**: No additional web framework overhead
+- **Rapid Development**: Faster iteration and testing
+- **Focus on Core Logic**: Emphasis on AI and evaluation quality
+
+### Future Web Implementation
+
+The planned web interface using Streamlit will be implemented as a separate layer:
+
+```mermaid
+graph TB
+    subgraph WebArch["Web Architecture"]
+        direction TB
+        subgraph FE["Frontend"]
+            ST[Streamlit App]
+            WC[Web Components]
+        end
+        
+        subgraph BE["Backend"]
+            API[FastAPI]
+            WS[WebSocket]
+            Cache[Redis Cache]
+        end
+        
+        subgraph Core["Core System"]
+            CE[Chatbot Engine]
+            LLM[LLM Handler]
+            KB[Knowledge Base]
+        end
+        
+        ST --> API
+        ST --> WS
+        API --> Cache
+        Cache --> CE
+        CE --> LLM
+        CE --> KB
+    end
+
+    style FE fill:#f9f,stroke:#333,stroke-width:2px
+    style BE fill:#bbf,stroke:#333,stroke-width:2px
+    style Core fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+#### Performance Optimization Strategy
+
+To maintain performance in the web implementation:
+
+1. **Asynchronous Processing**
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant S as Streamlit
+    participant A as API
+    participant C as Cache
+    participant E as Engine
+    
+    U->>S: Submit Response
+    S->>A: API Request
+    A->>C: Check Cache
+    
+    alt Cache Hit
+        C-->>A: Return Cached Result
+        A-->>S: Quick Response
+    else Cache Miss
+        C->>E: Process New Request
+        E-->>C: Store Result
+        C-->>A: Return Result
+        A-->>S: Full Response
+    end
+    
+    S-->>U: Display Result
+```
+
+2. **Caching Strategy**
+- Response caching for similar queries
+- Vector embedding caching
+- Session state management
+- Incremental updates
+
+3. **Resource Management**
+```mermaid
+graph LR
+    subgraph Resources["Resource Allocation"]
+        LLM[LLM Processing]
+        Vec[Vector Operations]
+        DB[Database Queries]
+    end
+    
+    subgraph Optimization["Optimization Layer"]
+        Cache[Redis Cache]
+        Queue[Task Queue]
+        Load[Load Balancer]
+    end
+    
+    Queue --> LLM
+    Queue --> Vec
+    Load --> DB
+    
+    style Resources fill:#bbf,stroke:#333,stroke-width:2px
+    style Optimization fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+### Development Roadmap
+
+1. **Phase 1: Terminal (Current)**
+   - Core functionality implementation
+   - LLM integration and optimization
+   - Knowledge base development
+   - Performance benchmarking
+
+2. **Phase 2: API Development**
+   - FastAPI backend implementation
+   - WebSocket integration
+   - Caching layer setup
+   - Authentication system
+
+3. **Phase 3: Web Interface**
+   - Streamlit app development
+   - Real-time updates
+   - Interactive visualizations
+   - User session management
+
+4. **Phase 4: Optimization**
+   - Performance tuning
+   - Scale testing
+   - Resource optimization
+   - Monitoring implementation
+
+## Usage
+
+### Current Terminal Version
+```bash
+# Run the terminal version
+python terminal_app.py
+```
+
+### Future Web Version (Coming Soon)
+```bash
+# Run the web version
+streamlit run app.py
+```
