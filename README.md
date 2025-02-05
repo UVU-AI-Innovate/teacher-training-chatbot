@@ -6,35 +6,55 @@ An AI-powered educational simulation chatbot designed to help teachers develop a
 
 ```mermaid
 sequenceDiagram
-    participant Teacher
+    participant T as Teacher
     participant UI as User Interface
     participant Engine as AI Engine
     participant KB as Knowledge Base
     
-    Note over Teacher,KB: Initial Setup
-    Teacher->>UI: Start Session
-    UI->>Engine: Initialize System
-    Engine->>KB: Load Teaching Data
-    KB-->>Engine: Scenarios & Strategies
-    Engine-->>UI: Ready for Interaction
+    %% Styling
+    rect rgb(240, 248, 255)
+        Note over T,KB: Initial Setup
+        Note over T,UI: Teacher runs web app (streamlit run web_app.py)
+        T->>+UI: Start Session
+        Note over T,UI: Select teaching subject & grade level
+        UI->>+Engine: Initialize System
+        Note over Engine: Configure LLM & load models
+        Engine->>+KB: Load Teaching Data
+        KB-->>-Engine: Scenarios & Strategies
+        Engine-->>-UI: Ready for Interaction
+        Note over UI: Display scenario options
+    end
     
-    Note over Teacher,KB: Teaching Interaction
-    rect rgb(200, 220, 255)
-        Teacher->>UI: Enter Teaching Response
-        UI->>Engine: Process Input
-        Engine->>KB: Query Knowledge Base
-        KB-->>Engine: Relevant Teaching Patterns
+    Note over T,KB: Teaching Interaction
+    rect rgb(230, 255, 240)
+        Note over T,UI: Teacher types response to student situation
+        T->>+UI: Enter Teaching Response
+        Note over UI: Process text input & validate
+        UI->>+Engine: Process Input
+        Note over Engine: Analyze teaching approach
+        Engine->>+KB: Query Knowledge Base
+        KB-->>-Engine: Relevant Teaching Patterns
+        Note over Engine: Generate student behavior
         Engine->>Engine: Generate Response
-        Engine-->>UI: Student Response & Feedback
-        UI-->>Teacher: Display Interaction
+        Engine-->>-UI: Student Response & Feedback
+        Note over UI: Show student reaction & teaching tips
+        UI-->>-T: Display Interaction
+        Note over UI: Save interaction history
         UI->>KB: Store Interaction Data
     end
     
-    Note over Teacher,KB: Progress Tracking
-    Teacher->>UI: Review Performance
-    UI->>KB: Fetch Analytics
-    KB-->>UI: Progress Data
-    UI-->>Teacher: Show Progress Report
+    rect rgb(255, 240, 245)
+        Note over T,KB: Progress Tracking
+        Note over T,UI: Teacher clicks "View Progress"
+        T->>+UI: Review Performance
+        Note over UI: Generate analytics request
+        UI->>+KB: Fetch Analytics
+        Note over KB: Process teaching patterns
+        KB-->>-UI: Progress Data
+        Note over UI: Create visual reports
+        UI-->>-T: Show Progress Report
+        Note over T: View scores, trends & suggestions
+    end
 ```
 
 The application works through three main components that interact seamlessly to provide a realistic teaching simulation:
@@ -53,10 +73,6 @@ The AI Engine is the core of our application, handling:
 - LLM-based response generation
 - Response evaluation and feedback
 
-**Team Contributions:**
-- AI Team: Model integration, prompt engineering, evaluation metrics
-- Data Team: Training data preparation, response patterns
-- Web Team: API integration points, response handling
 
 ### 2. Knowledge Management System
 
@@ -66,10 +82,6 @@ The Knowledge Management System handles:
 - Response pattern matching
 - Performance analytics
 
-**Team Contributions:**
-- Data Team: Database design, data preprocessing, analytics
-- AI Team: Embedding generation, similarity algorithms
-- Web Team: Data visualization, export functionality
 
 ### 3. User Interface System
 
@@ -79,39 +91,6 @@ The User Interface System provides:
 - Progress tracking and visualization
 - Session management
 
-**Team Contributions:**
-- Web Team: Frontend development, UX design, responsiveness
-- AI Team: Response formatting, feedback presentation
-- Data Team: Analytics visualization, data export
-
-### 4. Integration Flow
-****
-```mermaid
-sequenceDiagram
-    participant UI as Interface
-    participant Engine as AI Engine
-    participant KB as Knowledge Base
-    
-    UI->>Engine: Teacher Input
-    Engine->>KB: Query Knowledge
-    KB-->>Engine: Relevant Data
-    Engine->>Engine: Process Response
-    Engine-->>UI: Generated Response
-    UI->>KB: Store Interaction
-    KB-->>UI: Update Analytics
-```
-
-The integration flow shows how components interact:
-1. User input processing
-2. Knowledge base queries
-3. Response generation
-4. Feedback presentation
-5. Analytics updates
-
-**Team Contributions:**
-- AI Team: Core processing pipeline, model optimization
-- Data Team: Data flow, storage optimization
-- Web Team: Interface integration, real-time updates
 
 ## Component Details
 
