@@ -1,5 +1,5 @@
-"""Terminal interface for the Teacher Training Simulator."""
-from chatbot import TeacherTrainingChatbot
+"""Terminal interface for the teacher training simulator."""
+from chatbot import AIAgent
 from termcolor import colored
 import os
 from datetime import datetime
@@ -14,7 +14,7 @@ import sys
 class TerminalInterface:
     def __init__(self):
         """Initialize the terminal interface."""
-        self.chatbot = TeacherTrainingChatbot()
+        self.chatbot = AIAgent()
         self.current_scenario = None
         self.session_start = datetime.now()
         self.interaction_history = []
