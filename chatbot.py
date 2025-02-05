@@ -1,23 +1,52 @@
-"""An AI-powered second-grade student simulator for teacher training."""
+"""
+Teacher Training Simulator Core Module
+
+This module implements the core simulation engine for the teacher training system.
+It handles scenario generation, response evaluation, and student behavior simulation.
+
+Key Components:
+1. Scenario Generation - Creates realistic teaching scenarios
+2. Response Evaluation - Assesses teaching strategies
+3. Student Simulation - Generates contextual reactions
+4. Knowledge Integration - Uses embedded knowledge for evaluation
+
+The system uses a vector database to store and retrieve relevant teaching knowledge,
+allowing for semantic search and contextual matching of teaching strategies.
+"""
+
 import random
 import json
 from llm_handler import LLMHandler
 from knowledge_base import SECOND_GRADE_CHARACTERISTICS, TEACHING_STRATEGIES
 from evaluator import evaluate_teacher_response
+from knowledge_manager import KnowledgeManager
 
 class TeacherTrainingChatbot:
+    """
+    Core simulation engine for teacher training.
+    
+    This class manages the entire simulation process, including:
+    - Scenario generation
+    - Response evaluation
+    - Student behavior simulation
+    - Knowledge base integration
+    
+    Attributes:
+        knowledge_manager (KnowledgeManager): Handles knowledge processing and retrieval
+        personality (dict): Student personality traits and current state
+        teacher_profile (dict): Teacher characteristics and preferences
+    """
     def __init__(self):
         """Initialize the chatbot with knowledge base and default settings."""
         print("\nInitializing Teacher Training Simulator...")
         
-        # Initialize knowledge base
+        # Initialize knowledge manager
+        self.knowledge_manager = KnowledgeManager()
+        
         try:
             print("Loading knowledge base...")
-            self.knowledge_base = {
-                "teaching_strategies": self._load_teaching_strategies(),
-                "student_behaviors": self._load_student_behaviors(),
-                "subject_content": self._load_subject_content()
-            }
+            # Process all files in knowledge base
+            self.knowledge_manager.process_all_files()
             print("✓ Knowledge base loaded successfully")
         except Exception as e:
             print(f"! Error loading knowledge base: {str(e)}")
@@ -463,14 +492,12 @@ class TeacherTrainingChatbot:
                 ])
 
     def evaluate_response(self, teacher_response: str, scenario: dict) -> dict:
-        """Evaluate teacher's response considering full context."""
-        print(f"\nDebug: Processing response: {teacher_response}")
-        
+        """Evaluate teacher's response with enhanced criteria."""
         # Calculate base score and feedback
         score = 0.0
         feedback = []
         suggestions = []
-        explanations = []  # New: detailed explanations
+        explanations = []
         
         # Extract context
         time_of_day = scenario["time_of_day"]
@@ -479,100 +506,49 @@ class TeacherTrainingChatbot:
         behavior_trigger = scenario["behavioral_context"]["trigger"]
         subject = scenario["subject"]
         
-        # 1. Time-appropriate strategies (20% of score)
-        time_strategies = {
-            "morning": {
-                "strategies": ["morning routine", "clear expectations", "structured start"],
-                "explanation": "Morning is ideal for setting clear expectations and structured activities when students are fresh."
-            },
-            "after lunch": {
-                "strategies": ["movement break", "active learning", "energy release"],
-                "explanation": "After lunch, students need movement and engaging activities to maintain focus."
-            },
-            "late afternoon": {
-                "strategies": ["short tasks", "varied activities", "brain breaks"],
-                "explanation": "Late afternoon requires shorter, varied tasks due to decreased attention spans."
-            }
-        }
+        # Get relevant knowledge from vector store
+        time_query = f"teaching strategies for {time_of_day}"
+        style_query = f"teaching methods for {student_context['learning_style']} learners"
+        behavior_query = f"handling {behavior_type} behavior triggered by {behavior_trigger}"
+        subject_query = f"teaching strategies for {subject}"
         
-        if any(strategy in teacher_response.lower() for strategy in time_strategies[time_of_day]["strategies"]):
+        # Search knowledge base
+        time_strategies = self.knowledge_manager.search(time_query)
+        style_strategies = self.knowledge_manager.search(style_query)
+        behavior_strategies = self.knowledge_manager.search(behavior_query)
+        subject_strategies = self.knowledge_manager.search(subject_query)
+        
+        # 1. Time-appropriate strategies (20% of score)
+        if any(strategy['text'].lower() in teacher_response.lower() for strategy in time_strategies):
             score += 0.2
             feedback.append(f"✓ Good use of {time_of_day} appropriate strategy")
         else:
-            suggestions.append(f"Consider {time_of_day} strategies like: {random.choice(time_strategies[time_of_day]['strategies'])}")
-            explanations.append(time_strategies[time_of_day]["explanation"])
+            suggestions.append(f"Consider {time_of_day} strategies like: {time_strategies[0]['text'] if time_strategies else 'structured activities'}")
+            explanations.append(f"Different times of day require different approaches")
         
         # 2. Learning style alignment (20% of score)
-        style_strategies = {
-            "visual": {
-                "strategies": ["look at", "watch", "see", "show", "draw"],
-                "explanation": "Visual learners need to see concepts represented through diagrams, demonstrations, or written instructions."
-            },
-            "auditory": {
-                "strategies": ["listen", "hear", "tell", "say", "sound"],
-                "explanation": "Auditory learners benefit from verbal instructions, discussions, and sound-based learning."
-            },
-            "kinesthetic": {
-                "strategies": ["try", "move", "touch", "build", "practice"],
-                "explanation": "Kinesthetic learners need hands-on activities and physical movement to engage with learning."
-            }
-        }
-        
-        learning_style = student_context["learning_style"]
-        if any(word in teacher_response.lower() for word in style_strategies[learning_style]["strategies"]):
+        if any(strategy['text'].lower() in teacher_response.lower() for strategy in style_strategies):
             score += 0.2
-            feedback.append(f"✓ Response matches {learning_style} learning style")
+            feedback.append(f"✓ Good alignment with {student_context['learning_style']} learning style")
         else:
-            suggestions.append(f"Include {learning_style} learning approaches like: {', '.join(style_strategies[learning_style]['strategies'][:2])}")
-            explanations.append(style_strategies[learning_style]["explanation"])
+            suggestions.append(f"Include {student_context['learning_style']} learning approaches")
+            explanations.append(f"{student_context['learning_style']} learners benefit from specific strategies")
         
-        # 3. Behavioral management (30% of score)
-        behavior_strategies = {
-            "attention": {
-                "strategies": ["let's focus", "watch carefully", "look at this"],
-                "explanation": "Students with attention challenges need clear, direct prompts to maintain focus."
-            },
-            "frustration": {
-                "strategies": ["you can do this", "let's try together", "take your time"],
-                "explanation": f"When frustrated due to {behavior_trigger}, students need encouragement and support to rebuild confidence."
-            }
-        }
-        
-        if any(strategy in teacher_response.lower() for strategy in behavior_strategies[behavior_type]["strategies"]):
+        # 3. Behavioral response (30% of score)
+        if any(strategy['text'].lower() in teacher_response.lower() for strategy in behavior_strategies):
             score += 0.3
-            feedback.append("✓ Appropriate behavioral support")
+            feedback.append("✓ Good behavioral management approach")
         else:
-            suggestions.append(f"Try phrases like: '{random.choice(behavior_strategies[behavior_type]['strategies'])}'")
-            explanations.append(behavior_strategies[behavior_type]["explanation"])
+            suggestions.append(f"Try strategies for {behavior_type} behavior")
+            explanations.append(f"Students showing {behavior_type} need specific support")
         
         # 4. Subject-specific support (30% of score)
-        subject_approaches = {
-            "math": {
-                "strategies": ["break down", "step by step", "use manipulatives", "draw it out"],
-                "explanation": "Mathematical concepts need concrete representations and step-by-step guidance."
-            },
-            "reading": {
-                "strategies": ["sound it out", "look for clues", "picture walk", "sight words"],
-                "explanation": "Reading skills develop through phonics, comprehension strategies, and visual supports."
-            }
-        }
-        
-        if any(approach in teacher_response.lower() for approach in subject_approaches[subject]["strategies"]):
+        if any(strategy['text'].lower() in teacher_response.lower() for strategy in subject_strategies):
             score += 0.3
             feedback.append(f"✓ Good {subject}-specific support")
         else:
-            suggestions.append(f"Include {subject} strategies like: {random.choice(subject_approaches[subject]['strategies'])}")
-            explanations.append(subject_approaches[subject]["explanation"])
-        
-        # Generate overall explanation
-        overall_explanation = (
-            f"\nEvaluation Breakdown:\n"
-            f"1. Time of Day ({time_of_day}): {score*100/0.2:.0f}% - {explanations[0] if explanations else ''}\n"
-            f"2. Learning Style ({learning_style}): {score*100/0.2:.0f}% - {explanations[1] if len(explanations) > 1 else ''}\n"
-            f"3. Behavior Management: {score*100/0.3:.0f}% - {explanations[2] if len(explanations) > 2 else ''}\n"
-            f"4. Subject Support ({subject}): {score*100/0.3:.0f}% - {explanations[3] if len(explanations) > 3 else ''}\n"
-            f"\nOverall Score: {score*100:.0f}%"
-        )
+            suggestions.append(f"Include {subject} strategies")
+            explanations.append(f"{subject} concepts need specific teaching approaches")
         
         # Generate student reaction based on score
         if score >= 0.8:
@@ -582,35 +558,11 @@ class TeacherTrainingChatbot:
         else:
             reaction = self._generate_negative_reaction()
         
-        evaluation = {
+        return {
             'score': score,
-            'context_alignment': {
-                'time_appropriate': min(score + 0.2, 1.0),
-                'learning_style': min(score + 0.2, 1.0),
-                'behavioral': min(score + 0.3, 1.0),
-                'subject_specific': min(score + 0.3, 1.0)
-            },
-            'identified_strategies': [
-                {
-                    'type': 'time_management',
-                    'effectiveness': score,
-                    'explanation': explanations[0] if explanations else ''
-                },
-                {
-                    'type': 'learning_style',
-                    'effectiveness': score,
-                    'explanation': explanations[1] if len(explanations) > 1 else ''
-                },
-                {
-                    'type': 'behavioral',
-                    'effectiveness': score,
-                    'explanation': explanations[2] if len(explanations) > 2 else ''
-                }
-            ],
             'feedback': feedback,
             'suggestions': suggestions,
             'explanations': explanations,
-            'overall_explanation': overall_explanation,
             'student_reaction': reaction,
             'state_changes': {
                 'engagement': score/2,
@@ -618,9 +570,6 @@ class TeacherTrainingChatbot:
                 'mood': score/2
             }
         }
-        
-        print(f"Debug: Generated evaluation: {evaluation}")
-        return evaluation
 
     def _generate_positive_reaction(self) -> str:
         """Generate a positive student reaction."""

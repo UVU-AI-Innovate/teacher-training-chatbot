@@ -1,0 +1,11 @@
+# Each strategy separated by double newlines
+
+Strategy: Number Lines
+Category: Math
+Description: Visual tool for addition and subtraction
+Effectiveness: High
+
+Strategy: Phonics Drills
+Category: Reading
+Description: Systematic sound-symbol practice
+Effectiveness: High 

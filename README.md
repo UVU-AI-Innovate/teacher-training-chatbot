@@ -1,6 +1,136 @@
 # Teacher Training Simulator 🎓
 
-A second-grade student simulator for teacher training, designed to help teachers practice handling various classroom scenarios.
+An AI-powered second-grade student simulator for teacher training, designed to help teachers practice their responses to various classroom scenarios.
+
+## Overview
+
+This simulator creates realistic classroom scenarios and provides immediate feedback on teaching strategies. It uses natural language processing and a knowledge base of educational best practices to evaluate teacher responses and simulate student reactions.
+
+## Key Features
+
+### 1. Scenario Generation
+- Creates contextual teaching scenarios
+- Considers multiple factors:
+  - Time of day (morning, after lunch, late afternoon)
+  - Subject matter (math, reading)
+  - Student learning styles (visual, auditory, kinesthetic)
+  - Behavioral triggers
+  - Student states
+
+### 2. Knowledge Management
+The system processes and stores teaching knowledge from various sources:
+- Teaching strategies
+- Student behaviors
+- Classroom management techniques
+- Subject-specific content
+- Learning style adaptations
+- Behavioral interventions
+
+Supported file formats:
+- PDF Documents (.pdf)
+- Word Documents (.docx)
+- Text Files (.txt)
+- Markdown Files (.md)
+- JSON Files (.json)
+- YAML Files (.yml)
+- CSV Files (.csv)
+
+### 3. Response Evaluation
+Evaluates teacher responses across four dimensions:
+1. Time-appropriate strategies (20%)
+2. Learning style alignment (20%)
+3. Behavioral management (30%)
+4. Subject-specific support (30%)
+
+### 4. Student Simulation
+- Generates contextual student reactions
+- Simulates different learning styles
+- Models emotional states and engagement levels
+- Provides behavioral feedback
+
+## Technical Architecture
+
+### Components
+
+1. `TeacherTrainingChatbot`
+   - Core simulation engine
+   - Manages scenarios and evaluations
+   - Handles student personality and state
+
+2. `KnowledgeManager`
+   - Processes teaching resources
+   - Manages vector embeddings
+   - Handles similarity search
+
+3. `KnowledgeStore`
+   - Persistent storage for processed knowledge
+   - Vector database for semantic search
+   - Document metadata management
+
+4. `TerminalInterface`
+   - User interaction handling
+   - Display formatting
+   - Session management
+
+### Data Flow
+
+1. Knowledge Processing:
+   ```
+   Raw Files → Extraction → Chunking → Embedding → Vector Store
+   ```
+
+2. Scenario Generation:
+   ```
+   Context Selection → State Generation → Scenario Assembly
+   ```
+
+3. Response Evaluation:
+   ```
+   Teacher Input → Strategy Matching → Multi-dimensional Scoring → Feedback Generation
+   ```
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/teacher-training-simulator.git
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+## Usage
+
+```bash
+# Run the simulator
+python terminal_app.py
+```
+
+## Knowledge Base Structure
+
+```
+knowledge_base/
+├── documents/           # Original files
+│   ├── teaching/       # Teaching strategies
+│   ├── behavior/       # Student behaviors
+│   └── content/        # Subject content
+│
+└── processed/          # Processed data
+    ├── knowledge.db    # Vector store
+    └── metadata.json   # File information
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## System Architecture
 

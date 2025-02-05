@@ -1,4 +1,21 @@
-"""Knowledge management system for the teacher training simulator."""
+"""
+Knowledge Management System
+
+This module handles the processing, storage, and retrieval of teaching knowledge.
+It converts various file formats into a unified vector representation for 
+semantic search and similarity matching.
+
+Components:
+1. Text Extraction - Processes multiple file formats
+2. Chunking - Breaks content into meaningful units
+3. Embedding Generation - Creates vector representations
+4. Vector Storage - Manages persistent storage
+5. Similarity Search - Finds relevant knowledge
+
+The system supports multiple file formats and maintains the original context
+of each knowledge piece while allowing for efficient retrieval.
+"""
+
 import os
 from typing import List, Dict, Any
 import json
@@ -6,8 +23,32 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
+from pathlib import Path
+import shutil
+from PyPDF2 import PdfReader
+from docx import Document
+import markdown
+import yaml
+import csv
+import chardet
+from knowledge_store import KnowledgeStore
 
 class KnowledgeManager:
+    """
+    Manages the processing and retrieval of teaching knowledge.
+    
+    This class handles:
+    - File processing
+    - Text extraction
+    - Embedding generation
+    - Knowledge storage
+    - Semantic search
+    
+    Attributes:
+        embedding_model (SentenceTransformer): Model for generating embeddings
+        knowledge_store (KnowledgeStore): Persistent storage for processed knowledge
+        vector_dim (int): Dimension of the embedding vectors
+    """
     def __init__(self, model_name='all-MiniLM-L6-v2'):
         self.embedding_model = SentenceTransformer(model_name)
         self.vector_dim = 384  # Dimension for this model
@@ -20,15 +61,182 @@ class KnowledgeManager:
             "developmental_psychology": [],
             "classroom_management": []
         }
+        self.knowledge_base_dir = Path("knowledge_base")
+        self.processed_dir = Path("processed_knowledge")
+        self.default_dir = Path("default_knowledge")
+        self.knowledge_store = KnowledgeStore()
+        
+        # Create directories if they don't exist
+        self.knowledge_base_dir.mkdir(exist_ok=True)
+        self.processed_dir.mkdir(exist_ok=True)
 
-    def add_document(self, text: str, metadata: Dict[str, Any] = None):
-        """Add a document to the vector store."""
-        embedding = self.embedding_model.encode([text])[0]
-        self.index.add(np.array([embedding]).astype('float32'))
-        self.documents.append({
-            'text': text,
-            'metadata': metadata or {}
-        })
+    def extract_text(self, file_path: Path) -> List[Dict[str, Any]]:
+        """Extract text from various file formats."""
+        documents = []
+        file_type = file_path.suffix.lower()
+
+        try:
+            if file_type == '.pdf':
+                # Handle PDF files
+                reader = PdfReader(file_path)
+                for i, page in enumerate(reader.pages):
+                    text = page.extract_text()
+                    if text.strip():
+                        documents.append({
+                            'content': text,
+                            'metadata': {
+                                'source': file_path.name,
+                                'page': i + 1,
+                                'type': 'pdf'
+                            }
+                        })
+
+            elif file_type == '.docx':
+                # Handle Word documents
+                doc = Document(file_path)
+                for i, para in enumerate(doc.paragraphs):
+                    if para.text.strip():
+                        documents.append({
+                            'content': para.text,
+                            'metadata': {
+                                'source': file_path.name,
+                                'paragraph': i + 1,
+                                'type': 'docx'
+                            }
+                        })
+
+            elif file_type == '.txt':
+                # Handle text files with encoding detection
+                with open(file_path, 'rb') as f:
+                    raw_data = f.read()
+                    encoding = chardet.detect(raw_data)['encoding']
+                
+                with open(file_path, 'r', encoding=encoding) as f:
+                    text = f.read()
+                    sections = text.split('\n\n')
+                    for i, section in enumerate(sections):
+                        if section.strip():
+                            documents.append({
+                                'content': section,
+                                'metadata': {
+                                    'source': file_path.name,
+                                    'section': i + 1,
+                                    'type': 'txt'
+                                }
+                            })
+
+            elif file_type == '.md':
+                # Handle Markdown files
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    text = f.read()
+                    html = markdown.markdown(text)
+                    # Split by headers or paragraphs
+                    sections = html.split('<h')
+                    for i, section in enumerate(sections):
+                        if section.strip():
+                            documents.append({
+                                'content': section,
+                                'metadata': {
+                                    'source': file_path.name,
+                                    'section': i,
+                                    'type': 'markdown'
+                                }
+                            })
+
+            elif file_type in ['.json', '.yaml', '.yml']:
+                # Handle structured data files
+                if file_type == '.json':
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                else:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = yaml.safe_load(f)
+                
+                # Recursively process structured data
+                self._process_structured_data(data, documents, file_path.name)
+
+            elif file_type == '.csv':
+                # Handle CSV files
+                df = pd.read_csv(file_path)
+                for i, row in df.iterrows():
+                    documents.append({
+                        'content': ' '.join(str(v) for v in row.values),
+                        'metadata': {
+                            'source': file_path.name,
+                            'row': i + 1,
+                            'type': 'csv',
+                            'columns': list(row.index)
+                        }
+                    })
+
+            else:
+                print(f"Unsupported file type: {file_type}")
+                return []
+
+        except Exception as e:
+            print(f"Error processing {file_path}: {str(e)}")
+            return []
+
+        return documents
+
+    def _process_structured_data(self, data: Any, documents: List[Dict], source: str, path: str = ""):
+        """Recursively process structured data (JSON/YAML)."""
+        if isinstance(data, dict):
+            for key, value in data.items():
+                current_path = f"{path}.{key}" if path else key
+                if isinstance(value, (str, int, float)):
+                    documents.append({
+                        'content': f"{key}: {value}",
+                        'metadata': {
+                            'source': source,
+                            'path': current_path,
+                            'type': 'structured'
+                        }
+                    })
+                else:
+                    self._process_structured_data(value, documents, source, current_path)
+        elif isinstance(data, list):
+            for i, item in enumerate(data):
+                current_path = f"{path}[{i}]"
+                if isinstance(item, (str, int, float)):
+                    documents.append({
+                        'content': str(item),
+                        'metadata': {
+                            'source': source,
+                            'path': current_path,
+                            'type': 'structured'
+                        }
+                    })
+                else:
+                    self._process_structured_data(item, documents, source, current_path)
+
+    def add_to_knowledge_base(self, file_path: str):
+        """Add any file to the knowledge base."""
+        file_path = Path(file_path)
+        if not file_path.exists():
+            print(f"File not found: {file_path}")
+            return
+
+        print(f"\nProcessing {file_path.name}...")
+        
+        # Extract text from file
+        documents = self.extract_text(file_path)
+        if not documents:
+            print("No content extracted from file")
+            return
+
+        # Add to knowledge store
+        for doc in documents:
+            embedding = self.embedding_model.encode([doc['content']])[0]
+            self.knowledge_store.add_document(
+                content=doc['content'],
+                source=doc['metadata']['source'],
+                chunk_type=doc['metadata']['type'],
+                metadata=doc['metadata'],
+                embedding=embedding
+            )
+
+        print(f"✓ Added {len(documents)} chunks to knowledge base")
 
     def add_educational_resource(self, file_path: str, category: str):
         """Process and add educational resource files."""
@@ -39,21 +247,14 @@ class KnowledgeManager:
                 content = f.read()
                 sections = content.split('\n\n')
                 for section in sections:
-                    self.add_document(section, {
-                        'category': category,
-                        'source': file_path
-                    })
+                    self.add_to_knowledge_base(file_path)
                     self.categories[category].append(section)
         
         elif ext == '.csv':
             df = pd.read_csv(file_path)
             for _, row in df.iterrows():
                 text = ' '.join(str(v) for v in row.values)
-                self.add_document(text, {
-                    'category': category,
-                    'source': file_path,
-                    'row_data': row.to_dict()
-                })
+                self.add_to_knowledge_base(file_path)
                 self.categories[category].append(text)
         
         elif ext == '.json':
@@ -67,11 +268,7 @@ class KnowledgeManager:
             for key, value in data.items():
                 if isinstance(value, (str, int, float)):
                     text = f"{key}: {value}"
-                    self.add_document(text, {
-                        'category': category,
-                        'source': source,
-                        'key': key
-                    })
+                    self.add_to_knowledge_base(source)
                     self.categories[category].append(text)
                 else:
                     self._process_json_data(value, category, source)
@@ -81,20 +278,14 @@ class KnowledgeManager:
 
     def search(self, query: str, k: int = 3) -> List[Dict]:
         """Search for relevant knowledge."""
-        query_vector = self.embedding_model.encode([query])[0]
-        distances, indices = self.index.search(
-            np.array([query_vector]).astype('float32'), k
-        )
+        query_embedding = self.embedding_model.encode([query])[0]
+        results = self.knowledge_store.search(query_embedding, k)
         
-        return [
-            {
-                'text': self.documents[idx]['text'],
-                'metadata': self.documents[idx]['metadata'],
-                'relevance': float(1 / (1 + dist))
-            }
-            for dist, idx in zip(distances[0], indices[0])
-            if idx != -1
-        ]
+        return [{
+            'text': r['content'],
+            'metadata': r['metadata'],
+            'relevance': r['similarity']
+        } for r in results]
 
     def get_teaching_context(self, scenario: Dict) -> Dict[str, List[str]]:
         """Get relevant teaching context for a scenario."""
@@ -244,4 +435,91 @@ class KnowledgeManager:
     def get_category_sample(self, category: str, n: int = 3) -> list:
         """Get sample entries from a category."""
         items = self.categories.get(category, [])
-        return items[:n] if items else [] 
+        return items[:n] if items else []
+
+    def validate_knowledge_file(self, file_path: str) -> bool:
+        """Validate a knowledge file's format."""
+        try:
+            file_path = Path(file_path)
+            if not file_path.exists():
+                raise FileNotFoundError(f"File not found: {file_path}")
+
+            if file_path.suffix == '.json':
+                with open(file_path) as f:
+                    data = json.load(f)
+                    # Validate JSON structure
+                    if not isinstance(data, dict):
+                        raise ValueError("JSON must have a root dictionary")
+                    for category, content in data.items():
+                        if not isinstance(content, dict):
+                            raise ValueError(f"Category '{category}' must contain a dictionary")
+                        for subcategory, items in content.items():
+                            if not isinstance(items, dict):
+                                raise ValueError(f"Subcategory '{subcategory}' must contain a dictionary")
+                            if 'strategies' not in items:
+                                raise ValueError(f"Missing 'strategies' in {subcategory}")
+                            if not isinstance(items['strategies'], list):
+                                raise ValueError(f"'strategies' must be a list in {subcategory}")
+                return True
+
+            elif file_path.suffix == '.csv':
+                df = pd.read_csv(file_path)
+                required_columns = {'category', 'strategy'}
+                if not required_columns.issubset(df.columns):
+                    raise ValueError(f"CSV must contain columns: {required_columns}")
+                return True
+
+            elif file_path.suffix == '.txt':
+                with open(file_path) as f:
+                    content = f.read()
+                    sections = content.split('\n\n')
+                    if not sections:
+                        raise ValueError("TXT file must contain sections separated by double newlines")
+                    for section in sections:
+                        if not section.strip():
+                            continue
+                        if 'Strategy:' not in section:
+                            raise ValueError("Each section must contain 'Strategy:'")
+                return True
+
+            else:
+                raise ValueError(f"Unsupported file type: {file_path.suffix}")
+
+        except Exception as e:
+            print(f"Validation error: {str(e)}")
+            return False
+
+    def add_knowledge_file(self, file_path: str, category: str):
+        """Add a new knowledge file after validation."""
+        if not self.validate_knowledge_file(file_path):
+            print("File validation failed. Please check the format.")
+            return
+
+        source_path = Path(file_path)
+        target_name = f"{category}_{source_path.stem}{source_path.suffix}"
+        target_path = self.knowledge_base_dir / target_name
+
+        # Copy file to knowledge base
+        shutil.copy2(source_path, target_path)
+        print(f"Added {target_name} to knowledge base")
+
+        # Process the file based on its type
+        self.add_educational_resource(str(target_path), category)
+        print(f"Processed {target_name} into knowledge base")
+    
+    def process_knowledge_files(self):
+        """Process all knowledge files into vector embeddings."""
+        # This would be implemented in knowledge_processor.py 
+
+    def process_all_files(self):
+        """Process all files in the knowledge base directory."""
+        print("\nProcessing knowledge base files...")
+        
+        # Clear existing knowledge
+        self.knowledge_store.clear()
+        
+        # Process each file
+        for file_path in self.knowledge_base_dir.glob('*.*'):
+            if file_path.name != 'knowledge.db':  # Skip the database file
+                print(f"\nProcessing {file_path.name}...")
+                self.add_to_knowledge_base(str(file_path)) 
