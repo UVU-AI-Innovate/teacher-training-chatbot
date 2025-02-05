@@ -60,7 +60,7 @@ graph TB
     end
 
     subgraph Core["Core Processing Layer"]
-        Chat[EduAgent]
+        Chat[AI Agent]
         Eval[Response Evaluator]
         Sim[Student Simulator]
         Scen[Scenario Generator]
@@ -215,12 +215,12 @@ graph TB
 
 ### Components
 
-1. `EduAgent` (formerly TeacherTrainingChatbot)
+1. `AI Agent` (formerly TeacherTrainingChatbot)
    - Core simulation engine powered by multimodal AI technology
    - **AI Integration**:
      ```mermaid
      graph TB
-         subgraph Agent["EduAgent System"]
+         subgraph Agent["AI Agent System"]
              direction TB
              Input[["Multimodal Input"]]
              Context[Scenario Context]
@@ -867,7 +867,7 @@ graph TB
 
     subgraph Core["Core System"]
         direction TB
-        CE[Chatbot Engine]
+        CE[AI Agent]
         KM[Knowledge Manager]
         LLM[LLM Handler]
         
@@ -932,7 +932,7 @@ graph TB
         end
         
         subgraph Core["Core System"]
-            CE[Chatbot Engine]
+            CE[AI Agent]
             LLM[LLM Handler]
             KB[Knowledge Base]
         end
