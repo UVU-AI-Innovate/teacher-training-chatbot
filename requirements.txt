@@ -1,11 +1,43 @@
-openai==1.12.0
+# Core dependencies
+numpy==1.24.3
+requests==2.31.0
+pyyaml==6.0.1
+tenacity==8.2.3
+
+# Machine Learning
+torch==2.1.2
 transformers==4.38.2
 sentence-transformers==2.5.1
-torch==2.2.1
+scikit-learn==1.4.0
+
+# Web Framework
 flask==3.0.2
 python-dotenv==1.0.1
+
+# Database
 SQLAlchemy==2.0.27
 psycopg2-binary==2.9.9
 alembic==1.13.1
 pgvector==0.2.5
-sqlalchemy-utils==0.41.1 
+sqlalchemy-utils==0.41.1
+
+# Optimization
+accelerate==0.26.1
+bitsandbytes==0.42.0
+sentencepiece==0.2.0
+protobuf==4.25.2
+
+# Development
+black==24.1.1
+isort==5.13.2
+flake8==7.0.0
+flake8-docstrings==1.7.0
+mypy==1.8.0
+pre-commit==3.6.0
+pytest==8.0.0
+pytest-cov==4.1.0
+
+# Documentation
+sphinx==7.2.6
+sphinx-rtd-theme==2.0.0
+sphinx-autodoc-typehints==1.25.2 

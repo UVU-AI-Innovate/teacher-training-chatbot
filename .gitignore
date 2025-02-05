@@ -68,4 +68,9 @@ alembic/versions/*.py
 
 # Project specific
 chatbot.db
-chatbot_test.db 
+chatbot_test.db
+
+# Node.js
+node_modules/
+.env
+dist/ 

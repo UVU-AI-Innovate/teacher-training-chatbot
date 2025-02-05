@@ -1,0 +1,143 @@
+{
+    "teaching_standards": {
+        "classroom_management": {
+            "environment": {
+                "standard": "Teachers create and maintain a safe, organized, and engaging learning environment.",
+                "indicators": [
+                    "Arranges the physical space to maximize learning and minimize distractions",
+                    "Establishes and maintains clear routines and procedures",
+                    "Creates a positive classroom culture that promotes learning",
+                    "Implements effective transitions between activities"
+                ],
+                "evidence": [
+                    "Posted classroom rules and procedures",
+                    "Organized materials and resources",
+                    "Smooth transitions between activities",
+                    "Student engagement in learning tasks"
+                ]
+            },
+            "behavior_management": {
+                "standard": "Teachers implement effective behavior management strategies that promote positive behavior and address misconduct appropriately.",
+                "indicators": [
+                    "Uses preventive management strategies",
+                    "Responds to misbehavior promptly and appropriately",
+                    "Maintains student dignity during behavioral interventions",
+                    "Reinforces positive behavior consistently"
+                ],
+                "evidence": [
+                    "Clear behavior expectations",
+                    "Consistent consequences",
+                    "Positive reinforcement systems",
+                    "Documentation of interventions"
+                ]
+            },
+            "student_engagement": {
+                "standard": "Teachers maintain high levels of student engagement through effective instructional practices.",
+                "indicators": [
+                    "Uses varied instructional strategies",
+                    "Monitors student participation",
+                    "Adjusts instruction based on student response",
+                    "Promotes active learning"
+                ],
+                "evidence": [
+                    "Student participation rates",
+                    "On-task behavior",
+                    "Student work products",
+                    "Lesson adaptations"
+                ]
+            }
+        },
+        "instruction": {
+            "planning": {
+                "standard": "Teachers plan instruction that engages students and meets diverse learning needs.",
+                "indicators": [
+                    "Develops clear learning objectives",
+                    "Plans differentiated activities",
+                    "Incorporates appropriate assessments",
+                    "Aligns instruction with standards"
+                ],
+                "evidence": [
+                    "Lesson plans",
+                    "Differentiated materials",
+                    "Assessment tools",
+                    "Curriculum alignment documents"
+                ]
+            },
+            "delivery": {
+                "standard": "Teachers implement effective instructional practices that maximize student learning.",
+                "indicators": [
+                    "Uses clear and precise language",
+                    "Provides appropriate scaffolding",
+                    "Checks for understanding regularly",
+                    "Adjusts pace based on student needs"
+                ],
+                "evidence": [
+                    "Student understanding checks",
+                    "Scaffolded assignments",
+                    "Pacing adjustments",
+                    "Student feedback"
+                ]
+            },
+            "assessment": {
+                "standard": "Teachers use various assessment strategies to monitor student progress and guide instruction.",
+                "indicators": [
+                    "Implements formative assessments",
+                    "Provides timely feedback",
+                    "Uses data to inform instruction",
+                    "Differentiates assessments as needed"
+                ],
+                "evidence": [
+                    "Assessment data",
+                    "Feedback examples",
+                    "Data analysis",
+                    "Modified assessments"
+                ]
+            }
+        },
+        "professional_practice": {
+            "communication": {
+                "standard": "Teachers communicate effectively with students, families, and colleagues.",
+                "indicators": [
+                    "Uses clear and appropriate language",
+                    "Maintains regular parent communication",
+                    "Collaborates with colleagues",
+                    "Documents communication effectively"
+                ],
+                "evidence": [
+                    "Communication logs",
+                    "Parent conference notes",
+                    "Team meeting minutes",
+                    "Professional correspondence"
+                ]
+            },
+            "professional_growth": {
+                "standard": "Teachers engage in continuous professional learning and reflection.",
+                "indicators": [
+                    "Participates in professional development",
+                    "Reflects on teaching practice",
+                    "Seeks feedback from others",
+                    "Implements new learning"
+                ],
+                "evidence": [
+                    "PD certificates",
+                    "Reflection journals",
+                    "Peer observations",
+                    "Implementation plans"
+                ]
+            }
+        }
+    },
+    "metadata": {
+        "version": "2024.1",
+        "last_updated": "2024-02-05",
+        "review_cycle": "annual",
+        "alignment": {
+            "national_standards": true,
+            "state_requirements": true,
+            "professional_organizations": [
+                "National Education Association",
+                "Association for Supervision and Curriculum Development"
+            ]
+        }
+    }
+} 

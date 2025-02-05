@@ -1,0 +1,35 @@
+{
+  "student_profiles": [
+    {
+      "id": "student_1",
+      "name": "Alex",
+      "learning_style": "visual",
+      "challenges": ["difficulty focusing", "easily distracted"],
+      "strengths": ["creative thinking", "eager to participate"],
+      "background": "Comes from bilingual household, shows interest in art and storytelling"
+    },
+    {
+      "id": "student_2",
+      "name": "Sarah",
+      "learning_style": "kinesthetic",
+      "challenges": ["reading comprehension", "shy in group settings"],
+      "strengths": ["strong in mathematics", "works well independently"],
+      "background": "Recently transferred from another school, still adjusting to new environment"
+    }
+  ],
+  "classroom_dynamics": {
+    "class_size": 25,
+    "grade_level": 2,
+    "special_considerations": [
+      "3 ESL students",
+      "2 students with IEPs",
+      "1 student with hearing assistance"
+    ],
+    "common_scenarios": [
+      "transition times between subjects",
+      "group work management",
+      "differentiated instruction needs",
+      "technology integration challenges"
+    ]
+  }
+} 

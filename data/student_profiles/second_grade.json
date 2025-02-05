@@ -1,0 +1,122 @@
+{
+    "profiles": [
+        {
+            "id": "2g_001",
+            "name": "Alex",
+            "age": 7,
+            "grade": "second",
+            "learning_style": "kinesthetic",
+            "strengths": [
+                "High energy and enthusiasm",
+                "Creative problem solving",
+                "Natural leadership qualities",
+                "Strong verbal communication"
+            ],
+            "challenges": [
+                "Difficulty sitting still",
+                "Gets distracted easily",
+                "Sometimes interrupts others",
+                "Rushes through work"
+            ],
+            "interests": [
+                "Sports",
+                "Building things",
+                "Science experiments",
+                "Group activities"
+            ],
+            "academic_performance": {
+                "math": "above grade level",
+                "reading": "at grade level",
+                "writing": "slightly below grade level",
+                "science": "above grade level"
+            },
+            "social_emotional": {
+                "peer_relationships": "generally positive but can be dominant",
+                "emotional_regulation": "needs support with frustration",
+                "classroom_behavior": "active but manageable",
+                "cooperation": "good in structured activities"
+            }
+        },
+        {
+            "id": "2g_002",
+            "name": "Maya",
+            "age": 8,
+            "grade": "second",
+            "learning_style": "visual",
+            "strengths": [
+                "Excellent attention to detail",
+                "Strong reading comprehension",
+                "Artistic ability",
+                "Good organizational skills"
+            ],
+            "challenges": [
+                "Shy in group settings",
+                "Hesitant to ask questions",
+                "Perfectionist tendencies",
+                "Anxiety about math"
+            ],
+            "interests": [
+                "Art",
+                "Reading",
+                "Nature",
+                "Quiet activities"
+            ],
+            "academic_performance": {
+                "math": "slightly below grade level",
+                "reading": "above grade level",
+                "writing": "above grade level",
+                "science": "at grade level"
+            },
+            "social_emotional": {
+                "peer_relationships": "few close friends, quiet in groups",
+                "emotional_regulation": "well-regulated but internalizing",
+                "classroom_behavior": "exemplary",
+                "cooperation": "works well with familiar peers"
+            }
+        },
+        {
+            "id": "2g_003",
+            "name": "Jordan",
+            "age": 7,
+            "grade": "second",
+            "learning_style": "auditory",
+            "strengths": [
+                "Strong memory for spoken information",
+                "Musical ability",
+                "Good abstract thinking",
+                "Helpful to peers"
+            ],
+            "challenges": [
+                "Difficulty with written instructions",
+                "Struggles with reading comprehension",
+                "Variable focus",
+                "Messy handwriting"
+            ],
+            "interests": [
+                "Music",
+                "Storytelling",
+                "Math games",
+                "Helping others"
+            ],
+            "academic_performance": {
+                "math": "at grade level",
+                "reading": "slightly below grade level",
+                "writing": "below grade level",
+                "science": "at grade level"
+            },
+            "social_emotional": {
+                "peer_relationships": "well-liked, many friends",
+                "emotional_regulation": "generally good",
+                "classroom_behavior": "occasionally chatty",
+                "cooperation": "excellent team player"
+            }
+        }
+    ],
+    "metadata": {
+        "grade_level": "second",
+        "total_profiles": 3,
+        "learning_styles": ["kinesthetic", "visual", "auditory"],
+        "academic_levels": ["above grade level", "at grade level", "below grade level"],
+        "last_updated": "2024-02-05"
+    }
+} 
