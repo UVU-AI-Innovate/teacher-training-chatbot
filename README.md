@@ -1,232 +1,197 @@
-# UTTA Development
+# UTTA Development (Phase One - Chatbot)
 
-An AI-powered educational simulation system designed to help teachers develop and refine their teaching strategies through interactive practice with a simulated second-grade student.
+An AI-powered educational simulation chatbot designed to help teachers develop and refine their teaching strategies through interactive text-based practice with a simulated second-grade student.
 
-## Educational Framework
+## System Overview
 
-```mermaid
-graph TB
-    subgraph Teaching["Teaching Components"]
-        direction TB
-        P[Pedagogical Strategies]
-        L[Learning Styles]
-        B[Behavioral Management]
-        A[Assessment Methods]
-    end
-
-    subgraph Student["Student Model"]
-        direction TB
-        C[Cognitive State]
-        E[Emotional State]
-        LS[Learning Style]
-        BH[Behavior]
-    end
-
-    subgraph AI["AI System"]
-        direction TB
-        NLP[Natural Language Processing]
-        KM[Knowledge Management]
-        ER[Evaluation & Response]
-    end
-
-    Teaching --> AI
-    Student --> AI
-    AI --> Feedback[Feedback & Assessment]
-
-    style Teaching fill:#f9f,stroke:#333,stroke-width:2px
-    style Student fill:#bbf,stroke:#333,stroke-width:2px
-    style AI fill:#bfb,stroke:#333,stroke-width:2px
-```
-
-### 1. Pedagogical Components
-
-#### Teaching Strategies Assessment
-- **Time-based Strategies** (20%)
-  - Morning: Structured activities, clear expectations
-  - After Lunch: Movement integration, energy management
-  - Late Afternoon: Short tasks, varied activities
-
-- **Learning Style Alignment** (20%)
-  ```mermaid
-  graph LR
-      V[Visual] --> Show[Show & Demonstrate]
-      A[Auditory] --> Tell[Tell & Discuss]
-      K[Kinesthetic] --> Do[Do & Practice]
-      
-      style V fill:#f9f
-      style A fill:#bbf
-      style K fill:#bfb
-  ```
-
-- **Behavioral Management** (30%)
-  - Attention strategies
-  - Frustration management
-  - Engagement techniques
-  - Positive reinforcement
-
-- **Subject-Specific Support** (30%)
-  - Math: Concrete to abstract progression
-  - Reading: Phonics and comprehension strategies
-  - Cross-subject integration
-
-### 2. Student Simulation Model
-
-```mermaid
-graph TB
-    subgraph States["Student States"]
-        direction TB
-        Cognitive[Cognitive State]
-        Emotional[Emotional State]
-        Behavioral[Behavioral State]
-    end
-
-    subgraph Factors["Influencing Factors"]
-        Time[Time of Day]
-        Subject[Subject Matter]
-        Teaching[Teaching Approach]
-        Environment[Class Environment]
-    end
-
-    Factors --> States
-    States --> Response[Student Response]
-
-    style States fill:#bbf,stroke:#333,stroke-width:2px
-    style Factors fill:#f9f,stroke:#333,stroke-width:2px
-```
-
-#### Student State Components
-1. **Cognitive State**
-   - Understanding level (0-1.0)
-   - Attention span
-   - Subject comprehension
-
-2. **Emotional State**
-   - Engagement level
-   - Frustration tolerance
-   - Confidence
-
-3. **Behavioral Manifestations**
-   - Physical indicators
-   - Verbal responses
-   - Interaction patterns
-
-### 3. AI Integration
-
-```mermaid
-graph TB
-    subgraph Input["Teacher Input"]
-        TR[Response]
-        ST[Strategy]
-    end
-
-    subgraph Processing["AI Processing"]
-        direction TB
-        NLP[Language Analysis]
-        Context[Context Integration]
-        Strategy[Strategy Matching]
-    end
-
-    subgraph Output["Educational Output"]
-        Feedback[Teacher Feedback]
-        Reaction[Student Reaction]
-        Metrics[Performance Metrics]
-    end
-
-    Input --> Processing
-    Processing --> Output
-
-    style Input fill:#f9f,stroke:#333,stroke-width:2px
-    style Processing fill:#bbf,stroke:#333,stroke-width:2px
-    style Output fill:#bfb,stroke:#333,stroke-width:2px
-```
-
-### 4. Learning Scenarios
-
-Example Scenario Structure:
-```
-Time: Morning
-Context: Math Class
-Topic: Two-digit Addition
-Student State:
-- Learning Style: Visual
-- Current Challenge: Number Sense
-- Behavioral State: Frustrated
-```
-
-#### Scenario Progression
 ```mermaid
 sequenceDiagram
-    participant T as Teacher
-    participant S as Student
-    participant A as AI System
+    participant Teacher
+    participant UI as User Interface
+    participant Engine as AI Engine
+    participant KB as Knowledge Base
     
-    Note over S: Shows Frustration
-    T->>S: Teaching Response
-    S->>A: State Update
-    A->>S: Generate Reaction
-    S->>T: Student Response
-    A->>T: Feedback & Score
+    Note over Teacher,KB: Initial Setup
+    Teacher->>UI: Start Session
+    UI->>Engine: Initialize System
+    Engine->>KB: Load Teaching Data
+    KB-->>Engine: Scenarios & Strategies
+    Engine-->>UI: Ready for Interaction
+    
+    Note over Teacher,KB: Teaching Interaction
+    rect rgb(200, 220, 255)
+        Teacher->>UI: Enter Teaching Response
+        UI->>Engine: Process Input
+        Engine->>KB: Query Knowledge Base
+        KB-->>Engine: Relevant Teaching Patterns
+        Engine->>Engine: Generate Response
+        Engine-->>UI: Student Response & Feedback
+        UI-->>Teacher: Display Interaction
+        UI->>KB: Store Interaction Data
+    end
+    
+    Note over Teacher,KB: Progress Tracking
+    Teacher->>UI: Review Performance
+    UI->>KB: Fetch Analytics
+    KB-->>UI: Progress Data
+    UI-->>Teacher: Show Progress Report
 ```
 
-## Technical Implementation
+The application works through three main components that interact seamlessly to provide a realistic teaching simulation:
 
-### Core Components
+1. **User Interface**: Handles teacher interactions through both terminal and web interfaces
+2. **AI Engine**: Processes inputs and generates contextual responses using LLM technology
+3. **Knowledge Base**: Manages teaching scenarios, strategies, and interaction history
 
-1. **AI Agent**
-   - Natural language processing
-   - Context-aware responses
-   - Real-time evaluation
+## Application Components
 
-2. **Knowledge Management**
-   - Teaching strategies database
-   - Behavioral patterns
-   - Response templates
+### 1. Core AI Engine
 
-3. **Evaluation System**
-   - Multi-dimensional scoring
-   - Strategy effectiveness
-   - Learning progression
+The AI Engine is the core of our application, handling:
+- Natural language processing of teacher inputs
+- Context management for conversations
+- LLM-based response generation
+- Response evaluation and feedback
 
-## Usage Guide
+**Team Contributions:**
+- AI Team: Model integration, prompt engineering, evaluation metrics
+- Data Team: Training data preparation, response patterns
+- Web Team: API integration points, response handling
+
+### 2. Knowledge Management System
+
+The Knowledge Management System handles:
+- Storage and retrieval of teaching scenarios
+- Vector-based similarity search
+- Response pattern matching
+- Performance analytics
+
+**Team Contributions:**
+- Data Team: Database design, data preprocessing, analytics
+- AI Team: Embedding generation, similarity algorithms
+- Web Team: Data visualization, export functionality
+
+### 3. User Interface System
+
+The User Interface System provides:
+- Interactive chat interface
+- Real-time feedback display
+- Progress tracking and visualization
+- Session management
+
+**Team Contributions:**
+- Web Team: Frontend development, UX design, responsiveness
+- AI Team: Response formatting, feedback presentation
+- Data Team: Analytics visualization, data export
+
+### 4. Integration Flow
+****
+```mermaid
+sequenceDiagram
+    participant UI as Interface
+    participant Engine as AI Engine
+    participant KB as Knowledge Base
+    
+    UI->>Engine: Teacher Input
+    Engine->>KB: Query Knowledge
+    KB-->>Engine: Relevant Data
+    Engine->>Engine: Process Response
+    Engine-->>UI: Generated Response
+    UI->>KB: Store Interaction
+    KB-->>UI: Update Analytics
+```
+
+The integration flow shows how components interact:
+1. User input processing
+2. Knowledge base queries
+3. Response generation
+4. Feedback presentation
+5. Analytics updates
+
+**Team Contributions:**
+- AI Team: Core processing pipeline, model optimization
+- Data Team: Data flow, storage optimization
+- Web Team: Interface integration, real-time updates
+
+## Component Details
+
+### AI Engine Configuration
+```python
+# Example AI engine configuration
+config = {
+    "model": "llama-2-7b-chat",
+    "context_length": 2048,
+    "temperature": 0.7,
+    "response_cache": True
+}
+```
+
+### Knowledge Base Structure
+```python
+# Example knowledge base entry
+scenario = {
+    "context": "Math Class",
+    "difficulty": "intermediate",
+    "student_state": {
+        "learning_style": "visual",
+        "attention": 0.8,
+        "frustration": 0.3
+    }
+}
+```
+
+### Interface Features
+```python
+# Example interface configuration
+ui_config = {
+    "chat_history": 10,
+    "feedback_delay": 0.5,
+    "auto_suggestions": True,
+    "progress_tracking": True
+}
+```
+
+## Getting Started
 
 ### For Teachers
+```bash
+# Terminal interface
+python terminal_app.py
 
-1. **Getting Started**
-   ```bash
-   python terminal_app.py
-   ```
-
-2. **Session Flow**
-   - Profile setup
-   - Scenario selection
-   - Interactive teaching
-   - Performance review
-
-3. **Improvement Strategies**
-   - Review feedback
-   - Try different approaches
-   - Track progress
+# Web interface
+streamlit run web_app.py
+```
 
 ### For Developers
+```bash
+# Installation
+git clone https://github.com/yourusername/teacher-training-simulator.git
+pip install -r requirements.txt
 
-1. **Installation**
-   ```bash
-   git clone https://github.com/yourusername/teacher-training-simulator.git
-   pip install -r requirements.txt
-   ```
-
-2. **Development Setup**
-   - Configure LLM
-   - Set up knowledge base
-   - Test scenarios
+# Development
+python -m pytest tests/
+python run_dev_server.py
+```
 
 ## Contributing
 
-We welcome contributions in:
-1. Teaching scenarios
-2. Evaluation criteria
-3. Student responses
-4. Subject matter
+### AI Development
+- Model integration and tuning
+- Prompt engineering
+- Response generation
+- Evaluation metrics
+
+### Data Management
+- Scenario development
+- Knowledge base expansion
+- Analytics implementation
+- Pattern recognition
+
+### Web Development
+- Interface improvements
+- Feature implementation
+- Performance optimization
+- User experience enhancement
 
 ## License
 
