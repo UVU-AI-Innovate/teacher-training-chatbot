@@ -15,57 +15,53 @@ sequenceDiagram
     
     %% Styling
     rect rgb(240, 248, 255)
-        Note over T,M: Setup Phase
-        Note over T,UI: Launches web app
+        Note over T,M: Setup
+        Note over T,UI: Start app
         
-        T->>UI: Opens session
+        T->>UI: Select subject
         activate UI
         
-        Note over T,UI: Picks subject
-        UI->>Engine: Starts system
+        UI->>Engine: Initialize
         activate Engine
         
-        Note over Engine: Loads AI models
-        Engine->>KB: Fetches content
+        Note over Engine: Load LLM
+        Engine->>KB: Get scenarios
         activate KB
         
-        KB-->>Engine: Returns scenarios
+        KB-->>Engine: Send teaching cases
         deactivate KB
         
-        Engine-->>UI: Prepares interface
+        Engine-->>UI: Ready
         deactivate Engine
         
-        Note over UI: Shows options
+        Note over UI: Show options
         deactivate UI
     end
     
-    Note over T,M: Teaching Phase
+    Note over T,M: Teaching
     rect rgb(230, 255, 240)
-        Note over T,UI: Types response
+        Note over T,UI: Write response
         
-        T->>UI: Sends input
+        T->>UI: Submit text
         activate UI
         
-        Note over UI: Checks format
-        UI->>Engine: Forwards text
+        UI->>Engine: Send to LLM
         activate Engine
         
-        Note over Engine: Reads context
-        Engine->>KB: Finds patterns
+        Note over Engine: Process input
+        Engine->>KB: Match patterns
         activate KB
         
-        KB-->>Engine: Matches found
+        KB-->>Engine: Return matches
         deactivate KB
         
-        Note over Engine: Creates reply
-        Engine-->>UI: Returns feedback
+        Note over Engine: Generate reply
+        Engine-->>UI: Send response
         deactivate Engine
         
-        Note over UI: Shows result
-        UI-->>T: Displays chat
+        UI-->>T: Show reply
         
-        Note over UI: Logs chat
-        UI->>M: Stores interaction
+        UI->>M: Save chat
         activate M
         
         deactivate M
@@ -73,39 +69,35 @@ sequenceDiagram
     end
     
     rect rgb(255, 240, 245)
-        Note over T,M: Review Phase
-        Note over T,UI: Clicks review
+        Note over T,M: Analysis
+        Note over T,UI: Request review
         
-        T->>UI: Views progress
+        T->>UI: Open stats
         activate UI
         
-        UI->>Engine: Requests analysis
+        UI->>Engine: Get analysis
         activate Engine
         
-        Engine->>KB: Gets Edu standards
+        Engine->>KB: Get standards
         activate KB
         
-        KB-->>Engine: Returns guidelines
+        KB-->>Engine: Send criteria
         deactivate KB
         
-        Engine->>M: Gets chat history
+        Engine->>M: Get history
         activate M
         
-        M-->>Engine: Returns interactions
+        M-->>Engine: Send chats
         deactivate M
         
-        Note over Engine: Analyzes teaching
-        Note over Engine: Provides scores
-        Note over Engine: Makes suggestions
+        Note over Engine: Compare & score
+        Note over Engine: Generate feedback
         
-        Engine-->>UI: Sends report
+        Engine-->>UI: Send results
         deactivate Engine
         
-        Note over UI: Creates visuals
-        UI-->>T: Shows feedback
+        UI-->>T: Show report
         deactivate UI
-        
-        Note over T: Views performance
     end
 ```
 
