@@ -1,133 +1,373 @@
-# Utah Elementary Teacher Training Assistant (UTAH-TTA)
-## Second Grade Focus
+# Teacher Training Simulator 🎓
 
-An innovative educational training system integrated directly with Elementary Education program curriculum. This AI-powered platform allows education majors to practice and master teaching concepts through interactive simulations. Starting as a chatbot-based system (Phase 1), evolving to include voice interactions (Phase 2), and ultimately incorporating virtual reality experiences (Phase 3), UTAH-TTA provides a progressive learning environment where student teachers can apply theoretical knowledge in practical scenarios. Each simulation is carefully crafted to align with specific teaching competencies and educational objectives from the teacher preparation program.
+A second-grade student simulator for teacher training, designed to help teachers practice handling various classroom scenarios.
 
-### Quick Links
-- [Getting Started Guide](docs/getting-started/README.md)
-- [Architecture Overview](docs/ARCHITECTURE.md)
-- [Development Guide](docs/development/README.md)
-- [Content Creation](docs/content/README.md)
+## System Architecture
 
-### Table of Contents
-- [Project Overview](#-project-overview)
-- [Quick Start Guide](#-quick-start)
-- [Repository Structure](#-repository-structure)
-- [Key Features](#-key-features)
-
-
-## 🎯 Project Overview
-
-UTAH-TTA is a curriculum-aligned teacher preparation platform that:
-- Integrates directly with Elementary Education program coursework and objectives
-- Provides practical training scenarios matching the teaching concepts being studied
-- Enables immediate practice of newly learned teaching methodologies
-- Offers progressive technology integration:
-  - Phase 1: Interactive chat-based simulations
-  - Phase 2: Voice-enabled interactions
-  - Phase 3: Immersive virtual reality experiences
-- Creates scenario-based learning aligned with:
-  - Classroom management coursework
-  - Teaching methodology classes
-  - Student development studies
-  - Curriculum planning exercises
-- Allows practice of specific teaching competencies in a controlled environment
-- Provides immediate feedback based on educational best practices
-- Tracks progress through the teacher preparation program's key milestones
-
-## 📁 Repository Structure
-
-```
-utah-tta/
-├── src/                    # Source code
-│   ├── ai/                # AI/ML components
-│   ├── database/          # Database components
-│   ├── frontend/          # Frontend application
-│   └── api/               # API endpoints
-├── data/                  # Training and test data
-│   ├── second_grade/      # Core educational content
-│   ├── interactions/      # Teacher-student interactions
-│   └── scenarios/         # Teaching scenarios
-├── docs/                  # Documentation
-│   ├── getting-started/   # Setup and initial guides
-│   ├── development/       # Development guidelines
-│   ├── content/          # Content creation guides
-│   ├── technical/        # Technical documentation
-│   └── roles/            # Role-specific guides
-├── tests/                 # Test files
-└── config/               # Configuration files
+```mermaid
+graph TD
+    A[Knowledge Base] --> B[Knowledge Processor]
+    B --> C[Chatbot Core]
+    C --> D[User Interface]
+    
+    subgraph Knowledge Layer
+    A --> |Teaching Strategies| A1[strategies.txt]
+    A --> |Student Behaviors| A2[behaviors.json]
+    A --> |Academic Content| A3[math_strategies.csv]
+    end
+    
+    subgraph Processing Layer
+    B --> |Vector Store| B1[Embeddings]
+    B --> |Categories| B2[Document Store]
+    end
+    
+    subgraph Interaction Layer
+    C --> |Generate| C1[Scenarios]
+    C --> |Evaluate| C2[Responses]
+    C --> |Track| C3[Progress]
+    end
+    
+    subgraph Interface Layer
+    D --> |Display| D1[Scenario]
+    D --> |Chat| D2[Interaction]
+    D --> |Show| D3[Feedback]
+    end
 ```
 
-[Complete Repository Structure](docs/repository_structure.md)
+## Core Components
 
-## 🔍 Key Features
+### 1. Knowledge Base
+- **Teaching Strategies**: Pedagogical approaches and interventions
+- **Student Behaviors**: Common behavioral patterns and responses
+- **Academic Content**: Subject-specific challenges and solutions
 
-1. **AI Training Pipeline**
-   - [Model Architecture](docs/technical/ai/architecture.md)
-   - [Training Process](docs/technical/ai/training.md)
-   - [Evaluation Methods](docs/technical/ai/evaluation.md)
+### 2. Scenario Generation
+```python
+Scenario = {
+    "subject": "math/reading",
+    "time_of_day": "morning/after lunch/late afternoon",
+    "student_context": {
+        "learning_style": "visual/auditory/kinesthetic",
+        "attention_span": 0.0-1.0,
+        "social_confidence": 0.0-1.0,
+        "seating": "front/middle/back row",
+        "peer_interactions": "group/solo/distracted/shy"
+    },
+    "behavioral_context": {
+        "type": "attention/frustration",
+        "trigger": "specific event",
+        "manifestation": "observable behavior"
+    }
+}
+```
 
-2. **Scenario Management**
-   - [Content Creation Guide](docs/content/README.md)
-   - [Validation Process](docs/content/validation.md)
-   - [Performance Metrics](docs/technical/monitoring/metrics.md)
+### 3. Response Evaluation
+The system evaluates teacher responses based on four key criteria:
 
-3. **Educational Framework**
-   - [Curriculum Integration](docs/curriculum/README.md)
-   - [Teaching Scenarios](docs/scenarios/README.md)
-   - [Progress Tracking](docs/technical/tracking.md)
+1. **Time-Appropriate Strategies** (20%)
+   - Morning: structured start, clear expectations
+   - After lunch: movement breaks, energy management
+   - Late afternoon: short tasks, varied activities
 
-## 📋 Documentation
+2. **Learning Style Alignment** (20%)
+   - Visual: show, draw, look at
+   - Auditory: tell, listen, discuss
+   - Kinesthetic: try, move, build
 
-### Setup & Development
-- [Getting Started](docs/getting-started/README.md)
-- [Development Environment](docs/development/environment.md)
-- [Database Setup](docs/setup/database.md)
-- [Configuration Guide](docs/setup/configuration.md)
+3. **Behavioral Management** (30%)
+   - Attention: focus strategies, engagement techniques
+   - Frustration: confidence building, support approaches
 
-### Content & Data
-- [Content Creation Guide](docs/content/README.md)
-- [Data Management](docs/data/README.md)
-- [Scenario Development](docs/scenarios/README.md)
-- [Review Process](docs/content/review.md)
+4. **Subject-Specific Support** (30%)
+   - Math: step-by-step, manipulatives, visualization
+   - Reading: phonics, comprehension strategies, guided practice
 
-### Development
-- [Development Workflow](docs/development/README.md)
-- [Contributing Guidelines](docs/contributing/README.md)
-- [Code Standards](docs/development/standards.md)
-- [Testing Guide](docs/testing/README.md)
+## Teacher Response Evaluation System
 
-### Team & Organization
-- [Project Management](docs/project-management/README.md)
-- [Product Ownership](docs/product-ownership/README.md)
-- [Team Roles](docs/roles/README.md)
-- [Meeting Notes](docs/meetings/README.md)
+### Overview
+The system uses a combination of LLM-based semantic understanding and rule-based scoring to evaluate teacher responses:
+- Semantic similarity with known effective strategies
+- Context-aware response evaluation
+- Dynamic learning from the knowledge base
+- Adaptive feedback generation
 
-### Technical Resources
-- [Architecture Overview](docs/ARCHITECTURE.md)
-- [API Documentation](docs/api/README.md)
-- [Frontend Guide](docs/frontend/README.md)
-- [Deployment Guide](docs/deployment/README.md)
+### Evaluation Architecture
 
-### Support
-- [Troubleshooting](docs/setup/troubleshooting.md)
-- [FAQ](docs/setup/faq.md)
-- [Support Contacts](docs/setup/support.md)
+```mermaid
+flowchart TD
+    A[Teacher Response] --> B[LLM Processor]
+    K[Knowledge Base] --> B
+    
+    B --> C1[Semantic Analysis]
+    B --> C2[Context Matching]
+    B --> C3[Strategy Alignment]
+    
+    C1 --> D[Vector Similarity]
+    C2 --> D
+    C3 --> D
+    
+    D --> E[Score Generation]
+    E --> F[Feedback Creation]
+    
+    subgraph "Knowledge Processing"
+        K --> K1[Effective Strategies]
+        K --> K2[Response Patterns]
+        K --> K3[Context Rules]
+    end
+    
+    subgraph "Semantic Analysis"
+        C1 --> SA1[Intent Recognition]
+        C1 --> SA2[Strategy Identification]
+        C1 --> SA3[Tone Analysis]
+    end
+```
 
-## 🤝 Contributing
+### LLM-Based Evaluation Process
 
-We welcome contributions! See our [Contributing Guidelines](docs/contributing/README.md) for:
-- [Development Process](docs/development/process.md)
-- [Pull Request Guide](docs/contributing/pull-requests.md)
-- [Code Review Guidelines](docs/contributing/code-review.md)
+1. **Semantic Understanding**
+```python
+def evaluate_semantic_similarity(response: str, context: dict) -> float:
+    """
+    Use LLM to understand the semantic meaning of teacher's response
+    and compare it with known effective strategies.
+    """
+    # Encode teacher's response
+    response_embedding = embedding_model.encode(response)
+    
+    # Get relevant strategies from knowledge base
+    relevant_strategies = knowledge_base.get_strategies(
+        subject=context["subject"],
+        behavior=context["behavioral_context"]["type"],
+        learning_style=context["student_context"]["learning_style"]
+    )
+    
+    # Calculate semantic similarity
+    similarities = []
+    for strategy in relevant_strategies:
+        strategy_embedding = embedding_model.encode(strategy["text"])
+        similarity = cosine_similarity(response_embedding, strategy_embedding)
+        similarities.append(similarity * strategy["effectiveness"])
+    
+    return max(similarities)
+```
 
-## 🆘 Getting Help
+2. **Context Analysis**
+```python
+def analyze_context_alignment(response: str, context: dict) -> dict:
+    """
+    Use LLM to analyze how well the response aligns with the
+    specific teaching context.
+    """
+    prompt = f"""
+    Context:
+    - Subject: {context['subject']}
+    - Student Learning Style: {context['student_context']['learning_style']}
+    - Behavior Type: {context['behavioral_context']['type']}
+    - Time of Day: {context['time_of_day']}
+    
+    Teacher's Response: "{response}"
+    
+    Analyze how well this response addresses:
+    1. Subject-specific needs
+    2. Learning style alignment
+    3. Behavioral management
+    4. Time-appropriate strategy
+    """
+    
+    analysis = llm.generate(prompt)
+    return parse_llm_analysis(analysis)
+```
 
-- Technical Support: [Support Guide](docs/setup/support.md)
-- Content Questions: [Content Team](docs/roles/content-team.md)
-- Development Help: [Developer Guide](docs/development/README.md)
+3. **Strategy Identification**
+```python
+def identify_teaching_strategies(response: str) -> list:
+    """
+    Use LLM to identify specific teaching strategies used in the response.
+    """
+    prompt = f"""
+    Identify teaching strategies in: "{response}"
+    Consider:
+    - Instructional techniques
+    - Behavioral management
+    - Student engagement
+    - Emotional support
+    """
+    
+    strategies = llm.generate(prompt)
+    return extract_strategies(strategies)
+```
 
-## 📝 License
+### Comprehensive Evaluation Example
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
- 
+```python
+Input Scenario:
+{
+    "subject": "math",
+    "topic": "two-digit addition",
+    "student_context": {
+        "learning_style": "visual",
+        "attention_span": 0.4,
+        "current_state": "frustrated"
+    }
+}
+
+Teacher Response:
+"I see you're having trouble with this problem. Let's try something different.
+I'll draw out the numbers using base-10 blocks on the board, so you can see
+how regrouping works. Would you like to help me draw them?"
+
+LLM Evaluation:
+{
+    "semantic_similarity": 0.85,  # High match with known effective strategies
+    
+    "context_alignment": {
+        "subject_specific": 0.9,  # Strong math visualization
+        "learning_style": 0.95,   # Excellent visual approach
+        "behavioral": 0.8,        # Good frustration management
+        "timing": 0.75           # Appropriate pacing
+    },
+    
+    "identified_strategies": [
+        {
+            "type": "visualization",
+            "effectiveness": 0.9,
+            "context_appropriateness": 0.95
+        },
+        {
+            "type": "student_engagement",
+            "effectiveness": 0.85,
+            "context_appropriateness": 0.8
+        },
+        {
+            "type": "scaffolding",
+            "effectiveness": 0.9,
+            "context_appropriateness": 0.9
+        }
+    ],
+    
+    "overall_score": 0.88,
+    
+    "feedback": {
+        "strengths": [
+            "Excellent use of visual representation",
+            "Good recognition of student frustration",
+            "Effective engagement through participation"
+        ],
+        "suggestions": [
+            "Consider adding explicit praise for effort",
+            "Could incorporate previous successes reference"
+        ]
+    }
+}
+```
+
+### Dynamic Learning
+
+The system improves over time by:
+1. Recording successful teaching strategies
+2. Analyzing patterns in effective responses
+3. Updating the knowledge base with new examples
+4. Refining evaluation criteria based on outcomes
+
+```python
+def update_knowledge_base(response: str, effectiveness: float):
+    """
+    Add successful strategies to knowledge base for future reference.
+    """
+    if effectiveness > 0.8:
+        new_strategy = {
+            "text": response,
+            "effectiveness": effectiveness,
+            "context": current_context,
+            "outcomes": student_reactions
+        }
+        knowledge_base.add_strategy(new_strategy)
+```
+
+## Workflow
+
+```mermaid
+sequenceDiagram
+    participant T as Teacher
+    participant UI as Interface
+    participant C as Chatbot
+    participant K as Knowledge Base
+
+    K->>C: Load knowledge
+    C->>UI: Initialize session
+    UI->>T: Display scenario
+    
+    loop Interaction
+        T->>UI: Teacher response
+        UI->>C: Process response
+        C->>K: Check against knowledge
+        K->>C: Return evaluation
+        C->>UI: Generate feedback
+        UI->>T: Show student reaction
+    end
+```
+
+## Usage Example
+
+1. **Scenario Generation**:
+```
+Time: morning. Students are generally alert but may need time to settle.
+
+Student Profile:
+- Learning style: visual
+- Seating: back row
+- Peer interaction: easily distracted by peers
+- Current challenges: number sense, staying focused
+
+Situation:
+During math class, while working on two-digit addition, 
+the student is fidgeting after struggling with regrouping.
+```
+
+2. **Teacher Response**:
+```
+"Let's try this together. We can use these base-10 blocks to see how 
+regrouping works. Watch as I show you step by step."
+```
+
+3. **Evaluation**:
+```
+Score: 0.9
+✓ Good use of morning appropriate strategy
+✓ Response matches visual learning style
+✓ Appropriate behavioral support
+✓ Good math-specific support
+```
+
+## File Structure
+```
+teacher_training_simulator/
+├── app.py                 # Streamlit interface
+├── chatbot.py            # Core chatbot logic
+├── knowledge_processor.py # Knowledge processing
+├── knowledge_base/       # Knowledge files
+│   ├── teaching_strategies.txt
+│   ├── student_behaviors.json
+│   └── math_strategies.csv
+└── processed_knowledge/   # Vector store
+```
+
+## Setup and Running
+
+1. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+2. Run the application:
+```bash
+streamlit run app.py
+```
+
+## Contributing
+
+Feel free to contribute by:
+1. Adding more teaching scenarios
+2. Enhancing evaluation criteria
+3. Improving student responses
+4. Adding new subjects/behaviors
