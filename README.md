@@ -89,6 +89,119 @@ Evaluates teacher responses across four dimensions:
    Teacher Input → Strategy Matching → Multi-dimensional Scoring → Feedback Generation
    ```
 
+## Recommended LLMs
+
+The teacher training simulator is designed to work with various Language Learning Models (LLMs). Here are recommended open-source, local LLMs that work well with this system:
+
+### Why These Models for Educational Chatbots?
+
+Educational chatbots have specific requirements that make certain LLMs more suitable:
+1. **Context Understanding**: Must maintain coherent dialogue about educational concepts
+2. **Consistent Persona**: Need to maintain a consistent student personality
+3. **Real-time Response**: Quick inference for natural conversation flow
+4. **Domain Knowledge**: Understanding of educational terminology and concepts
+5. **Resource Efficiency**: Ability to run locally on standard hardware
+
+### Primary Recommendation: Mistral
+- **Model**: Mistral 7B
+- **Why**: Excellent balance of performance and resource requirements
+- **Use Cases**: Main response evaluation, student simulation, scenario generation
+- **Requirements**: ~16GB RAM
+- **Strengths for Chatbots**:
+  - Strong dialogue management capabilities
+  - Excellent context retention across conversations
+  - Good at role-playing (crucial for student simulation)
+  - Efficient token processing for quick responses
+  - Built-in educational domain knowledge
+
+### Alternative Options:
+
+1. **Llama 2**
+   - Models: 7B or 13B variants
+   - Good for: Complex teaching strategy evaluation
+   - Requirements: 16-24GB RAM
+   - **Chatbot Advantages**:
+     - Superior instruction following
+     - Strong multi-turn conversation abilities
+     - Excellent at maintaining consistent personas
+     - High-quality educational content generation
+     - Well-tested in production environments
+
+2. **BLOOMZ**
+   - Models: BLOOMZ-7B1
+   - Good for: Multilingual capabilities
+   - Requirements: ~16GB RAM
+   - **Chatbot Advantages**:
+     - Excellent for diverse student populations
+     - Strong cross-cultural understanding
+     - Good at handling educational terminology
+     - Natural conversational flow in multiple languages
+     - Consistent personality across languages
+
+3. **Phi-2**
+   - Model: Phi-2 (2.7B parameters)
+   - Good for: Lightweight deployments
+   - Requirements: ~6GB RAM
+   - **Chatbot Advantages**:
+     - Very fast response generation
+     - Good at concise, focused answers
+     - Strong performance on educational tasks
+     - Efficient context processing
+     - Low latency for real-time interactions
+
+4. **TinyLlama**
+   - Model: TinyLlama-1.1B
+   - Good for: Resource-constrained environments
+   - Requirements: ~4GB RAM
+   - **Chatbot Advantages**:
+     - Ultra-fast inference
+     - Good at short, focused interactions
+     - Efficient memory usage
+     - Suitable for rapid back-and-forth dialogue
+     - Works well on basic hardware
+
+### Embedding Models
+For semantic search and knowledge retrieval, the system uses:
+- **all-MiniLM-L6-v2**: Lightweight sentence transformer model
+- Purpose: Generates embeddings for teaching strategies and responses
+- Requirements: ~1GB RAM
+- Performance: Excellent for semantic similarity tasks
+- **Chatbot Benefits**:
+  - Fast retrieval of relevant teaching strategies
+  - Accurate semantic matching for response evaluation
+  - Efficient memory usage alongside main LLM
+  - Good at understanding paraphrased student questions
+  - Helps maintain conversation coherence
+
+### Deployment Recommendations:
+
+1. **High-Performance Setup** (Best for complex scenarios):
+   - Primary: Mistral 7B
+   - Embedding: all-MiniLM-L6-v2
+   - Total RAM Required: ~18GB
+   - Ideal for: Full-featured teaching simulations with complex student behaviors
+
+2. **Balanced Setup** (Good for most use cases):
+   - Primary: Phi-2
+   - Embedding: all-MiniLM-L6-v2
+   - Total RAM Required: ~8GB
+   - Ideal for: Standard teaching scenarios with good response times
+
+3. **Lightweight Setup** (Basic functionality):
+   - Primary: TinyLlama-1.1B
+   - Embedding: all-MiniLM-L6-v2
+   - Total RAM Required: ~6GB
+   - Ideal for: Basic teaching interactions and rapid prototyping
+
+### Model Quantization Options
+All recommended models support various quantization levels:
+- **GGUF Format**: 4-bit, 5-bit, and 8-bit quantization available
+- **Memory Reduction**: Up to 75% reduction in RAM requirements
+- **Speed Impact**: Minimal impact on response quality
+- **Recommendation**: Start with 4-bit quantization for optimal balance
+
+All models can be downloaded and run locally using [Ollama](https://ollama.ai/) or [llama.cpp](https://github.com/ggerganov/llama.cpp).
+
 ## Installation
 
 ```bash
