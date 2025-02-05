@@ -6,6 +6,7 @@ An AI-powered educational simulation chatbot designed to help teachers develop a
 
 ```mermaid
 sequenceDiagram
+    autonumber
     participant T as Teacher
     participant UI as User Interface
     participant Engine as AI Engine
@@ -16,18 +17,24 @@ sequenceDiagram
     rect rgb(240, 248, 255)
         Note over T,M: Setup Phase
         Note over T,UI: Launches web app
+        
         T->>UI: Opens session
         activate UI
+        
         Note over T,UI: Picks subject
         UI->>Engine: Starts system
         activate Engine
+        
         Note over Engine: Loads AI models
         Engine->>KB: Fetches content
         activate KB
+        
         KB-->>Engine: Returns scenarios
         deactivate KB
+        
         Engine-->>UI: Prepares interface
         deactivate Engine
+        
         Note over UI: Shows options
         deactivate UI
     end
@@ -35,24 +42,32 @@ sequenceDiagram
     Note over T,M: Teaching Phase
     rect rgb(230, 255, 240)
         Note over T,UI: Types response
+        
         T->>UI: Sends input
         activate UI
+        
         Note over UI: Checks format
         UI->>Engine: Forwards text
         activate Engine
+        
         Note over Engine: Reads context
         Engine->>KB: Finds patterns
         activate KB
+        
         KB-->>Engine: Matches found
         deactivate KB
+        
         Note over Engine: Creates reply
         Engine-->>UI: Returns feedback
         deactivate Engine
+        
         Note over UI: Shows result
         UI-->>T: Displays chat
+        
         Note over UI: Logs chat
         UI->>M: Stores interaction
         activate M
+        
         deactivate M
         deactivate UI
     end
@@ -60,26 +75,36 @@ sequenceDiagram
     rect rgb(255, 240, 245)
         Note over T,M: Review Phase
         Note over T,UI: Clicks review
+        
         T->>UI: Views progress
         activate UI
+        
         UI->>Engine: Requests analysis
         activate Engine
+        
         Engine->>KB: Gets Edu standards
         activate KB
+        
         KB-->>Engine: Returns guidelines
         deactivate KB
+        
         Engine->>M: Gets chat history
         activate M
+        
         M-->>Engine: Returns interactions
         deactivate M
+        
         Note over Engine: Analyzes teaching
         Note over Engine: Provides scores
         Note over Engine: Makes suggestions
+        
         Engine-->>UI: Sends report
         deactivate Engine
+        
         Note over UI: Creates visuals
         UI-->>T: Shows feedback
         deactivate UI
+        
         Note over T: Views performance
     end
 ```
