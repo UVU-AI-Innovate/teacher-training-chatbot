@@ -10,58 +10,86 @@ sequenceDiagram
     participant UI as User Interface
     participant Engine as AI Engine
     participant KB as Knowledge Base
+    participant M as Memory
     
     %% Styling
     rect rgb(240, 248, 255)
-        Note over T,KB: Initial Setup
-        Note over T,UI: Teacher runs web app (streamlit run web_app.py)
-        T->>+UI: Start Session
-        Note over T,UI: Select teaching subject & grade level
-        UI->>+Engine: Initialize System
-        Note over Engine: Configure LLM & load models
-        Engine->>+KB: Load Teaching Data
-        KB-->>-Engine: Scenarios & Strategies
-        Engine-->>-UI: Ready for Interaction
-        Note over UI: Display scenario options
+        Note over T,M: Setup Phase
+        Note over T,UI: Launches web app
+        T->>UI: Opens session
+        activate UI
+        Note over T,UI: Picks subject
+        UI->>Engine: Starts system
+        activate Engine
+        Note over Engine: Loads AI models
+        Engine->>KB: Fetches content
+        activate KB
+        KB-->>Engine: Returns scenarios
+        deactivate KB
+        Engine-->>UI: Prepares interface
+        deactivate Engine
+        Note over UI: Shows options
+        deactivate UI
     end
     
-    Note over T,KB: Teaching Interaction
+    Note over T,M: Teaching Phase
     rect rgb(230, 255, 240)
-        Note over T,UI: Teacher types response to student situation
-        T->>+UI: Enter Teaching Response
-        Note over UI: Process text input & validate
-        UI->>+Engine: Process Input
-        Note over Engine: Analyze teaching approach
-        Engine->>+KB: Query Knowledge Base
-        KB-->>-Engine: Relevant Teaching Patterns
-        Note over Engine: Generate student behavior
-        Engine->>Engine: Generate Response
-        Engine-->>-UI: Student Response & Feedback
-        Note over UI: Show student reaction & teaching tips
-        UI-->>-T: Display Interaction
-        Note over UI: Save interaction history
-        UI->>KB: Store Interaction Data
+        Note over T,UI: Types response
+        T->>UI: Sends input
+        activate UI
+        Note over UI: Checks format
+        UI->>Engine: Forwards text
+        activate Engine
+        Note over Engine: Reads context
+        Engine->>KB: Finds patterns
+        activate KB
+        KB-->>Engine: Matches found
+        deactivate KB
+        Note over Engine: Creates reply
+        Engine-->>UI: Returns feedback
+        deactivate Engine
+        Note over UI: Shows result
+        UI-->>T: Displays chat
+        Note over UI: Logs chat
+        UI->>M: Stores interaction
+        activate M
+        deactivate M
+        deactivate UI
     end
     
     rect rgb(255, 240, 245)
-        Note over T,KB: Progress Tracking
-        Note over T,UI: Teacher clicks "View Progress"
-        T->>+UI: Review Performance
-        Note over UI: Generate analytics request
-        UI->>+KB: Fetch Analytics
-        Note over KB: Process teaching patterns
-        KB-->>-UI: Progress Data
-        Note over UI: Create visual reports
-        UI-->>-T: Show Progress Report
-        Note over T: View scores, trends & suggestions
+        Note over T,M: Review Phase
+        Note over T,UI: Clicks review
+        T->>UI: Views progress
+        activate UI
+        UI->>Engine: Requests analysis
+        activate Engine
+        Engine->>KB: Gets Edu standards
+        activate KB
+        KB-->>Engine: Returns guidelines
+        deactivate KB
+        Engine->>M: Gets chat history
+        activate M
+        M-->>Engine: Returns interactions
+        deactivate M
+        Note over Engine: Analyzes teaching
+        Note over Engine: Provides scores
+        Note over Engine: Makes suggestions
+        Engine-->>UI: Sends report
+        deactivate Engine
+        Note over UI: Creates visuals
+        UI-->>T: Shows feedback
+        deactivate UI
+        Note over T: Views performance
     end
 ```
 
-The application works through three main components that interact seamlessly to provide a realistic teaching simulation:
+The application works through four main components that interact seamlessly to provide a realistic teaching simulation:
 
 1. **User Interface**: Handles teacher interactions through both terminal and web interfaces
 2. **AI Engine**: Processes inputs and generates contextual responses using LLM technology
-3. **Knowledge Base**: Manages teaching scenarios, strategies, and interaction history
+3. **Knowledge Base**: Stores educational content, teaching standards, and response patterns
+4. **Memory**: Maintains chat history, session states, and interaction records
 
 ## Application Components
 
