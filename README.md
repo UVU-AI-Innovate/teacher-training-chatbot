@@ -216,9 +216,51 @@ graph TB
 ### Components
 
 1. `TeacherTrainingChatbot`
-   - Core simulation engine
-   - Manages scenarios and evaluations
-   - Handles student personality and state
+   - Core simulation engine powered by LLM technology
+   - **LLM Integration**:
+     ```mermaid
+     graph TB
+         subgraph Chatbot["TeacherTrainingChatbot"]
+             direction TB
+             Input[Teacher Input]
+             Context[Scenario Context]
+             LLM[LLM Engine]
+             KB[Knowledge Base]
+             Output[Response & Feedback]
+             
+             Input --> LLM
+             Context --> LLM
+             KB --> LLM
+             LLM --> Output
+         end
+     ```
+   - **Key LLM Functions**:
+     - Scenario generation using contextual prompting
+     - Student personality simulation
+     - Response evaluation and scoring
+     - Teaching strategy analysis
+     - Real-time feedback generation
+   - **LLM Processing Pipeline**:
+     ```
+     1. Context Preparation:
+        Teacher Input + Scenario Context + Student State → Formatted Prompt
+     
+     2. LLM Processing:
+        - Primary evaluation using main LLM (Mistral/Llama/etc.)
+        - Semantic search using embedding model
+        - Strategy matching from knowledge base
+     
+     3. Response Generation:
+        - Student reaction synthesis
+        - Feedback compilation
+        - Score calculation
+     ```
+   - **Model Selection**:
+     - Automatically chooses appropriate model based on:
+       - Scenario complexity
+       - Response requirements
+       - Available system resources
+     - Supports dynamic model switching for optimal performance
 
 2. `KnowledgeManager`
    - Processes teaching resources
