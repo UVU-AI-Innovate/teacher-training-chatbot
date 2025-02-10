@@ -1,4 +1,20 @@
-"""LLM integration for the teacher training chatbot."""
+"""
+Natural Language Processing for Teacher Training
+
+This module provides intelligent language processing capabilities for the
+teacher training simulation system. It handles the generation of realistic
+student responses and evaluation of teaching strategies.
+
+Key Features:
+1. Teaching Response Analysis - Evaluates pedagogical approaches
+2. Student Response Generation - Creates age-appropriate reactions
+3. Contextual Understanding - Considers teaching scenario context
+4. Fallback Mechanisms - Ensures system reliability
+
+The system uses local LLM deployment for privacy and consistent performance
+while maintaining high-quality educational interactions.
+"""
+
 import requests
 import json
 import time
@@ -6,7 +22,25 @@ import os
 import signal
 import subprocess
 
-class LLMHandler:
+class PedagogicalLanguageProcessor:
+    """
+    Manages natural language processing for teacher training simulations.
+    
+    This class provides:
+    - Analysis of teaching strategies and responses
+    - Generation of realistic student reactions
+    - Evaluation of pedagogical effectiveness
+    - Context-aware interaction handling
+    
+    The processor maintains educational context while generating
+    responses that reflect real classroom dynamics.
+    
+    Attributes:
+        model (str): Name of the language model being used
+        base_url (str): Endpoint for LLM API communication
+        system_prompt (str): Core instruction set for teaching evaluation
+    """
+    
     def __init__(self, model_name="mistral"):
         self.model = model_name
         self.base_url = "http://localhost:11434/api"

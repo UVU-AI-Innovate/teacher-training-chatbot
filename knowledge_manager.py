@@ -1,19 +1,19 @@
 """
-Knowledge Management System
+Pedagogical Knowledge Management System
 
-This module handles the processing, storage, and retrieval of teaching knowledge.
-It converts various file formats into a unified vector representation for 
-semantic search and similarity matching.
+This module manages the processing, storage, and retrieval of teaching knowledge
+and educational resources. It provides a unified system for accessing and applying
+pedagogical strategies, student behavior patterns, and subject-specific content.
 
 Components:
-1. Text Extraction - Processes multiple file formats
-2. Chunking - Breaks content into meaningful units
-3. Embedding Generation - Creates vector representations
-4. Vector Storage - Manages persistent storage
-5. Similarity Search - Finds relevant knowledge
+1. Resource Processing - Handles various educational content formats
+2. Knowledge Organization - Categorizes teaching strategies and materials
+3. Semantic Search - Finds relevant pedagogical approaches
+4. Context Matching - Aligns strategies with teaching scenarios
+5. Knowledge Integration - Combines multiple teaching resources
 
-The system supports multiple file formats and maintains the original context
-of each knowledge piece while allowing for efficient retrieval.
+The system supports various educational content formats while maintaining
+pedagogical context and relationships between different teaching concepts.
 """
 
 import os
@@ -33,21 +33,25 @@ import csv
 import chardet
 from knowledge_store import KnowledgeStore
 
-class KnowledgeManager:
+class PedagogicalKnowledgeManager:
     """
-    Manages the processing and retrieval of teaching knowledge.
+    Manages educational resources and teaching knowledge.
     
     This class handles:
-    - File processing
-    - Text extraction
-    - Embedding generation
-    - Knowledge storage
-    - Semantic search
+    - Processing of educational materials
+    - Organization of teaching strategies
+    - Semantic search of pedagogical approaches
+    - Integration of multiple knowledge sources
+    - Contextual retrieval of teaching methods
+    
+    The system maintains relationships between different types of educational
+    knowledge while providing efficient access to relevant teaching strategies.
     
     Attributes:
-        embedding_model (SentenceTransformer): Model for generating embeddings
-        knowledge_store (KnowledgeStore): Persistent storage for processed knowledge
-        vector_dim (int): Dimension of the embedding vectors
+        embedding_model (SentenceTransformer): Neural model for semantic understanding
+        knowledge_store (KnowledgeStore): Persistent storage for educational resources
+        categories (dict): Organized teaching knowledge by domain
+        vector_dim (int): Dimension of semantic embeddings
     """
     def __init__(self, model_name='all-MiniLM-L6-v2'):
         self.embedding_model = SentenceTransformer(model_name)

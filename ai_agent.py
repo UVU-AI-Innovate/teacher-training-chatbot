@@ -1,17 +1,18 @@
 """
-Teacher Training Simulator Core Module
+TeacherTrainingSimulator Core Module
 
-This module implements the core simulation engine for the teacher training system.
-It handles scenario generation, response evaluation, and student behavior simulation.
+This module implements the core simulation engine for teacher training scenarios.
+It provides a realistic environment for practicing and evaluating teaching strategies
+through simulated student interactions.
 
 Key Components:
-1. Scenario Generation - Creates realistic teaching scenarios
-2. Response Evaluation - Assesses teaching strategies
-3. Student Simulation - Generates contextual reactions
-4. Knowledge Integration - Uses embedded knowledge for evaluation
+1. Scenario Generation - Creates realistic teaching scenarios based on grade level
+2. Response Evaluation - Assesses teaching strategies using pedagogical principles
+3. Student Simulation - Generates age-appropriate student reactions
+4. Knowledge Integration - Leverages research-based teaching knowledge
 
-The system uses a vector database to store and retrieve relevant teaching knowledge,
-allowing for semantic search and contextual matching of teaching strategies.
+The system uses advanced NLP and a knowledge base of teaching strategies to provide
+meaningful feedback and realistic student responses.
 """
 
 import random
@@ -21,20 +22,25 @@ from knowledge_base import SECOND_GRADE_CHARACTERISTICS, TEACHING_STRATEGIES
 from evaluator import evaluate_teacher_response
 from knowledge_manager import KnowledgeManager
 
-class AIAgent:
+class TeacherTrainingAgent:
     """
-    Core AI simulation engine for teacher training.
+    Core simulation engine for teacher professional development.
     
-    This class manages the entire simulation process, including:
-    - Scenario generation
-    - Response evaluation
-    - Student behavior simulation
-    - Knowledge base integration
+    This class manages the entire teacher training simulation process, including:
+    - Generation of realistic classroom scenarios
+    - Evaluation of teaching responses using pedagogical principles
+    - Simulation of age-appropriate student behaviors
+    - Integration of evidence-based teaching strategies
+    
+    The agent maintains state about both the simulated student and the teacher
+    in training, allowing for contextual and personalized interactions.
     
     Attributes:
-        knowledge_manager (KnowledgeManager): Handles knowledge processing and retrieval
-        personality (dict): Student personality traits and current state
-        teacher_profile (dict): Teacher characteristics and preferences
+        knowledge_manager (KnowledgeManager): Manages pedagogical knowledge and teaching strategies
+        student_profile (dict): Current student's characteristics and learning state
+        teacher_profile (dict): Teacher's experience level and development areas
+        llm (LLMHandler): Handles natural language processing for response generation
+        conversation_memory (dict): Tracks interaction history and learning progress
     """
     def __init__(self):
         """Initialize the chatbot with knowledge base and default settings."""
