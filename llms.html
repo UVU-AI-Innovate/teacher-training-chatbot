@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Guide - UTTA Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="nav-container">
+        <a href="index.html">← Back to Main Guide</a>
+        <button class="nav-toggle" onclick="toggleTOC()">☰ Table of Contents</button>
+    </div>
+
+    <div class="main-content">
+        <aside class="sidebar">
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#introduction">1. Introduction to LLMs</a>
+                        <ul>
+                            <li><a href="#what-are-llms">1.1 What are LLMs?</a></li>
+                            <li><a href="#how-llms-work">1.2 How LLMs Work</a></li>
+                            <li><a href="#llm-capabilities">1.3 Capabilities and Limitations</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#local-llms">2. Local LLMs Guide</a>
+                        <ul>
+                            <li><a href="#available-models">2.1 Available Models</a></li>
+                            <li><a href="#system-requirements">2.2 System Requirements</a></li>
+                            <li><a href="#model-comparison">2.3 Model Comparison</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#optimization">3. LLM Optimization</a>
+                        <ul>
+                            <li><a href="#parameters">3.1 Key Parameters</a></li>
+                            <li><a href="#performance">3.2 Performance Tuning</a></li>
+                            <li><a href="#best-practices">3.3 Best Practices</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <main>
+            <h1>Understanding and Working with Local LLMs</h1>
+
+            <div id="introduction" class="section">
+                <h2>Introduction to LLMs</h2>
+
+                <div id="what-are-llms" class="subsection">
+                    <h3>What are LLMs?</h3>
+                    <p>Large Language Models (LLMs) are advanced AI systems trained on vast amounts of text data. They represent a breakthrough in natural language processing, enabling sophisticated language understanding and generation capabilities.</p>
+
+                    <div class="note">
+                        <h4>Key Concepts</h4>
+                        <ul>
+                            <li><strong>Transformer Architecture:</strong> The neural network design that enables LLMs to process and understand language</li>
+                            <li><strong>Self-Attention:</strong> Mechanism for understanding relationships between words in context</li>
+                            <li><strong>Transfer Learning:</strong> Ability to apply knowledge to new tasks</li>
+                            <li><strong>Few-Shot Learning:</strong> Capability to learn from minimal examples</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="how-llms-work" class="subsection">
+                    <h3>How LLMs Work</h3>
+                    <div class="example">
+                        <h4>Core Components</h4>
+                        <ul>
+                            <li><strong>Tokenization:</strong> Converting text into numerical tokens</li>
+                            <li><strong>Attention Mechanisms:</strong> Processing relationships between tokens</li>
+                            <li><strong>Neural Networks:</strong> Learning patterns and generating responses</li>
+                            <li><strong>Context Windows:</strong> Managing the scope of text processing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="llm-capabilities" class="subsection">
+                    <h3>Capabilities and Limitations</h3>
+                    <div class="example">
+                        <h4>Core Capabilities</h4>
+                        <ul>
+                            <li>Natural language understanding and generation</li>
+                            <li>Context-aware responses and reasoning</li>
+                            <li>Task adaptation without specific training</li>
+                            <li>Complex problem-solving and analysis</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning">
+                        <h4>Limitations</h4>
+                        <ul>
+                            <li>Potential for hallucinations or incorrect information</li>
+                            <li>Need for proper prompt engineering</li>
+                            <li>Resource requirements for larger models</li>
+                            <li>Privacy and data security concerns</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="local-llms" class="section">
+                <h2>Local LLMs Guide</h2>
+
+                <div id="available-models" class="subsection">
+                    <h3>Available Models</h3>
+                    <div class="definition">
+                        <h4>Overview of Available Models</h4>
+                        <ul>
+                            <li><strong>Phi-2</strong> (Microsoft, 2023)
+                                <ul>
+                                    <li>Size: 2.7B parameters</li>
+                                    <li>License: MIT License</li>
+                                    <li>Specialized in code and education</li>
+                                </ul>
+                            </li>
+                            <li><strong>Mistral 7B</strong> (Mistral AI, 2023)
+                                <ul>
+                                    <li>Size: 7B parameters</li>
+                                    <li>License: Apache 2.0</li>
+                                    <li>Industry-leading performance for its size</li>
+                                </ul>
+                            </li>
+                            <li><strong>ORCA 2</strong> (Microsoft Research, 2023)
+                                <ul>
+                                    <li>Size: 7B parameters</li>
+                                    <li>License: MIT License</li>
+                                    <li>Built on Mistral architecture</li>
+                                </ul>
+                            </li>
+                            <li><strong>Llama 2</strong> (Meta AI, 2023)
+                                <ul>
+                                    <li>Sizes: 7B, 13B, 70B parameters</li>
+                                    <li>License: Llama 2 Community License</li>
+                                    <li>Allows commercial use</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="system-requirements" class="subsection">
+                    <h3>System Requirements</h3>
+                    <div class="note">
+                        <h4>Hardware Requirements by Model</h4>
+                        <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="padding: 8px; border: 1px solid #ddd;">Model</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Min RAM (CPU)</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Min VRAM (GPU)</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Disk Space</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Context Window</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Phi-2</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">1.5GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">2,048 tokens</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Mistral 7B</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8,192 tokens</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">ORCA 2</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8,192 tokens</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Llama 2 (7B)</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">4,096 tokens</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="model-comparison" class="subsection">
+                    <h3>Model Comparison</h3>
+                    <div class="example">
+                        <h4>Use Case Comparison</h4>
+                        <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="padding: 8px; border: 1px solid #ddd;">Use Case</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Recommended Model</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Key Strengths</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Basic Tasks</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Phi-2</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Fast responses, efficient, good for basic concepts</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">General Use</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Mistral 7B</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Balanced performance, good context understanding</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Education</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">ORCA 2</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Specialized in education, detailed explanations</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Advanced</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Llama 2 (13B+)</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Deep understanding, nuanced responses</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="optimization" class="section">
+                <h2>LLM Optimization</h2>
+
+                <div id="parameters" class="subsection">
+                    <h3>Key Parameters</h3>
+                    <div class="example">
+                        <h4>Adjustable Parameters</h4>
+                        <ul>
+                            <li><strong>Temperature</strong> (Creativity vs Precision):
+                                <ul>
+                                    <li>0.2-0.4: High precision, factual responses</li>
+                                    <li>0.5-0.7: Balanced creativity and accuracy</li>
+                                    <li>0.8-1.0: More creative, varied responses</li>
+                                </ul>
+                            </li>
+                            <li><strong>Top-P</strong> (Response Diversity):
+                                <ul>
+                                    <li>0.1-0.3: Very focused, consistent</li>
+                                    <li>0.4-0.6: Balanced variety</li>
+                                    <li>0.7-0.9: More diverse responses</li>
+                                </ul>
+                            </li>
+                            <li><strong>Context Window</strong>:
+                                <ul>
+                                    <li>Short (2K tokens): Basic interactions</li>
+                                    <li>Medium (4K tokens): Standard conversations</li>
+                                    <li>Long (8K+ tokens): Complex discussions</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="performance" class="subsection">
+                    <h3>Performance Tuning</h3>
+                    <div class="note">
+                        <h4>Optimization Tips</h4>
+                        <ul>
+                            <li><strong>CPU Optimization</strong>:
+                                <ul>
+                                    <li>Use smaller models (Phi-2) for faster responses</li>
+                                    <li>Reduce context window size when possible</li>
+                                    <li>Enable threading and BLAS optimizations</li>
+                                </ul>
+                            </li>
+                            <li><strong>GPU Acceleration</strong>:
+                                <ul>
+                                    <li>Use CUDA for NVIDIA GPUs</li>
+                                    <li>Enable half-precision (FP16) for faster inference</li>
+                                    <li>Batch similar requests when possible</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="best-practices" class="subsection">
+                    <h3>Best Practices</h3>
+                    <div class="warning">
+                        <h4>Implementation Guidelines</h4>
+                        <ul>
+                            <li>Always validate model outputs</li>
+                            <li>Implement proper error handling</li>
+                            <li>Monitor resource usage</li>
+                            <li>Cache common responses</li>
+                            <li>Implement rate limiting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <a href="#" class="back-to-top">↑ Back to Top</a>
+
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const toc = document.querySelector('.toc');
+            toc.classList.toggle('show');
+        }
+
+        // Back to Top button visibility
+        window.onscroll = function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        };
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
