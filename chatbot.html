@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Educational Chatbots - UTTA Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="nav-container">
+        <a href="index.html">← Back to LLM Guide</a>
+    </div>
+
+    <div class="main-content">
+        <main>
+            <h1>Building Educational Chatbots with LLMs</h1>
+
+            <div id="overview" class="section">
+                <h2>Chatbot Architecture Overview</h2>
+                <p>This guide covers the essential components and best practices for building educational chatbots using local LLMs.</p>
+
+                <div class="diagram">
+                    <h3>Core Components</h3>
+                    <div class="component-grid">
+                        <div class="component">
+                            <h4>Dialog Manager</h4>
+                            <p>Controls conversation flow and maintains context</p>
+                        </div>
+                        <div class="component">
+                            <h4>State Tracker</h4>
+                            <p>Monitors interaction progress and user engagement</p>
+                        </div>
+                        <div class="component">
+                            <h4>Response Generator</h4>
+                            <p>Creates contextual and educational responses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="conversation-management" class="section">
+                <h2>Conversation Management</h2>
+                <div class="example">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Context retention across multiple turns</li>
+                        <li>Memory management for long conversations</li>
+                        <li>Topic tracking and transition handling</li>
+                        <li>Error recovery and clarification requests</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="educational-features" class="section">
+                <h2>Educational Features</h2>
+                <div class="example">
+                    <h3>Core Capabilities</h3>
+                    <ul>
+                        <li>Personalized learning paths</li>
+                        <li>Progress tracking and assessment</li>
+                        <li>Adaptive feedback generation</li>
+                        <li>Multi-modal interaction support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="implementation" class="section">
+                <h2>Implementation Guide</h2>
+                <div class="example">
+                    <h3>Basic Implementation</h3>
+                    <pre>
+class EducationalChatbot:
+    def __init__(self):
+        self.dialog_manager = DialogManager()
+        self.state_tracker = StateTracker()
+        self.response_generator = ResponseGenerator()
+        
+    def process_input(self, user_input):
+        # Update conversation state
+        context = self.dialog_manager.get_context()
+        state = self.state_tracker.update(user_input)
+        
+        # Generate appropriate response
+        response = self.response_generator.generate(
+            input=user_input,
+            context=context,
+            state=state
+        )
+        
+        # Update conversation history
+        self.dialog_manager.update(user_input, response)
+        return response</pre>
+                </div>
+            </div>
+
+            <div id="best-practices" class="section">
+                <h2>Best Practices</h2>
+                <div class="warning">
+                    <h3>Implementation Guidelines</h3>
+                    <ul>
+                        <li>Maintain consistent teaching persona</li>
+                        <li>Implement proper error handling</li>
+                        <li>Monitor conversation quality</li>
+                        <li>Provide clear learning objectives</li>
+                        <li>Include progress assessments</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

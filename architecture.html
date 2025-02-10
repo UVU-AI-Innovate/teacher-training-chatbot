@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Architecture - UTTA Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="nav-container">
+        <a href="index.html">← Back to LLM Guide</a>
+    </div>
+
+    <div class="main-content">
+        <main>
+            <h1>UTTA System Architecture</h1>
+
+            <div id="overview" class="section">
+                <h2>System Overview</h2>
+                <p>The UTTA system is designed as a modular, extensible platform for AI-powered teacher training. This guide covers the system's architecture and component interactions.</p>
+
+                <div class="diagram">
+                    <h3>High-Level Architecture</h3>
+                    <div class="component-grid">
+                        <div class="component system-component">
+                            <h4>Core Engine</h4>
+                            <ul>
+                                <li>LLM Integration</li>
+                                <li>State Management</li>
+                                <li>Event Processing</li>
+                            </ul>
+                        </div>
+                        <div class="component data-flow">
+                            <h4>Data Layer</h4>
+                            <ul>
+                                <li>Knowledge Base</li>
+                                <li>Session Storage</li>
+                                <li>Analytics</li>
+                            </ul>
+                        </div>
+                        <div class="component user-component">
+                            <h4>Interface Layer</h4>
+                            <ul>
+                                <li>Web Interface</li>
+                                <li>CLI Interface</li>
+                                <li>API Endpoints</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="components" class="section">
+                <h2>Core Components</h2>
+
+                <div class="subsection">
+                    <h3>TeacherTrainingAgent</h3>
+                    <div class="example">
+                        <h4>Responsibilities</h4>
+                        <ul>
+                            <li>Scenario generation and management</li>
+                            <li>Component coordination</li>
+                            <li>Progress tracking</li>
+                            <li>Session management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>PedagogicalKnowledgeManager</h3>
+                    <div class="example">
+                        <h4>Features</h4>
+                        <ul>
+                            <li>Teaching strategy storage</li>
+                            <li>Content processing</li>
+                            <li>Contextual recommendations</li>
+                            <li>Resource management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>PedagogicalLanguageProcessor</h3>
+                    <div class="example">
+                        <h4>Capabilities</h4>
+                        <ul>
+                            <li>Response analysis</li>
+                            <li>Student simulation</li>
+                            <li>Performance evaluation</li>
+                            <li>Feedback generation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="data-flow" class="section">
+                <h2>Data Flow</h2>
+                <div class="example">
+                    <h3>Process Flow</h3>
+                    <pre>
+1. User Input
+   ↓
+2. Interface Layer Processing
+   ↓
+3. Core Engine
+   ├→ LLM Processing
+   ├→ State Updates
+   └→ Event Generation
+   ↓
+4. Knowledge Base Integration
+   ↓
+5. Response Generation
+   ↓
+6. User Interface Update</pre>
+                </div>
+            </div>
+
+            <div id="integration" class="section">
+                <h2>Integration Points</h2>
+                <div class="warning">
+                    <h3>Extension Guidelines</h3>
+                    <ul>
+                        <li>Use standard interfaces for component communication</li>
+                        <li>Implement proper error handling</li>
+                        <li>Follow event-driven architecture patterns</li>
+                        <li>Maintain loose coupling between components</li>
+                        <li>Document all integration points</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

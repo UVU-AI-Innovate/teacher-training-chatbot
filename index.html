@@ -370,39 +370,33 @@
             <div class="toc">
                 <h2>Table of Contents</h2>
                 <ul>
-                    <li><a href="#llm-fundamentals">1. Understanding Large Language Models (LLMs)</a>
+                    <li><a href="#introduction">1. Introduction to LLMs</a>
                         <ul>
                             <li><a href="#what-are-llms">1.1 What are LLMs?</a></li>
-                            <li><a href="#llm-capabilities">1.2 LLM Capabilities and Limitations</a></li>
-                            <li><a href="#local-vs-api">1.3 Local LLMs vs API Services</a></li>
+                            <li><a href="#how-llms-work">1.2 How LLMs Work</a></li>
+                            <li><a href="#llm-capabilities">1.3 Capabilities and Limitations</a></li>
                         </ul>
                     </li>
-                    <li><a href="#building-with-llms">2. Building Applications with LLMs</a>
+                    <li><a href="#local-llms">2. Local LLMs Guide</a>
                         <ul>
-                            <li><a href="#llm-architecture">2.1 Application Architecture</a></li>
-                            <li><a href="#prompt-engineering">2.2 Prompt Engineering</a></li>
-                            <li><a href="#context-management">2.3 Context Management</a></li>
+                            <li><a href="#available-models">2.1 Available Models</a></li>
+                            <li><a href="#system-requirements">2.2 System Requirements</a></li>
+                            <li><a href="#model-comparison">2.3 Model Comparison</a></li>
                         </ul>
                     </li>
-                    <li><a href="#chatbot-development">3. Creating AI Chatbots</a>
+                    <li><a href="#optimization">3. LLM Optimization</a>
                         <ul>
-                            <li><a href="#chatbot-basics">3.1 Chatbot Architecture</a></li>
-                            <li><a href="#conversation-flow">3.2 Managing Conversation Flow</a></li>
-                            <li><a href="#memory-state">3.3 Memory and State Management</a></li>
+                            <li><a href="#parameters">3.1 Key Parameters</a></li>
+                            <li><a href="#performance">3.2 Performance Tuning</a></li>
+                            <li><a href="#best-practices">3.3 Best Practices</a></li>
                         </ul>
                     </li>
-                    <li><a href="#utta-system">4. Utah Teacher Training AI System</a>
+                    <li><a href="#related-guides">4. Related Guides</a>
                         <ul>
-                            <li><a href="#system-overview">4.1 System Architecture</a></li>
-                            <li><a href="#components">4.2 Core Components</a></li>
-                            <li><a href="#implementation">4.3 Implementation Details</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#getting-started">5. Getting Started</a>
-                        <ul>
-                            <li><a href="#setup">5.1 Setting Up Your Environment</a></li>
-                            <li><a href="#first-run">5.2 Running Your First Session</a></li>
-                            <li><a href="#customization">5.3 Customization Options</a></li>
+                            <li><a href="chatbot.html">Building Chatbots</a></li>
+                            <li><a href="architecture.html">System Architecture</a></li>
+                            <li><a href="implementation.html">Implementation Details</a></li>
+                            <li><a href="deployment.html">Deployment Guide</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -410,20 +404,14 @@
         </aside>
 
         <main>
-            <h1>Utah Elementary Teacher Training Assistant: A Complete Guide</h1>
+            <h1>Understanding and Working with Local LLMs</h1>
 
-            <div id="llm-fundamentals" class="section">
-                <h2>Understanding Large Language Models (LLMs)</h2>
+            <div id="introduction" class="section">
+                <h2>Introduction to LLMs</h2>
 
                 <div id="what-are-llms" class="subsection">
                     <h3>What are LLMs?</h3>
-                    <p>Large Language Models (LLMs) are advanced AI systems trained on vast amounts of text data. They represent a breakthrough in natural language processing, enabling:</p>
-                    <ul>
-                        <li>Natural language understanding and generation</li>
-                        <li>Context-aware responses and reasoning</li>
-                        <li>Task adaptation without specific training</li>
-                        <li>Complex problem-solving and analysis</li>
-                    </ul>
+                    <p>Large Language Models (LLMs) are advanced AI systems trained on vast amounts of text data. They represent a breakthrough in natural language processing, enabling sophisticated language understanding and generation capabilities.</p>
 
                     <div class="note">
                         <h4>Key Concepts</h4>
@@ -436,21 +424,33 @@
                     </div>
                 </div>
 
+                <div id="how-llms-work" class="subsection">
+                    <h3>How LLMs Work</h3>
+                    <div class="example">
+                        <h4>Core Components</h4>
+                        <ul>
+                            <li><strong>Tokenization:</strong> Converting text into numerical tokens</li>
+                            <li><strong>Attention Mechanisms:</strong> Processing relationships between tokens</li>
+                            <li><strong>Neural Networks:</strong> Learning patterns and generating responses</li>
+                            <li><strong>Context Windows:</strong> Managing the scope of text processing</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div id="llm-capabilities" class="subsection">
-                    <h3>LLM Capabilities and Applications</h3>
+                    <h3>Capabilities and Limitations</h3>
                     <div class="example">
                         <h4>Core Capabilities</h4>
                         <ul>
-                            <li>Text Generation and Completion</li>
-                            <li>Question Answering and Analysis</li>
-                            <li>Language Translation and Paraphrasing</li>
-                            <li>Code Generation and Analysis</li>
-                            <li>Content Summarization and Extraction</li>
+                            <li>Natural language understanding and generation</li>
+                            <li>Context-aware responses and reasoning</li>
+                            <li>Task adaptation without specific training</li>
+                            <li>Complex problem-solving and analysis</li>
                         </ul>
                     </div>
 
                     <div class="warning">
-                        <h4>Limitations and Considerations</h4>
+                        <h4>Limitations</h4>
                         <ul>
                             <li>Potential for hallucinations or incorrect information</li>
                             <li>Need for proper prompt engineering</li>
@@ -459,622 +459,207 @@
                         </ul>
                     </div>
                 </div>
+            </div>
 
-                <div id="local-vs-api" class="subsection">
-                    <h3>Local LLMs vs API Services</h3>
-                    <div class="comparison">
-                        <h4>Local LLMs (Like in UTTA)</h4>
+            <div id="local-llms" class="section">
+                <h2>Local LLMs Guide</h2>
+
+                <div id="available-models" class="subsection">
+                    <h3>Available Models</h3>
+                    <div class="definition">
+                        <h4>Overview of Available Models</h4>
                         <ul>
-                            <li>✓ Complete privacy</li>
-                            <li>✓ No API costs</li>
-                            <li>✓ Customizable</li>
-                            <li>✓ Offline operation</li>
-                            <li>× Requires more computing power</li>
-                            <li>× May have lower performance</li>
+                            <li><strong>Phi-2</strong> (Microsoft, 2023)
+                                <ul>
+                                    <li>Size: 2.7B parameters</li>
+                                    <li>License: MIT License</li>
+                                    <li>Specialized in code and education</li>
+                                </ul>
+                            </li>
+                            <li><strong>Mistral 7B</strong> (Mistral AI, 2023)
+                                <ul>
+                                    <li>Size: 7B parameters</li>
+                                    <li>License: Apache 2.0</li>
+                                    <li>Industry-leading performance for its size</li>
+                                </ul>
+                            </li>
+                            <li><strong>ORCA 2</strong> (Microsoft Research, 2023)
+                                <ul>
+                                    <li>Size: 7B parameters</li>
+                                    <li>License: MIT License</li>
+                                    <li>Built on Mistral architecture</li>
+                                </ul>
+                            </li>
+                            <li><strong>Llama 2</strong> (Meta AI, 2023)
+                                <ul>
+                                    <li>Sizes: 7B, 13B, 70B parameters</li>
+                                    <li>License: Llama 2 Community License</li>
+                                    <li>Allows commercial use</li>
+                                </ul>
+                            </li>
                         </ul>
+                    </div>
+                </div>
+
+                <div id="system-requirements" class="subsection">
+                    <h3>System Requirements</h3>
+                    <div class="note">
+                        <h4>Hardware Requirements by Model</h4>
+                        <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="padding: 8px; border: 1px solid #ddd;">Model</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Min RAM (CPU)</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Min VRAM (GPU)</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Disk Space</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Context Window</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Phi-2</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">1.5GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">2,048 tokens</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Mistral 7B</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8,192 tokens</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">ORCA 2</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8,192 tokens</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Llama 2 (7B)</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">4,096 tokens</td>
+                            </tr>
+                        </table>
                     </div>
+                </div>
 
+                <div id="model-comparison" class="subsection">
+                    <h3>Model Comparison</h3>
                     <div class="example">
-                        <h4>Popular Local LLMs for Educational Applications</h4>
-
-                        <div class="definition">
-                            <h5>Overview of Available Models</h5>
-                            <ul>
-                                <li><strong>Phi-2</strong> (Microsoft, 2023)
-                                    <ul>
-                                        <li>Size: 2.7B parameters</li>
-                                        <li>License: MIT License</li>
-                                        <li>Specialized in code and education</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Mistral 7B</strong> (Mistral AI, 2023)
-                                    <ul>
-                                        <li>Size: 7B parameters</li>
-                                        <li>License: Apache 2.0</li>
-                                        <li>Industry-leading performance for its size</li>
-                                    </ul>
-                                </li>
-                                <li><strong>ORCA 2</strong> (Microsoft Research, 2023)
-                                    <ul>
-                                        <li>Size: 7B parameters</li>
-                                        <li>License: MIT License</li>
-                                        <li>Built on Mistral architecture</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Llama 2</strong> (Meta AI, 2023)
-                                    <ul>
-                                        <li>Sizes: 7B, 13B, 70B parameters</li>
-                                        <li>License: Llama 2 Community License</li>
-                                        <li>Allows commercial use</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="note">
-                            <h5>System Requirements Overview</h5>
-                            <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
-                                <tr style="background-color: #f5f5f5;">
-                                    <th style="padding: 8px; border: 1px solid #ddd;">Model</th>
-                                    <th style="padding: 8px; border: 1px solid #ddd;">Min RAM (CPU)</th>
-                                    <th style="padding: 8px; border: 1px solid #ddd;">Min VRAM (GPU)</th>
-                                    <th style="padding: 8px; border: 1px solid #ddd;">Disk Space</th>
-                                    <th style="padding: 8px; border: 1px solid #ddd;">Context Window</th>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Phi-2</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">1.5GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">2,048 tokens</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Mistral 7B</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">8,192 tokens</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">ORCA 2</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">8,192 tokens</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Llama 2 (7B)</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">4,096 tokens</td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="example">
-                            <h5>Model Comparison by Use Case</h5>
-                            <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
-                                <tr style="background-color: #f5f5f5;">
-                                    <th style="padding: 8px; border: 1px solid #ddd;">Use Case</th>
-                                    <th style="padding: 8px; border: 1px solid #ddd;">Recommended Model</th>
-                                    <th style="padding: 8px; border: 1px solid #ddd;">Key Strengths</th>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Basic Tutoring</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Phi-2</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Fast responses, efficient, good for basic concepts</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">General Teaching</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Mistral 7B</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Balanced performance, good context understanding</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Advanced Education</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">ORCA 2</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Specialized in education, detailed explanations</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Complex Topics</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Llama 2 (13B+)</td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">Deep understanding, nuanced responses</td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="warning">
-                            <h5>Important Considerations for Chatbot Implementation</h5>
-                            <ul>
-                                <li><strong>Response Time</strong>: Aim for under 2 seconds per response to maintain engagement</li>
-                                <li><strong>Memory Usage</strong>: Consider concurrent users when choosing model size</li>
-                                <li><strong>Conversation Length</strong>: Longer contexts require more capable models</li>
-                                <li><strong>Error Handling</strong>: Larger models generally provide more reliable responses</li>
-                            </ul>
-                        </div>
-
-                        <div class="definition">
-                            <h5>Understanding Model Sizes</h5>
-                            <p>Model size (in billions of parameters) affects both performance and resource requirements:</p>
-                            <ul>
-                                <li><strong>Small (1-3B)</strong>: Fast, efficient, good for basic tasks</li>
-                                <li><strong>Medium (6-8B)</strong>: Balanced performance and resource usage</li>
-                                <li><strong>Large (13B+)</strong>: Better quality but higher resource demands</li>
-                            </ul>
-                        </div>
-
-                        <div class="example">
-                            <h5>Key LLM Parameters and Capabilities</h5>
-
-                            <div class="subsection">
-                                <h6>Context Window Size</h6>
-                                <ul>
-                                    <li><strong>Phi-2</strong>: 2,048 tokens (~1,500 words)</li>
-                                    <li><strong>Mistral 7B</strong>: 8,192 tokens (~6,000 words)</li>
-                                    <li><strong>ORCA 2</strong>: 8,192 tokens (~6,000 words)</li>
-                                    <li><strong>Llama 2</strong>: 4,096 tokens (~3,000 words)</li>
-                                    <p><em>Note: Longer context windows allow for more detailed conversations and better memory of previous interactions.</em></p>
-                                </ul>
-                            </div>
-
-                            <div class="subsection">
-                                <h6>Adjustable Parameters for Chatbot Behavior</h6>
-                                <ul>
-                                    <li><strong>Temperature</strong> (Creativity vs Precision):
-                                        <ul>
-                                            <li>0.2-0.4: High precision, factual responses</li>
-                                            <li>0.5-0.7: Balanced creativity and accuracy</li>
-                                            <li>0.8-1.0: More creative, varied responses</li>
-                                        </ul>
-                                    </li>
-                                    <li><strong>Top-P</strong> (Response Diversity):
-                                        <ul>
-                                            <li>0.1-0.3: Very focused, consistent</li>
-                                            <li>0.4-0.6: Balanced variety</li>
-                                            <li>0.7-0.9: More diverse responses</li>
-                                        </ul>
-                                    </li>
-                                    <li><strong>Max Tokens</strong> (Response Length):
-                                        <ul>
-                                            <li>Short (50-100): Quick answers</li>
-                                            <li>Medium (100-300): Detailed explanations</li>
-                                            <li>Long (300+): In-depth discussions</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="subsection">
-                                <h6>Model-Specific Characteristics</h6>
-                                <ul>
-                                    <li><strong>Phi-2</strong>
-                                        <ul>
-                                            <li>Optimal Temperature: 0.3-0.5</li>
-                                            <li>Best for: Precise, concise responses</li>
-                                            <li>Token Processing: ~150 tokens/second on CPU</li>
-                                            <li>Specialization: Code and technical content</li>
-                                        </ul>
-                                    </li>
-                                    <li><strong>Mistral 7B</strong>
-                                        <ul>
-                                            <li>Optimal Temperature: 0.5-0.7</li>
-                                            <li>Best for: Balanced interactions</li>
-                                            <li>Token Processing: ~100 tokens/second on CPU</li>
-                                            <li>Specialization: General-purpose teaching</li>
-                                        </ul>
-                                    </li>
-                                    <li><strong>ORCA 2</strong>
-                                        <ul>
-                                            <li>Optimal Temperature: 0.6-0.8</li>
-                                            <li>Best for: Educational explanations</li>
-                                            <li>Token Processing: ~100 tokens/second on CPU</li>
-                                            <li>Specialization: Step-by-step teaching</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="warning">
-                                <h6>Optimization Tips</h6>
-                                <ul>
-                                    <li><strong>For Basic Q&A</strong>:
-                                        <ul>
-                                            <li>Lower temperature (0.3)</li>
-                                            <li>Shorter context window</li>
-                                            <li>Faster response times</li>
-                                        </ul>
-                                    </li>
-                                    <li><strong>For Teaching Interactions</strong>:
-                                        <ul>
-                                            <li>Medium temperature (0.6)</li>
-                                            <li>Longer context retention</li>
-                                            <li>Balance between creativity and accuracy</li>
-                                        </ul>
-                                    </li>
-                                    <li><strong>For Complex Discussions</strong>:
-                                        <ul>
-                                            <li>Higher temperature (0.7-0.8)</li>
-                                            <li>Maximum context window</li>
-                                            <li>Focus on detailed explanations</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <ul>
-                            <li><strong>Phi-2 (Recommended for Low-Resource Systems)</strong>
-                                <ul>
-                                    <li>Only 2.7B parameters - smallest but powerful</li>
-                                    <li>Runs on CPU with just 6GB RAM</li>
-                                    <li>4GB VRAM if using GPU</li>
-                                    <li>Model size: ~1.5GB on disk</li>
-                                    <li>Great for laptops and basic desktops</li>
-                                    <li>Key Features:
-                                        <ul>
-                                            <li>Trained on high-quality educational data</li>
-                                            <li>Excellent at explaining concepts</li>
-                                            <li>Fast response times</li>
-                                            <li>Good at code understanding and generation</li>
-                                        </ul>
-                                    </li>
-                                    <li>Best Use Cases:
-                                        <ul>
-                                            <li>Basic tutoring interactions</li>
-                                            <li>Quick concept explanations</li>
-                                            <li>Resource-constrained environments</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li><strong>Mistral 7B (Our Default Choice)</strong>
-                                <ul>
-                                    <li>7B parameters - balanced size/performance</li>
-                                    <li>8GB RAM minimum for CPU inference</li>
-                                    <li>6GB VRAM if using GPU</li>
-                                    <li>Model size: ~4GB on disk</li>
-                                    <li>Works well on mid-range hardware</li>
-                                    <li>Key Features:
-                                        <ul>
-                                            <li>Sliding Window Attention for longer context</li>
-                                            <li>Strong reasoning capabilities</li>
-                                            <li>Excellent instruction following</li>
-                                            <li>Good balance of speed and quality</li>
-                                        </ul>
-                                    </li>
-                                    <li>Best Use Cases:
-                                        <ul>
-                                            <li>Complex teaching scenarios</li>
-                                            <li>Multi-turn conversations</li>
-                                            <li>Detailed explanations</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li><strong>ORCA 2 (7B version)</strong>
-                                <ul>
-                                    <li>Similar requirements to Mistral 7B</li>
-                                    <li>8GB RAM for CPU operation</li>
-                                    <li>6GB VRAM for GPU acceleration</li>
-                                    <li>Model size: ~4GB on disk</li>
-                                    <li>Optimized for teaching tasks</li>
-                                    <li>Key Features:
-                                        <ul>
-                                            <li>Fine-tuned specifically for instruction</li>
-                                            <li>Enhanced reasoning capabilities</li>
-                                            <li>Better at understanding context</li>
-                                            <li>Strong at step-by-step explanations</li>
-                                        </ul>
-                                    </li>
-                                    <li>Best Use Cases:
-                                        <ul>
-                                            <li>Detailed problem-solving</li>
-                                            <li>Complex concept breakdowns</li>
-                                            <li>Educational scaffolding</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li><strong>Llama 2 (Multiple Sizes)</strong>
-                                <ul>
-                                    <li>7B version: Similar to Mistral requirements</li>
-                                    <li>13B and 70B versions need more resources</li>
-                                    <li>7B version recommended for most users</li>
-                                    <li>Model size: 4GB-40GB depending on version</li>
-                                    <li>Available Versions:
-                                        <ul>
-                                            <li>7B: Good balance for most uses</li>
-                                            <li>13B: Better quality, needs 12GB+ VRAM</li>
-                                            <li>70B: Best quality, needs 32GB+ VRAM</li>
-                                        </ul>
-                                    </li>
-                                    <li>Key Features:
-                                        <ul>
-                                            <li>Extensive pre-training</li>
-                                            <li>Strong safety features</li>
-                                            <li>Good at following complex instructions</li>
-                                            <li>Commercial use allowed</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                        <div class="note">
-                            <h5>Performance Comparison</h5>
-                            <ul>
-                                <li><strong>Response Speed (CPU only)</strong>:
-                                    <ul>
-                                        <li>Phi-2: Fastest (0.5-1 second)</li>
-                                        <li>Mistral 7B: Moderate (1-2 seconds)</li>
-                                        <li>ORCA 2: Similar to Mistral</li>
-                                        <li>Llama 2: Varies by size (1-3 seconds)</li>
-                                    </ul>
-                                </li>
-                                <li><strong>Response Quality</strong>:
-                                    <ul>
-                                        <li>Phi-2: Good for basic interactions</li>
-                                        <li>Mistral 7B: Excellent all-around</li>
-                                        <li>ORCA 2: Best for teaching tasks</li>
-                                        <li>Llama 2: Scales with model size</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="warning">
-                            <p><strong>Performance Note:</strong> CPU-only operation is possible but slower. For optimal performance in educational settings where quick responses are important, a GPU with at least 6GB VRAM is recommended but not required.</p>
-                        </div>
-
-                        <div class="note">
-                            <p><strong>Recommendation:</strong> For resource-constrained environments (like basic laptops or older desktops), start with Phi-2. For better performance on standard hardware, use our default Mistral 7B model. All models can
-                                run on CPU-only systems, but inference will be slower.</p>
-                        </div>
+                        <h4>Use Case Comparison</h4>
+                        <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="padding: 8px; border: 1px solid #ddd;">Use Case</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Recommended Model</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Key Strengths</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Basic Tasks</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Phi-2</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Fast responses, efficient, good for basic concepts</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">General Use</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Mistral 7B</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Balanced performance, good context understanding</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Education</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">ORCA 2</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Specialized in education, detailed explanations</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Advanced</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Llama 2 (13B+)</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Deep understanding, nuanced responses</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
 
-            <div id="building-with-llms" class="section">
-                <h2>Building AI Applications with LLMs</h2>
+            <div id="optimization" class="section">
+                <h2>LLM Optimization</h2>
 
-                <div id="application-architecture" class="subsection">
-                    <h3>Application Architecture</h3>
-                    <div class="diagram">
-                        <h4>Core Components</h4>
-                        <div class="component-grid">
-                            <div class="component">
-                                <h5>LLM Interface</h5>
-                                <p>Handles communication with the language model</p>
-                            </div>
-                            <div class="component">
-                                <h5>Context Manager</h5>
-                                <p>Maintains conversation state and history</p>
-                            </div>
-                            <div class="component">
-                                <h5>Knowledge Base</h5>
-                                <p>Stores domain-specific information</p>
-                            </div>
-                            <div class="component">
-                                <h5>Response Handler</h5>
-                                <p>Processes and formats model outputs</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="ai-agents" class="subsection">
-                    <h3>Creating AI Agents</h3>
+                <div id="parameters" class="subsection">
+                    <h3>Key Parameters</h3>
                     <div class="example">
-                        <h4>Agent Components</h4>
-                        <pre>
-class AIAgent:
-    def __init__(self):
-        self.llm = LLMInterface()
-        self.memory = ContextManager()
-        self.knowledge = KnowledgeBase()
-        
-    def process_input(self, user_input):
-        context = self.memory.get_context()
-        knowledge = self.knowledge.search(user_input)
-        response = self.llm.generate(
-            prompt=user_input,
-            context=context,
-            knowledge=knowledge
-        )
-        self.memory.update(user_input, response)
-        return response</pre>
-                    </div>
-                </div>
-            </div>
-
-            <div id="chatbot-development" class="section">
-                <h2>Building Educational Chatbots</h2>
-
-                <div id="chatbot-architecture" class="subsection">
-                    <h3>Chatbot Architecture</h3>
-                    <div class="diagram">
-                        <h4>Essential Components</h4>
-                        <div class="component-grid">
-                            <div class="component">
-                                <h5>Dialog Manager</h5>
-                                <p>Controls conversation flow</p>
-                            </div>
-                            <div class="component">
-                                <h5>State Tracker</h5>
-                                <p>Monitors interaction progress</p>
-                            </div>
-                            <div class="component">
-                                <h5>Response Generator</h5>
-                                <p>Creates contextual responses</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="educational-features" class="subsection">
-                    <h3>Educational Features</h3>
-                    <div class="example">
-                        <h4>Key Capabilities</h4>
+                        <h4>Adjustable Parameters</h4>
                         <ul>
-                            <li>Personalized Learning Paths</li>
-                            <li>Progress Tracking</li>
-                            <li>Adaptive Feedback</li>
-                            <li>Multi-modal Interactions</li>
+                            <li><strong>Temperature</strong> (Creativity vs Precision):
+                                <ul>
+                                    <li>0.2-0.4: High precision, factual responses</li>
+                                    <li>0.5-0.7: Balanced creativity and accuracy</li>
+                                    <li>0.8-1.0: More creative, varied responses</li>
+                                </ul>
+                            </li>
+                            <li><strong>Top-P</strong> (Response Diversity):
+                                <ul>
+                                    <li>0.1-0.3: Very focused, consistent</li>
+                                    <li>0.4-0.6: Balanced variety</li>
+                                    <li>0.7-0.9: More diverse responses</li>
+                                </ul>
+                            </li>
+                            <li><strong>Context Window</strong>:
+                                <ul>
+                                    <li>Short (2K tokens): Basic interactions</li>
+                                    <li>Medium (4K tokens): Standard conversations</li>
+                                    <li>Long (8K+ tokens): Complex discussions</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="performance" class="subsection">
+                    <h3>Performance Tuning</h3>
+                    <div class="note">
+                        <h4>Optimization Tips</h4>
+                        <ul>
+                            <li><strong>CPU Optimization</strong>:
+                                <ul>
+                                    <li>Use smaller models (Phi-2) for faster responses</li>
+                                    <li>Reduce context window size when possible</li>
+                                    <li>Enable threading and BLAS optimizations</li>
+                                </ul>
+                            </li>
+                            <li><strong>GPU Acceleration</strong>:
+                                <ul>
+                                    <li>Use CUDA for NVIDIA GPUs</li>
+                                    <li>Enable half-precision (FP16) for faster inference</li>
+                                    <li>Batch similar requests when possible</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="best-practices" class="subsection">
+                    <h3>Best Practices</h3>
+                    <div class="warning">
+                        <h4>Implementation Guidelines</h4>
+                        <ul>
+                            <li>Always validate model outputs</li>
+                            <li>Implement proper error handling</li>
+                            <li>Monitor resource usage</li>
+                            <li>Cache common responses</li>
+                            <li>Implement rate limiting</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div id="utta-system" class="section">
-                <h2>Utah Teacher Training AI System</h2>
-
-                <div id="system-overview" class="subsection">
-                    <h3>System Architecture</h3>
-                    <div class="diagram">
-                        <h4>Core Components</h4>
-                        <div class="component-grid">
-                            <div class="component">
-                                <h5>TeacherTrainingAgent</h5>
-                                <p>Main simulation controller</p>
-                                <ul>
-                                    <li>Manages training scenarios</li>
-                                    <li>Coordinates component interactions</li>
-                                    <li>Tracks training progress</li>
-                                </ul>
-                            </div>
-                            <div class="component">
-                                <h5>PedagogicalKnowledgeManager</h5>
-                                <p>Educational resource manager</p>
-                                <ul>
-                                    <li>Stores teaching strategies</li>
-                                    <li>Processes educational content</li>
-                                    <li>Provides contextual recommendations</li>
-                                </ul>
-                            </div>
-                            <div class="component">
-                                <h5>PedagogicalLanguageProcessor</h5>
-                                <p>Natural language handler</p>
-                                <ul>
-                                    <li>Analyzes teaching responses</li>
-                                    <li>Generates student reactions</li>
-                                    <li>Evaluates teaching effectiveness</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="implementation-details" class="subsection">
-                    <h3>Implementation Details</h3>
-                    <div class="example">
-                        <h4>Key Features</h4>
-                        <pre>
-# Initialize the system
-agent = TeacherTrainingAgent()
-knowledge = PedagogicalKnowledgeManager()
-processor = PedagogicalLanguageProcessor()
-
-# Generate teaching scenario
-scenario = agent.generate_scenario(
-    subject="math",
-    difficulty="multiplication",
-    student_profile={
-        "learning_style": "visual",
-        "attention_span": 0.7,
-        "current_challenges": ["number sense"]
-    }
-)
-
-# Process teacher's response
-response = processor.analyze_teaching_response(
-    teacher_input="Let's use counters to understand multiplication",
-    context=scenario
-)
-
-# Generate student reaction
-reaction = processor.generate_student_reaction(
-    context=scenario,
-    teacher_response=response,
-    effectiveness=0.85
-)</pre>
-                    </div>
-                </div>
-
-                <div id="usage-workflow" class="subsection">
-                    <h3>Usage Workflow</h3>
-                    <ol>
-                        <li><strong>Setup Phase</strong>
-                            <ul>
-                                <li>Initialize system components</li>
-                                <li>Load teaching knowledge base</li>
-                                <li>Configure student profiles</li>
-                            </ul>
-                        </li>
-                        <li><strong>Training Session</strong>
-                            <ul>
-                                <li>Generate teaching scenario</li>
-                                <li>Present student situation</li>
-                                <li>Process teacher responses</li>
-                                <li>Provide immediate feedback</li>
-                            </ul>
-                        </li>
-                        <li><strong>Analysis Phase</strong>
-                            <ul>
-                                <li>Evaluate teaching effectiveness</li>
-                                <li>Generate detailed feedback</li>
-                                <li>Track progress over time</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-
-            <div id="getting-started" class="section">
-                <h2>Getting Started</h2>
-
-                <div id="setup" class="subsection">
-                    <h3>Setting Up Your Environment</h3>
-                    <div class="code-example">
-                        <h4>Installation Steps</h4>
-                        <pre>
-# Clone the repository
-git clone https://github.com/UVU-AI-Innovate/UTTA.git
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Download the LLM model
-ollama pull mistral
-
-# Start the application
-python terminal_app.py</pre>
-                    </div>
-                </div>
-
-                <div id="first-run" class="subsection">
-                    <h3>Running Your First Session</h3>
-                    <p>Follow these steps to start your first training session:</p>
-                    <ol>
-                        <li>Initialize the training agent</li>
-                        <li>Set up your teacher profile</li>
-                        <li>Select a subject area</li>
-                        <li>Respond to the generated scenario</li>
-                        <li>Review feedback and student reactions</li>
-                    </ol>
-                </div>
-
-                <div id="customization" class="subsection">
-                    <h3>Customization Options</h3>
-                    <ul>
-                        <li>Modify teaching scenarios</li>
-                        <li>Adjust student profiles</li>
-                        <li>Add custom teaching strategies</li>
-                        <li>Configure evaluation criteria</li>
-                    </ul>
-                </div>
+            <div id="related-guides" class="section">
+                <h2>Related Guides</h2>
+                <p>For detailed information about other components of the system, please refer to our specialized guides:</p>
+                <ul>
+                    <li><a href="chatbot.html">Building Educational Chatbots</a> - Learn about chatbot architecture and implementation</li>
+                    <li><a href="architecture.html">System Architecture Guide</a> - Understand the overall system design</li>
+                    <li><a href="implementation.html">Implementation Details</a> - Technical details and code examples</li>
+                    <li><a href="deployment.html">Deployment Guide</a> - Steps to deploy your application</li>
+                </ul>
             </div>
         </main>
     </div>

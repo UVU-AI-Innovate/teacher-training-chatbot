@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementation Details - UTTA Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="nav-container">
+        <a href="index.html">← Back to LLM Guide</a>
+    </div>
+
+    <div class="main-content">
+        <main>
+            <h1>Implementation Details</h1>
+
+            <div id="setup" class="section">
+                <h2>Setting Up the Environment</h2>
+                <div class="example">
+                    <h3>Installation Steps</h3>
+                    <pre>
+# Clone the repository
+git clone https://github.com/UVU-AI-Innovate/UTTA.git
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Download the LLM model
+ollama pull mistral
+
+# Start the application
+python terminal_app.py</pre>
+                </div>
+
+                <div class="note">
+                    <h3>System Requirements</h3>
+                    <ul>
+                        <li>Python 3.8 or higher</li>
+                        <li>8GB RAM minimum</li>
+                        <li>10GB free disk space</li>
+                        <li>CUDA-capable GPU (optional)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="core-components" class="section">
+                <h2>Core Component Implementation</h2>
+
+                <div class="subsection">
+                    <h3>Teacher Training Agent</h3>
+                    <div class="example">
+                        <pre>
+class TeacherTrainingAgent:
+    def __init__(self):
+        self.llm = LLMInterface()
+        self.knowledge = PedagogicalKnowledgeManager()
+        self.processor = PedagogicalLanguageProcessor()
+        
+    def generate_scenario(self, subject, difficulty, student_profile):
+        """Generate a teaching scenario based on parameters."""
+        context = {
+            "subject": subject,
+            "difficulty": difficulty,
+            "student_profile": student_profile
+        }
+        return self.processor.create_scenario(context)
+        
+    def process_response(self, teacher_input, scenario):
+        """Process teacher's response and generate feedback."""
+        analysis = self.processor.analyze_teaching_response(
+            teacher_input=teacher_input,
+            context=scenario
+        )
+        return self.generate_feedback(analysis)</pre>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>Knowledge Manager</h3>
+                    <div class="example">
+                        <pre>
+class PedagogicalKnowledgeManager:
+    def __init__(self):
+        self.db = Database()
+        self.vector_store = VectorStore()
+        
+    def get_teaching_strategies(self, context):
+        """Retrieve relevant teaching strategies."""
+        query = self.build_query(context)
+        return self.vector_store.similarity_search(query)
+        
+    def update_knowledge(self, new_data):
+        """Add new teaching strategies to the knowledge base."""
+        vectors = self.vector_store.encode(new_data)
+        self.vector_store.add(vectors)</pre>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>Language Processor</h3>
+                    <div class="example">
+                        <pre>
+class PedagogicalLanguageProcessor:
+    def __init__(self):
+        self.llm = LLMInterface()
+        self.templates = PromptTemplates()
+        
+    def analyze_teaching_response(self, teacher_input, context):
+        """Analyze teaching effectiveness."""
+        prompt = self.templates.get("analysis")
+        return self.llm.generate(
+            prompt=prompt,
+            context=context,
+            input=teacher_input
+        )
+        
+    def generate_student_reaction(self, context, effectiveness):
+        """Generate realistic student responses."""
+        prompt = self.templates.get("student_reaction")
+        return self.llm.generate(
+            prompt=prompt,
+            context=context,
+            effectiveness=effectiveness
+        )</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div id="configuration" class="section">
+                <h2>Configuration</h2>
+                <div class="example">
+                    <h3>Sample Configuration</h3>
+                    <pre>
+# config.yaml
+llm:
+  model: mistral-7b
+  temperature: 0.7
+  max_tokens: 2048
+  context_window: 8192
+
+knowledge_base:
+  vector_store: faiss
+  embedding_model: instructor-xl
+  cache_size: 1000
+
+processor:
+  analysis_threshold: 0.8
+  feedback_detail_level: detailed
+  student_simulation_mode: realistic</pre>
+                </div>
+            </div>
+
+            <div id="customization" class="section">
+                <h2>Customization Options</h2>
+                <div class="warning">
+                    <h3>Extension Points</h3>
+                    <ul>
+                        <li>Custom prompt templates</li>
+                        <li>New teaching scenarios</li>
+                        <li>Alternative LLM models</li>
+                        <li>Custom evaluation metrics</li>
+                        <li>Interface modifications</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

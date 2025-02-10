@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Guide - UTTA Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="nav-container">
+        <a href="index.html">← Back to LLM Guide</a>
+    </div>
+
+    <div class="main-content">
+        <main>
+            <h1>Deployment Guide</h1>
+
+            <div id="prerequisites" class="section">
+                <h2>Prerequisites</h2>
+                <div class="note">
+                    <h3>Requirements</h3>
+                    <ul>
+                        <li>Linux server (Ubuntu 20.04+ recommended)</li>
+                        <li>16GB RAM minimum for production</li>
+                        <li>50GB SSD storage</li>
+                        <li>CUDA-capable GPU recommended</li>
+                        <li>Python 3.8 or higher</li>
+                        <li>Docker (optional)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="installation" class="section">
+                <h2>Installation Steps</h2>
+
+                <div class="subsection">
+                    <h3>Standard Installation</h3>
+                    <div class="example">
+                        <pre>
+# Update system
+sudo apt update && sudo apt upgrade -y
+
+# Install Python dependencies
+sudo apt install python3-pip python3-venv
+
+# Clone repository
+git clone https://github.com/UVU-AI-Innovate/UTTA.git
+cd UTTA
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install requirements
+pip install -r requirements.txt
+
+# Download LLM model
+ollama pull mistral
+
+# Configure application
+cp config.example.yaml config.yaml
+nano config.yaml</pre>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>Docker Installation</h3>
+                    <div class="example">
+                        <pre>
+# Build Docker image
+docker build -t utta .
+
+# Run container
+docker run -d \
+    --gpus all \
+    -p 8000:8000 \
+    -v /path/to/data:/app/data \
+    --name utta-server \
+    utta</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div id="configuration" class="section">
+                <h2>Production Configuration</h2>
+
+                <div class="subsection">
+                    <h3>Environment Variables</h3>
+                    <div class="example">
+                        <pre>
+# .env
+UTTA_ENV=production
+UTTA_HOST=0.0.0.0
+UTTA_PORT=8000
+UTTA_WORKERS=4
+UTTA_LOG_LEVEL=INFO
+UTTA_MODEL_PATH=/path/to/models
+UTTA_DATA_DIR=/path/to/data
+UTTA_CACHE_DIR=/path/to/cache</pre>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>Nginx Configuration</h3>
+                    <div class="example">
+                        <pre>
+# /etc/nginx/sites-available/utta
+server {
+    listen 80;
+    server_name your-domain.com;
+
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div id="monitoring" class="section">
+                <h2>Monitoring and Maintenance</h2>
+
+                <div class="subsection">
+                    <h3>System Monitoring</h3>
+                    <div class="example">
+                        <pre>
+# Check application status
+systemctl status utta
+
+# View logs
+journalctl -u utta
+
+# Monitor resources
+htop
+nvidia-smi  # for GPU usage</pre>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <h3>Important Considerations</h3>
+                    <ul>
+                        <li>Regular backup of data directory</li>
+                        <li>Monitor GPU memory usage</li>
+                        <li>Set up log rotation</li>
+                        <li>Configure automatic updates</li>
+                        <li>Implement health checks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="scaling" class="section">
+                <h2>Scaling Considerations</h2>
+                <div class="note">
+                    <h3>Scaling Options</h3>
+                    <ul>
+                        <li><strong>Vertical Scaling</strong>
+                            <ul>
+                                <li>Upgrade RAM for larger models</li>
+                                <li>Add GPUs for parallel processing</li>
+                                <li>Increase storage for more data</li>
+                            </ul>
+                        </li>
+                        <li><strong>Horizontal Scaling</strong>
+                            <ul>
+                                <li>Load balancing across servers</li>
+                                <li>Distributed model serving</li>
+                                <li>Replicated data storage</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
