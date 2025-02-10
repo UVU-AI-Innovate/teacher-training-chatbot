@@ -76,10 +76,14 @@
                     <div class="note">
                         <h4>Key Concepts</h4>
                         <ul>
-                            <li><strong>Transformer Architecture:</strong> The neural network design that enables LLMs to process and understand language</li>
-                            <li><strong>Self-Attention:</strong> Mechanism for understanding relationships between words in context</li>
-                            <li><strong>Transfer Learning:</strong> Ability to apply knowledge to new tasks</li>
-                            <li><strong>Few-Shot Learning:</strong> Capability to learn from minimal examples</li>
+                            <li><strong>Transformer Architecture:</strong> A highly parallelizable design that replaces recurrent networks with self-attention mechanisms. It processes entire input sequences simultaneously using multi-head attention and feed-forward
+                                layers to capture deep contextual relationships.</li>
+                            <li><strong>Self-Attention:</strong> A mechanism that computes pairwise interactions between all tokens in the input, allowing the model to weigh the importance of each token based on its relevance. This leads to dynamic and context-aware
+                                representations of sequence data.</li>
+                            <li><strong>Transfer Learning:</strong> The approach of leveraging knowledge gained from pretraining on massive datasets. Once pretrained, the model is fine-tuned on specific tasks, enabling it to adapt its general language understanding
+                                to new domains with limited additional training data.</li>
+                            <li><strong>Few-Shot Learning:</strong> The capability of the model to perform tasks effectively after being provided with only a few examples. This minimizes the need for extensive labeled datasets and allows the model to generalize
+                                from sparse examples.</li>
                         </ul>
                     </div>
                 </div>
@@ -163,6 +167,35 @@
                                     <li>License: Llama 2 Community License</li>
                                     <li>Allows commercial use</li>
                                     <li>Offers versatility with multiple model sizes, enabling deployments that range from small-scale interactive tools to large-scale enterprise applications with advanced reasoning capabilities.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Llama 3</strong> (Meta AI, 2023)
+                                <ul>
+                                    <li>Sizes: 7B, 13B, 65B parameters</li>
+                                    <li>License: Llama 3 Community License</li>
+                                    <li>Enhanced reasoning, improved few-shot learning, and better overall performance compared to Llama 2</li>
+                                    <li>Optimized for efficiency and scalability, ideal for both research and production environments</li>
+                                </ul>
+                            </li>
+                            <li><strong>phi-3-mini</strong> (New Research, [arXiv:2404.14219](https://export.arxiv.org/abs/2404.14219))
+                                <ul>
+                                    <li>Size: ~3.8B parameters</li>
+                                    <li>Trained on 3.3 trillion tokens</li>
+                                    <li>Achieves 69% on MMLU benchmark</li>
+                                    <li>Efficient enough for deployment on mobile devices</li>
+                                </ul>
+                            </li>
+                            <li><strong>phi-3.5-MoE</strong> (New Research, [arXiv:2404.14219](https://export.arxiv.org/abs/2404.14219))
+                                <ul>
+                                    <li>A 16 x 3.8B Mixture-of-Experts model with 6.6B active parameters</li>
+                                    <li>Excels in language reasoning, math, and code tasks</li>
+                                    <li>Competitive with Gemini-1.5-Flash and GPT-4o-mini benchmarks</li>
+                                </ul>
+                            </li>
+                            <li><strong>Mistral 7B Instruct v0.3</strong> (Mistral AI, updated info from [LLM Explorer](https://llm.extractum.io/))
+                                <ul>
+                                    <li>Enhanced version with refined fine-tuning and increased performance over previous iterations</li>
+                                    <li>Maintains a balanced trade-off between speed and contextual understanding</li>
                                 </ul>
                             </li>
                         </ul>
