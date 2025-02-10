@@ -133,72 +133,56 @@
                 <h2>Local LLMs Guide</h2>
 
                 <div id="available-models" class="subsection">
-                    <h3>Available Models</h3>
+                    <h3>Latest LLM Models (2024)</h3>
                     <div class="definition">
-                        <h4>Overview of Available Models</h4>
-                        <ul>
-                            <li><strong>Phi-2</strong> (Microsoft, 2023)
-                                <ul>
-                                    <li>Size: 2.7B parameters</li>
-                                    <li>License: MIT License</li>
-                                    <li>Specialized in code and education</li>
-                                    <li>Optimized for quick responses and efficiency, making it ideal for lightweight applications and real-time educational interactions.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Mistral 7B</strong> (Mistral AI, 2023)
-                                <ul>
-                                    <li>Size: 7B parameters</li>
-                                    <li>License: Apache 2.0</li>
-                                    <li>Industry-leading performance for its size</li>
-                                    <li>Offers a balanced trade-off between speed and contextual understanding, making it suitable for interactive learning environments.</li>
-                                </ul>
-                            </li>
-                            <li><strong>ORCA 2</strong> (Microsoft Research, 2023)
-                                <ul>
-                                    <li>Size: 7B parameters</li>
-                                    <li>License: MIT License</li>
-                                    <li>Built on Mistral architecture</li>
-                                    <li>Designed specifically for educational applications, ORCA 2 delivers detailed explanations and nuanced responses, though it may require higher computational resources.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Llama 2</strong> (Meta AI, 2023)
-                                <ul>
-                                    <li>Sizes: 7B, 13B, 70B parameters</li>
-                                    <li>License: Llama 2 Community License</li>
-                                    <li>Allows commercial use</li>
-                                    <li>Offers versatility with multiple model sizes, enabling deployments that range from small-scale interactive tools to large-scale enterprise applications with advanced reasoning capabilities.</li>
-                                </ul>
-                            </li>
-                            <li><strong>Llama 3</strong> (Meta AI, 2023)
-                                <ul>
-                                    <li>Sizes: 7B, 13B, 65B parameters</li>
-                                    <li>License: Llama 3 Community License</li>
-                                    <li>Enhanced reasoning, improved few-shot learning, and better overall performance compared to Llama 2</li>
-                                    <li>Optimized for efficiency and scalability, ideal for both research and production environments</li>
-                                </ul>
-                            </li>
-                            <li><strong>phi-3-mini</strong> (New Research, [arXiv:2404.14219](https://export.arxiv.org/abs/2404.14219))
-                                <ul>
-                                    <li>Size: ~3.8B parameters</li>
-                                    <li>Trained on 3.3 trillion tokens</li>
-                                    <li>Achieves 69% on MMLU benchmark</li>
-                                    <li>Efficient enough for deployment on mobile devices</li>
-                                </ul>
-                            </li>
-                            <li><strong>phi-3.5-MoE</strong> (New Research, [arXiv:2404.14219](https://export.arxiv.org/abs/2404.14219))
-                                <ul>
-                                    <li>A 16 x 3.8B Mixture-of-Experts model with 6.6B active parameters</li>
-                                    <li>Excels in language reasoning, math, and code tasks</li>
-                                    <li>Competitive with Gemini-1.5-Flash and GPT-4o-mini benchmarks</li>
-                                </ul>
-                            </li>
-                            <li><strong>Mistral 7B Instruct v0.3</strong> (Mistral AI, updated info from [LLM Explorer](https://llm.extractum.io/))
-                                <ul>
-                                    <li>Enhanced version with refined fine-tuning and increased performance over previous iterations</li>
-                                    <li>Maintains a balanced trade-off between speed and contextual understanding</li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="padding: 12px; border: 1px solid #ddd;">Model Family</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">Latest Version</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">Key Specifications</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">Best Use Cases</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Phi</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">phi-3.5-MoE</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • 16 x 3.8B MoE architecture<br> • 6.6B active parameters<br> • Advanced reasoning capabilities
+                                </td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • Complex reasoning tasks<br> • Mathematical problems<br> • Code generation
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Mistral</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Mistral 7B v0.3</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • 7B parameters<br> • 8K context window<br> • Apache 2.0 license
+                                </td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • General-purpose tasks<br> • Interactive applications<br> • Educational use cases
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">ORCA</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">ORCA 2</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • 7B parameters<br> • Built on Mistral<br> • MIT license
+                                </td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • Educational applications<br> • Detailed explanations<br> • Teaching assistance
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Llama</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Llama 3</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • 7B, 13B, 65B variants<br> • Enhanced reasoning<br> • Improved few-shot learning
+                                </td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • Research projects<br> • Production deployments<br> • Advanced applications
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
@@ -215,14 +199,14 @@
                                 <th style="padding: 8px; border: 1px solid #ddd;">Context Window</th>
                             </tr>
                             <tr>
-                                <td style="padding: 8px; border: 1px solid #ddd;">Phi-2</td>
-                                <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
-                                <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
-                                <td style="padding: 8px; border: 1px solid #ddd;">1.5GB</td>
-                                <td style="padding: 8px; border: 1px solid #ddd;">2,048 tokens</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">phi-3.5-MoE</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">16GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">12GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">4,096 tokens</td>
                             </tr>
                             <tr>
-                                <td style="padding: 8px; border: 1px solid #ddd;">Mistral 7B</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Mistral 7B v0.3</td>
                                 <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
                                 <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
                                 <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
@@ -236,11 +220,11 @@
                                 <td style="padding: 8px; border: 1px solid #ddd;">8,192 tokens</td>
                             </tr>
                             <tr>
-                                <td style="padding: 8px; border: 1px solid #ddd;">Llama 2 (7B)</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Llama 3 (7B)</td>
                                 <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
                                 <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
                                 <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
-                                <td style="padding: 8px; border: 1px solid #ddd;">4,096 tokens</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">8,192 tokens</td>
                             </tr>
                         </table>
                     </div>
