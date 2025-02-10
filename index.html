@@ -476,44 +476,58 @@
 
                     <div class="example">
                         <h4>Popular Local LLMs for Educational Applications</h4>
+                        <div class="note">
+                            <h5>Minimum System Requirements</h5>
+                            <ul>
+                                <li>CPU: Any modern multi-core processor (2018 or newer)</li>
+                                <li>RAM: 8GB minimum, 16GB recommended</li>
+                                <li>Storage: 10GB free space</li>
+                                <li>GPU: Optional - improves performance but not required</li>
+                            </ul>
+                        </div>
                         <ul>
-                            <li><strong>Mistral 7B</strong>
+                            <li><strong>Phi-2 (Recommended for Low-Resource Systems)</strong>
                                 <ul>
-                                    <li>Excellent performance-to-size ratio</li>
-                                    <li>Efficient on consumer hardware</li>
-                                    <li>Strong instruction following</li>
-                                    <li>Great for educational dialogues</li>
+                                    <li>Only 2.7B parameters - smallest but powerful</li>
+                                    <li>Runs on CPU with just 6GB RAM</li>
+                                    <li>4GB VRAM if using GPU</li>
+                                    <li>Model size: ~1.5GB on disk</li>
+                                    <li>Great for laptops and basic desktops</li>
                                 </ul>
                             </li>
-                            <li><strong>Llama 2</strong>
+                            <li><strong>Mistral 7B (Our Default Choice)</strong>
                                 <ul>
-                                    <li>Open-source with commercial use allowed</li>
-                                    <li>Multiple size options (7B, 13B, 70B)</li>
-                                    <li>Well-suited for chat applications</li>
-                                    <li>Strong reasoning capabilities</li>
+                                    <li>7B parameters - balanced size/performance</li>
+                                    <li>8GB RAM minimum for CPU inference</li>
+                                    <li>6GB VRAM if using GPU</li>
+                                    <li>Model size: ~4GB on disk</li>
+                                    <li>Works well on mid-range hardware</li>
                                 </ul>
                             </li>
-                            <li><strong>Phi-2</strong>
+                            <li><strong>ORCA 2 (7B version)</strong>
                                 <ul>
-                                    <li>Compact yet powerful (2.7B parameters)</li>
-                                    <li>Excellent for resource-constrained environments</li>
-                                    <li>Good performance on educational tasks</li>
-                                    <li>Low hardware requirements</li>
+                                    <li>Similar requirements to Mistral 7B</li>
+                                    <li>8GB RAM for CPU operation</li>
+                                    <li>6GB VRAM for GPU acceleration</li>
+                                    <li>Model size: ~4GB on disk</li>
+                                    <li>Optimized for teaching tasks</li>
                                 </ul>
                             </li>
-                            <li><strong>ORCA 2</strong>
+                            <li><strong>Llama 2 (Multiple Sizes)</strong>
                                 <ul>
-                                    <li>Optimized for instruction following</li>
-                                    <li>Strong teaching and explanation capabilities</li>
-                                    <li>Built on Mistral architecture</li>
-                                    <li>Suitable for educational interactions</li>
+                                    <li>7B version: Similar to Mistral requirements</li>
+                                    <li>13B and 70B versions need more resources</li>
+                                    <li>7B version recommended for most users</li>
+                                    <li>Model size: 4GB-40GB depending on version</li>
                                 </ul>
                             </li>
                         </ul>
                         <div class="note">
-                            <p><strong>Note:</strong> UTTA currently uses Mistral 7B as the default model due to its optimal balance of performance and resource requirements. Users can switch to other models based on their hardware capabilities and specific
-                                needs.
-                            </p>
+                            <p><strong>Recommendation:</strong> For resource-constrained environments (like basic laptops or older desktops), start with Phi-2. For better performance on standard hardware, use our default Mistral 7B model. All models can
+                                run on CPU-only systems, but inference will be slower.</p>
+                        </div>
+                        <div class="warning">
+                            <p><strong>Performance Note:</strong> CPU-only operation is possible but slower. For optimal performance in educational settings where quick responses are important, a GPU with at least 6GB VRAM is recommended but not required.</p>
                         </div>
                     </div>
                 </div>
