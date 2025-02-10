@@ -476,75 +476,111 @@
 
                     <div class="example">
                         <h4>Popular Local LLMs for Educational Applications</h4>
-                        <div class="note">
-                            <h5>Minimum System Requirements</h5>
+
+                        <div class="definition">
+                            <h5>Overview of Available Models</h5>
                             <ul>
-                                <li>CPU: Any modern multi-core processor (2018 or newer)</li>
-                                <li>RAM: 8GB minimum, 16GB recommended</li>
-                                <li>Storage: 10GB free space</li>
-                                <li>GPU: Optional - improves performance but not required</li>
+                                <li><strong>Phi-2</strong> (Microsoft, 2023)
+                                    <ul>
+                                        <li>Size: 2.7B parameters</li>
+                                        <li>License: MIT License</li>
+                                        <li>Specialized in code and education</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Mistral 7B</strong> (Mistral AI, 2023)
+                                    <ul>
+                                        <li>Size: 7B parameters</li>
+                                        <li>License: Apache 2.0</li>
+                                        <li>Industry-leading performance for its size</li>
+                                    </ul>
+                                </li>
+                                <li><strong>ORCA 2</strong> (Microsoft Research, 2023)
+                                    <ul>
+                                        <li>Size: 7B parameters</li>
+                                        <li>License: MIT License</li>
+                                        <li>Built on Mistral architecture</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Llama 2</strong> (Meta AI, 2023)
+                                    <ul>
+                                        <li>Sizes: 7B, 13B, 70B parameters</li>
+                                        <li>License: Llama 2 Community License</li>
+                                        <li>Allows commercial use</li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
 
-                        <div class="definition">
-                            <h5>Ideal LLM Characteristics for Educational Chatbots</h5>
-                            <p>For educational chatbot applications, the following characteristics are crucial:</p>
-                            <ul>
-                                <li><strong>Context Retention</strong>: Ability to maintain coherent conversations</li>
-                                <li><strong>Response Consistency</strong>: Stable and reliable answers</li>
-                                <li><strong>Instruction Following</strong>: Accurate responses to specific prompts</li>
-                                <li><strong>Knowledge Accuracy</strong>: Reliable educational content delivery</li>
-                            </ul>
+                        <div class="note">
+                            <h5>System Requirements Overview</h5>
+                            <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+                                <tr style="background-color: #f5f5f5;">
+                                    <th style="padding: 8px; border: 1px solid #ddd;">Model</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd;">Min RAM (CPU)</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd;">Min VRAM (GPU)</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd;">Disk Space</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd;">Context Window</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Phi-2</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">1.5GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">2,048 tokens</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Mistral 7B</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">8,192 tokens</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">ORCA 2</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">8,192 tokens</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Llama 2 (7B)</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">8GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">6GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">4GB</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">4,096 tokens</td>
+                                </tr>
+                            </table>
                         </div>
 
                         <div class="example">
-                            <h5>Best Models for Educational Chatbots</h5>
-                            <ol>
-                                <li><strong>For Basic Implementation (Limited Resources)</strong>
-                                    <ul>
-                                        <li>Phi-2 (2.7B)
-                                            <ul>
-                                                <li>Perfect for simple Q&A interactions</li>
-                                                <li>Quick responses for basic tutoring</li>
-                                                <li>Works well on standard laptops</li>
-                                                <li>Good for pilot projects and testing</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><strong>For Production Use (Recommended)</strong>
-                                    <ul>
-                                        <li>Mistral 7B
-                                            <ul>
-                                                <li>Excellent context understanding</li>
-                                                <li>Strong conversational abilities</li>
-                                                <li>Balanced performance and resource usage</li>
-                                                <li>Ideal for most educational scenarios</li>
-                                            </ul>
-                                        </li>
-                                        <li>ORCA 2
-                                            <ul>
-                                                <li>Specialized in educational interactions</li>
-                                                <li>Better at complex explanations</li>
-                                                <li>Strong pedagogical capabilities</li>
-                                                <li>Good for advanced tutoring</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><strong>For Advanced Features (High Resources)</strong>
-                                    <ul>
-                                        <li>Llama 2 (13B/70B)
-                                            <ul>
-                                                <li>Superior reasoning capabilities</li>
-                                                <li>Better handling of complex topics</li>
-                                                <li>More nuanced responses</li>
-                                                <li>Requires significant computing power</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ol>
+                            <h5>Model Comparison by Use Case</h5>
+                            <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+                                <tr style="background-color: #f5f5f5;">
+                                    <th style="padding: 8px; border: 1px solid #ddd;">Use Case</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd;">Recommended Model</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd;">Key Strengths</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Basic Tutoring</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Phi-2</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Fast responses, efficient, good for basic concepts</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">General Teaching</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Mistral 7B</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Balanced performance, good context understanding</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Advanced Education</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">ORCA 2</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Specialized in education, detailed explanations</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Complex Topics</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Llama 2 (13B+)</td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">Deep understanding, nuanced responses</td>
+                                </tr>
+                            </table>
                         </div>
 
                         <div class="warning">
