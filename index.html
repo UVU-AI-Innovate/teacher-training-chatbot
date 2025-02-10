@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding AI in Teacher Training - A Beginner's Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        h1,
+        h2,
+        h3 {
+            color: #2c3e50;
+            margin-top: 1.5em;
+            scroll-margin-top: 80px;
+            /* For smooth scrolling to anchors */
+        }
+        
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+        
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .note,
+        .definition,
+        .example,
+        .warning {
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* New navigation styles */
+        
+        .nav-container {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-toggle {
+            display: none;
+            padding: 10px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .toc {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        
+        .toc li {
+            margin: 8px 0;
+        }
+        
+        .toc a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            color: #3498db;
+        }
+        /* Back to top button */
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2c3e50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        /* Responsive design */
+        
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            .toc {
+                display: none;
+            }
+            .toc.show {
+                display: block;
+            }
+        }
+        /* Diagram styles */
+        
+        .diagram {
+            background: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .diagram-container {
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .component {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .component:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .arrow {
+            position: relative;
+            width: 50px;
+            height: 2px;
+            background: #666;
+            margin: 10px;
+        }
+        
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: -4px;
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid #666;
+            border-right: 2px solid #666;
+            transform: rotate(45deg);
+        }
+        
+        .flow-diagram {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .system-component {
+            background: #e3f2fd;
+            border: 2px solid #1976d2;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .data-flow {
+            border: 2px solid #2e7d32;
+            background: #e8f5e9;
+        }
+        
+        .user-component {
+            border: 2px solid #c62828;
+            background: #ffebee;
+        }
+        
+        .llm-component {
+            border: 2px solid #6a1b9a;
+            background: #f3e5f5;
+        }
+        
+        .memory-component {
+            border: 2px solid #ef6c00;
+            background: #fff3e0;
+        }
+        
+        .connection-line {
+            position: relative;
+            padding: 10px;
+            text-align: center;
+            color: #666;
+        }
+        /* Layout improvements */
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: minmax(250px, 1fr) minmax(600px, 3fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .content-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        /* Typography improvements */
+        
+        h1 {
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            font-size: 2em;
+        }
+        
+        h3 {
+            font-size: 1.5em;
+        }
+        
+        h4 {
+            font-size: 1.25em;
+        }
+        /* List improvements */
+        
+        ul,
+        ol {
+            padding-left: 1.5em;
+            margin: 1em 0;
+        }
+        
+        li {
+            margin: 0.5em 0;
+        }
+        /* Print styles */
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .nav-container,
+            .back-to-top {
+                display: none;
+            }
+            .section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-container">
+        <button class="nav-toggle" onclick="toggleTOC()">☰ Table of Contents</button>
+    </div>
+
+    <div class="main-content">
+        <aside class="sidebar">
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#introduction">1. Introduction to AI-Powered Teacher Training</a>
+                        <ul>
+                            <li><a href="#what-is-llm">1.1 What is a Language Model?</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#system-overview">2. System Overview: The Big Picture</a>
+                        <ul>
+                            <li><a href="#training-agent">2.1 The Teacher Training Agent</a></li>
+                            <li><a href="#knowledge-manager">2.2 The Knowledge Manager</a></li>
+                            <li><a href="#language-processor">2.3 The Language Processor</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#how-it-works">3. How It All Works Together</a>
+                        <ul>
+                            <li><a href="#typical-session">3.1 A Typical Training Session</a></li>
+                            <li><a href="#example-interaction">3.2 Example Interaction</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#code-structure">4. Understanding the Code Structure</a>
+                        <ul>
+                            <li><a href="#agent-code">4.1 The Teacher Training Agent</a></li>
+                            <li><a href="#manager-code">4.2 The Knowledge Manager</a></li>
+                            <li><a href="#processor-code">4.3 The Language Processor</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#getting-started">5. Getting Started with the System</a>
+                        <ul>
+                            <li><a href="#environment-setup">5.1 Setting Up Your Environment</a></li>
+                            <li><a href="#first-session">5.2 Your First Training Session</a></li>
+                            <h1>Understanding AI in Teacher Training: A Beginner's Guide</h1>
+
+                            <div class="toc">
+                                <h2>Table of Contents</h2>
+                                <ul>
+                                    <li><a href="#introduction">1. Introduction to AI-Powered Teacher Training</a>
+                                        <ul>
+                                            <li><a href="#what-is-llm">1.1 What is a Language Model?</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#system-overview">2. System Overview: The Big Picture</a>
+                                        <ul>
+                                            <li><a href="#training-agent">2.1 The Teacher Training Agent</a></li>
+                                            <li><a href="#knowledge-manager">2.2 The Knowledge Manager</a></li>
+                                            <li><a href="#language-processor">2.3 The Language Processor</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#how-it-works">3. How It All Works Together</a>
+                                        <ul>
+                                            <li><a href="#typical-session">3.1 A Typical Training Session</a></li>
+                                            <li><a href="#example-interaction">3.2 Example Interaction</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#code-structure">4. Understanding the Code Structure</a>
+                                        <ul>
+                                            <li><a href="#agent-code">4.1 The Teacher Training Agent</a></li>
+                                            <li><a href="#manager-code">4.2 The Knowledge Manager</a></li>
+                                            <li><a href="#processor-code">4.3 The Language Processor</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#getting-started">5. Getting Started with the System</a>
+                                        <ul>
+                                            <li><a href="#environment-setup">5.1 Setting Up Your Environment</a></li>
+                                            <li><a href="#first-session">5.2 Your First Training Session</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#llms">6. Understanding LLMs in Our Application</a>
+                                        <ul>
+                                            <li><a href="#local-llms">6.1 What are Local LLMs?</a></li>
+                                            <li><a href="#free-llms">6.2 Free LLMs You Can Use</a></li>
+                                            <li><a href="#choosing-model">6.3 Choosing the Right Model</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#advanced">7. Advanced Implementation Details</a>
+                                        <ul>
+                                            <li><a href="#customizing">7.1 Customizing Model Behavior</a></li>
+                                            <li><a href="#fallback">7.2 Implementing Fallback Mechanisms</a></li>
+                                            <li><a href="#optimization">7.3 Performance Optimization</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#faq">8. Common Questions and Tips</a></li>
+                                    <li><a href="#next-steps">9. Next Steps</a></li>
+                                    <li><a href="#resources">10. Additional Resources</a></li>
+                                </ul>
+                            </div>
+
+                            <div id="introduction" class="section">
+                                <h2>Introduction to AI-Powered Teacher Training</h2>
+                                <p>
+                                    Welcome to this beginner-friendly guide on understanding how artificial intelligence can help train teachers! Before we dive into the technical details, let's understand what we're building and why it's important.
+                                </p>
+
+                                <div class="definition">
+                                    <h3>What is a Language Model?</h3>
+                                    <p>
+                                        A Language Model (LM) or Large Language Model (LLM) is a type of artificial intelligence that understands and generates human-like text. Think of it like a very sophisticated autocomplete system that can:
+                                    </p>
+                                    <ul>
+                                        <li>Understand context and meaning</li>
+                                        <li>Generate human-like responses</li>
+                                        <li>Follow instructions and maintain consistency</li>
+                                        <li>Learn from examples</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="system-overview" class="section">
+                                <h2>System Overview: The Big Picture</h2>
+                                <p>
+                                    Our teacher training system has three main parts that work together:
+                                </p>
+
+                                <div class="example">
+                                    <h3>1. The Teacher Training Agent (The Conductor)</h3>
+                                    <p>
+                                        This is like the conductor of an orchestra. It:
+                                    </p>
+                                    <ul>
+                                        <li>Creates realistic classroom scenarios</li>
+                                        <li>Manages the simulation</li>
+                                        <li>Keeps track of the teacher's progress</li>
+                                        <li>Provides feedback</li>
+                                    </ul>
+                                </div>
+
+                                <div class="example">
+                                    <h3>2. The Knowledge Manager (The Library)</h3>
+                                    <p>
+                                        Think of this as a smart library that:
+                                    </p>
+                                    <ul>
+                                        <li>Stores teaching strategies</li>
+                                        <li>Organizes student behavior patterns</li>
+                                        <li>Manages educational resources</li>
+                                        <li>Helps find relevant information quickly</li>
+                                    </ul>
+                                </div>
+
+                                <div class="example">
+                                    <h3>3. The Language Processor (The Interpreter)</h3>
+                                    <p>
+                                        This is like an interpreter that:
+                                    </p>
+                                    <ul>
+                                        <li>Understands teacher responses</li>
+                                        <li>Generates student reactions</li>
+                                        <li>Evaluates teaching approaches</li>
+                                        <li>Maintains natural conversation flow</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="how-it-works" class="section">
+                                <h2>How It All Works Together</h2>
+
+                                <div class="note">
+                                    <h3>A Typical Training Session</h3>
+                                    <p>Let's walk through what happens in a typical training session:</p>
+                                    <ol>
+                                        <li>The system creates a classroom scenario (e.g., "A student is struggling with multiplication")</li>
+                                        <li>The teacher provides a response (e.g., "Let's use counters to visualize the problem")</li>
+                                        <li>The system:
+                                            <ul>
+                                                <li>Evaluates the teaching strategy</li>
+                                                <li>Generates a realistic student reaction</li>
+                                                <li>Provides feedback to the teacher</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <div class="example">
+                                    <h3>Example Interaction</h3>
+                                    <pre>
+System: A second-grade student is having trouble with basic multiplication.
+        *The student looks frustrated while trying to solve 3 × 4*
+
+Teacher: "Let's try something fun! Can you get 12 counters for me?
+         We'll arrange them in groups to see multiplication in action."
+
+System: *student looks interested* "Okay... like this?" 
+        *starts grouping counters*
+
+Feedback: ✓ Good use of manipulatives
+         ✓ Made learning concrete and visual
+         ✓ Engaged student actively</pre>
+                                </div>
+                            </div>
+
+                            <div id="code-structure" class="section">
+                                <h2>Understanding the Code Structure</h2>
+
+                                <h3>1. The Teacher Training Agent (ai_agent.py)</h3>
+                                <div class="definition">
+                                    <p>
+                                        This file contains the main simulation logic. Here's what it does in simple terms:
+                                    </p>
+                                    <ul>
+                                        <li>Creates student profiles with realistic traits
+                                            <pre>
+student_profile = {
+    "learning_style": "visual",
+    "attention_span": 0.7,
+    "favorite_subjects": ["math", "art"]
+}</pre>
+                                        </li>
+                                        <li>Generates teaching scenarios
+                                            <pre>
+scenario = {
+    "subject": "math",
+    "difficulty": "multiplication",
+    "student_state": "frustrated"
+}</pre>
+                                        </li>
+                                        <li>Evaluates teacher responses
+                                            <pre>
+feedback = {
+    "score": 0.85,
+    "strengths": ["Good visual approach"],
+    "suggestions": ["Try adding real-world examples"]
+}</pre>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <h3>2. The Knowledge Manager (knowledge_manager.py)</h3>
+                                <div class="definition">
+                                    <p>
+                                        This file manages all the teaching knowledge. Think of it as a smart filing system that:
+                                    </p>
+                                    <ul>
+                                        <li>Organizes teaching strategies by subject and grade level</li>
+                                        <li>Stores common student behaviors and responses</li>
+                                        <li>Helps find relevant teaching approaches quickly</li>
+                                    </ul>
+                                    <pre>
+# Example of stored knowledge
+{
+    "teaching_strategies": {
+        "math": {
+            "multiplication": [
+                "Use counters or objects",
+                "Draw arrays",
+                "Skip counting"
+            ]
+        }
+    }
+}</pre>
+                                </div>
+
+                                <h3>3. The Language Processor (llm_handler.py)</h3>
+                                <div class="definition">
+                                    <p>
+                                        This file handles all the natural language understanding and generation:
+                                    </p>
+                                    <ul>
+                                        <li>Understands teacher responses</li>
+                                        <li>Generates age-appropriate student reactions</li>
+                                        <li>Provides detailed feedback</li>
+                                    </ul>
+                                    <pre>
+# Example of language processing
+response = processor.analyze_teaching_response(
+    "Let's count these blocks together"
+)
+
+student_reaction = processor.generate_student_reaction(
+    "Can you help me count them?"
+)</pre>
+                                </div>
+                            </div>
+
+                            <div id="getting-started" class="section">
+                                <h2>Getting Started with the System</h2>
+
+                                <div class="note">
+                                    <h3>Setting Up Your Environment</h3>
+                                    <ol>
+                                        <li>Install Python (3.8 or higher recommended)</li>
+                                        <li>Install required packages:
+                                            <pre>pip install -r requirements.txt</pre>
+                                        </li>
+                                        <li>Set up the knowledge base:
+                                            <pre>
+project_root/
+├── knowledge_base/
+│   ├── teaching_strategies.json
+│   └── student_behaviors.json
+└── default_knowledge/
+    └── basic_strategies.txt</pre>
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <div class="example">
+                                    <h3>Your First Training Session</h3>
+                                    <pre>
+# Import the main agent
+from teacher_training_agent import TeacherTrainingAgent
+
+# Create a new training session
+agent = TeacherTrainingAgent()
+
+# Start an interactive session
+agent.start_interactive_session()</pre>
+                                </div>
+                            </div>
+
+                            <div id="faq" class="section">
+                                <h2>Common Questions and Tips</h2>
+
+                                <div class="note">
+                                    <h3>Frequently Asked Questions</h3>
+                                    <ul>
+                                        <li><strong>Q: How does the system know what's good teaching?</strong><br> A: It uses a combination of established teaching strategies, grade-level appropriate responses, and pedagogical principles stored in its knowledge
+                                            base.
+                                        </li>
+
+                                        <li><strong>Q: Can it handle different teaching styles?</strong><br> A: Yes! The system recognizes multiple teaching approaches and can adapt to different styles while maintaining educational effectiveness.</li>
+
+                                        <li><strong>Q: What if the system doesn't understand my response?</strong><br> A: The system has fallback mechanisms to provide basic feedback and maintain interaction flow even when uncertain.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="warning">
+                                    <h3>Important Tips</h3>
+                                    <ul>
+                                        <li>Always initialize with grade-appropriate knowledge</li>
+                                        <li>Keep responses natural and age-appropriate</li>
+                                        <li>Use the feedback to improve your teaching strategies</li>
+                                        <li>Remember that this is a training tool - real students may react differently</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="next-steps" class="section">
+                                <h2>Next Steps</h2>
+                                <ul>
+                                    <li>Experiment with different teaching scenarios</li>
+                                    <li>Try various teaching strategies</li>
+                                    <li>Review your session history for improvement</li>
+                                    <li>Contribute to the knowledge base with your experiences</li>
+                                </ul>
+                            </div>
+
+                            <div id="resources" class="section">
+                                <h2>Additional Resources</h2>
+                                <ul>
+                                    <li>Python Programming Basics: <a href="https://www.python.org/about/gettingstarted/">Python.org</a></li>
+                                    <li>Teaching Strategies: <a href="https://www.edutopia.org/">Edutopia</a></li>
+                                    <li>Understanding LLMs: <a href="https://www.deeplearning.ai/">DeepLearning.AI</a></li>
+                                </ul>
+                            </div>
+
+                            <div id="llms" class="section">
+                                <h2>Understanding LLMs in Our Application</h2>
+
+                                <div class="definition">
+                                    <h3>What are Local LLMs?</h3>
+                                    <p>
+                                        Local Large Language Models are AI models that run directly on your computer, offering several advantages:
+                                    </p>
+                                    <ul>
+                                        <li>Privacy - All data stays on your machine</li>
+                                        <li>No API costs - Free to use</li>
+                                        <li>No internet required - Works offline</li>
+                                        <li>Lower latency - Faster responses</li>
+                                    </ul>
+                                </div>
+
+                                <div class="example">
+                                    <h3>Free LLMs You Can Use</h3>
+                                    <p>Here are some excellent free LLMs suitable for our teacher training system:</p>
+
+                                    <h4>1. Llama 2</h4>
+                                    <ul>
+                                        <li>Size options: 7B, 13B, 70B parameters</li>
+                                        <li>Good for: General teaching feedback, student response generation</li>
+                                        <li>Installation:
+                                            <pre>
+# Using Ollama
+ollama pull llama2
+
+# Basic usage in our code
+model_name = "llama2"
+processor = PedagogicalLanguageProcessor(model_name)</pre>
+                                        </li>
+                                    </ul>
+
+                                    <h4>2. Mistral</h4>
+                                    <ul>
+                                        <li>Size: 7B parameters</li>
+                                        <li>Good for: Precise teaching evaluations, natural dialogue</li>
+                                        <li>Installation:
+                                            <pre>
+# Using Ollama
+ollama pull mistral
+
+# Basic usage in our code
+model_name = "mistral"
+processor = PedagogicalLanguageProcessor(model_name)</pre>
+                                        </li>
+                                    </ul>
+
+                                    <h4>3. Phi-2</h4>
+                                    <ul>
+                                        <li>Size: 2.7B parameters</li>
+                                        <li>Good for: Light-weight deployment, basic interactions</li>
+                                        <li>Installation:
+                                            <pre>
+# Using Ollama
+ollama pull phi
+
+# Basic usage in our code
+model_name = "phi"
+processor = PedagogicalLanguageProcessor(model_name)</pre>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="note">
+                                    <h3>Choosing the Right Model</h3>
+                                    <p>Consider these factors when selecting a model:</p>
+                                    <ul>
+                                        <li><strong>Hardware Requirements:</strong>
+                                            <ul>
+                                                <li>Llama 2 7B: 8GB RAM minimum</li>
+                                                <li>Mistral 7B: 8GB RAM minimum</li>
+                                                <li>Phi-2: 4GB RAM minimum</li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>Use Case Matching:</strong>
+                                            <ul>
+                                                <li>Complex teaching evaluations → Llama 2 or Mistral</li>
+                                                <li>Basic interactions → Phi-2</li>
+                                                <li>Balanced performance → Mistral</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="example">
+                                    <h3>Implementing Different Models</h3>
+                                    <pre>
+# Example of using different models in our system
+
+from llm_handler import PedagogicalLanguageProcessor
+
+# Initialize with Mistral (default)
+processor = PedagogicalLanguageProcessor()
+
+# Or use Llama 2 for more complex scenarios
+processor_advanced = PedagogicalLanguageProcessor("llama2")
+
+# Or use Phi-2 for lightweight deployment
+processor_light = PedagogicalLanguageProcessor("phi")
+
+# Example usage with different models
+def evaluate_with_different_models(teacher_response):
+    # Using Mistral
+    mistral_eval = processor.analyze_teaching_response(teacher_response)
+    
+    # Using Llama 2
+    llama_eval = processor_advanced.analyze_teaching_response(teacher_response)
+    
+    # Using Phi-2
+    phi_eval = processor_light.analyze_teaching_response(teacher_response)
+    
+    # Compare results
+    return {
+        "mistral": mistral_eval,
+        "llama2": llama_eval,
+        "phi": phi_eval
+    }</pre>
+                                </div>
+
+                                <div class="warning">
+                                    <h3>Important Considerations</h3>
+                                    <ul>
+                                        <li>Always test the model's responses before using in production</li>
+                                        <li>Consider your hardware limitations when choosing a model</li>
+                                        <li>Keep fallback options ready in case of model failures</li>
+                                        <li>Monitor model performance and response quality</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="advanced" class="section">
+                                <h2>Advanced Implementation Details</h2>
+
+                                <div class="example">
+                                    <h3>Customizing Model Behavior</h3>
+                                    <pre>
+# Example of customizing model parameters
+class PedagogicalLanguageProcessor:
+    def __init__(self, model_name="mistral", temperature=0.7):
+        self.model = model_name
+        self.temperature = temperature  # Controls response creativity
+        self.base_url = "http://localhost:11434/api"
+        
+    def analyze_teaching_response(self, prompt: str) -> dict:
+        """Enhanced analysis with customized parameters"""
+        response = requests.post(
+            f"{self.base_url}/generate",
+            json={
+                "model": self.model,
+                "prompt": prompt,
+                "temperature": self.temperature,
+                "top_p": 0.9,        # Controls output diversity
+                "top_k": 40,         # Limits vocabulary choices
+                "max_tokens": 150    # Controls response length
+            }
+        )</pre>
+                                </div>
+
+                                <div class="example">
+                                    <h3>Implementing Fallback Mechanisms</h3>
+                                    <pre>
+def ensure_model_response(self, primary_model="mistral", 
+                         fallback_models=["phi", "llama2"]):
+    """Try multiple models if primary fails"""
+    try:
+        return self.get_model_response(primary_model)
+    except Exception as e:
+        print(f"Primary model failed: {e}")
+        for model in fallback_models:
+            try:
+                return self.get_model_response(model)
+            except:
+                continue
+        return self._get_default_response()</pre>
+                                </div>
+
+                                <div class="note">
+                                    <h3>Performance Optimization Tips</h3>
+                                    <ul>
+                                        <li>Cache common responses for faster retrieval</li>
+                                        <li>Use batch processing for multiple evaluations</li>
+                                        <li>Implement response templating for consistent output</li>
+                                        <li>Monitor and log model performance metrics</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="system-diagrams" class="section">
+                                <h2>System Diagrams and Architecture</h2>
+
+                                <div class="diagram">
+                                    <h3>High-Level System Architecture</h3>
+                                    <div class="diagram-container">
+                                        <div class="user-component component">
+                                            <h4>Teacher User</h4>
+                                            <p>Input: Teaching responses</p>
+                                            <p>Output: Feedback & learning</p>
+                                        </div>
+                                        <div class="arrow"></div>
+                                        <div class="system-component component">
+                                            <h4>Teacher Training Agent</h4>
+                                            <p>Orchestrates interactions</p>
+                                        </div>
+                                        <div class="arrow"></div>
+                                        <div class="llm-component component">
+                                            <h4>Language Models</h4>
+                                            <p>Mistral / Llama 2 / Phi-2</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="diagram">
+                                    <h3>Data Flow and Knowledge Management</h3>
+                                    <div class="flow-diagram">
+                                        <div class="memory-component component">
+                                            <h4>Knowledge Base</h4>
+                                            <ul style="text-align: left; font-size: 0.9em;">
+                                                <li>Teaching strategies</li>
+                                                <li>Student behaviors</li>
+                                                <li>Subject content</li>
+                                            </ul>
+                                        </div>
+                                        <div class="connection-line">↔</div>
+                                        <div class="system-component component">
+                                            <h4>Knowledge Manager</h4>
+                                            <p>Processes & retrieves information</p>
+                                        </div>
+                                        <div class="data-flow component">
+                                            <h4>Teaching Scenarios</h4>
+                                            <p>Generated contexts</p>
+                                        </div>
+                                        <div class="connection-line">↔</div>
+                                        <div class="llm-component component">
+                                            <h4>AI Engine</h4>
+                                            <p>Generates responses</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="diagram">
+                                    <h3>Interaction Workflow</h3>
+                                    <div class="diagram-container" style="flex-direction: row; flex-wrap: wrap;">
+                                        <div class="system-component component" style="flex: 1 1 200px;">
+                                            <h4>1. Scenario Creation</h4>
+                                            <p>System generates teaching scenario</p>
+                                        </div>
+                                        <div class="arrow" style="align-self: center;"></div>
+                                        <div class="user-component component" style="flex: 1 1 200px;">
+                                            <h4>2. Teacher Response</h4>
+                                            <p>Teacher provides teaching strategy</p>
+                                        </div>
+                                        <div class="arrow" style="align-self: center;"></div>
+                                        <div class="llm-component component" style="flex: 1 1 200px;">
+                                            <h4>3. AI Processing</h4>
+                                            <p>Evaluates response & generates feedback</p>
+                                        </div>
+                                        <div class="arrow" style="align-self: center;"></div>
+                                        <div class="data-flow component" style="flex: 1 1 200px;">
+                                            <h4>4. Feedback Loop</h4>
+                                            <p>System provides feedback & updates state</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="diagram">
+                                    <h3>Memory and State Management</h3>
+                                    <div class="flow-diagram">
+                                        <div class="memory-component component">
+                                            <h4>Session Memory</h4>
+                                            <ul style="text-align: left; font-size: 0.9em;">
+                                                <li>Conversation history</li>
+                                                <li>Student state</li>
+                                                <li>Teaching progress</li>
+                                            </ul>
+                                        </div>
+                                        <div class="connection-line">↔</div>
+                                        <div class="system-component component">
+                                            <h4>State Manager</h4>
+                                            <p>Updates & maintains context</p>
+                                        </div>
+                                        <div class="connection-line">↔</div>
+                                        <div class="data-flow component">
+                                            <h4>Analytics</h4>
+                                            <p>Progress tracking & reporting</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="note">
+                                    <h3>Understanding the Diagrams</h3>
+                                    <ul>
+                                        <li><strong>Blue components:</strong> Core system modules</li>
+                                        <li><strong>Red components:</strong> User interactions</li>
+                                        <li><strong>Purple components:</strong> AI/LLM processing</li>
+                                        <li><strong>Orange components:</strong> Memory and storage</li>
+                                        <li><strong>Green components:</strong> Data flow and state</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <a href="#" class="back-to-top">↑ Back to Top</a>
+
+                            <script>
+                                // Toggle Table of Contents
+                                function toggleTOC() {
+                                    const toc = document.querySelector('.toc');
+                                    toc.classList.toggle('show');
+                                }
+
+                                // Back to Top button visibility
+                                window.onscroll = function() {
+                                    const backToTop = document.querySelector('.back-to-top');
+                                    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                                        backToTop.classList.add('visible');
+                                    } else {
+                                        backToTop.classList.remove('visible');
+                                    }
+                                };
+
+                                // Smooth scrolling for anchor links
+                                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                                    anchor.addEventListener('click', function(e) {
+                                        e.preventDefault();
+                                        const target = document.querySelector(this.getAttribute('href'));
+                                        if (target) {
+                                            target.scrollIntoView({
+                                                behavior: 'smooth'
+                                            });
+                                        }
+                                    });
+                                });
+                            </script>
+</body>
+
+</html>
