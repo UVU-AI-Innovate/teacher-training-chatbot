@@ -4,73 +4,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Educational Chatbots - UTTA Documentation</title>
+
+    <!-- Primary Meta Tags -->
+    <title>Chatbot Development - UTTA Documentation</title>
+    <meta name="title" content="Chatbot Development - UTTA Documentation">
+    <meta name="description" content="Guide to building educational chatbots using LLMs, including architecture, implementation, and best practices.">
+    <meta name="keywords" content="chatbot, education, AI, LLM, teaching, conversation management, educational technology">
+    <meta name="author" content="AI Teacher Training Project">
+    <meta name="robots" content="index, follow">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Theme Color for Mobile -->
+    <meta name="theme-color" content="#2c3e50">
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="nav-container">
-        <a href="index.html">← Back to LLM Guide</a>
+        <a href="index.html">← Back to Main Guide</a>
+        <button class="nav-toggle" onclick="toggleTOC()">☰ Table of Contents</button>
     </div>
 
     <div class="main-content">
+        <aside class="sidebar">
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#overview">1. Overview</a>
+                        <ul>
+                            <li><a href="#core-components">1.1 Core Components</a></li>
+                            <li><a href="#architecture">1.2 Architecture Overview</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#conversation-management">2. Conversation Management</a>
+                        <ul>
+                            <li><a href="#context">2.1 Context Management</a></li>
+                            <li><a href="#memory">2.2 Memory Systems</a></li>
+                            <li><a href="#flow">2.3 Conversation Flow</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#educational-features">3. Educational Features</a>
+                        <ul>
+                            <li><a href="#personalization">3.1 Personalization</a></li>
+                            <li><a href="#assessment">3.2 Progress Tracking</a></li>
+                            <li><a href="#feedback">3.3 Feedback Systems</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#implementation">4. Implementation</a>
+                        <ul>
+                            <li><a href="#setup">4.1 Basic Setup</a></li>
+                            <li><a href="#examples">4.2 Code Examples</a></li>
+                            <li><a href="#best-practices">4.3 Best Practices</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
         <main>
             <h1>Building Educational Chatbots with LLMs</h1>
 
             <div id="overview" class="section">
-                <h2>Chatbot Architecture Overview</h2>
+                <h2>Overview</h2>
                 <p>This guide covers the essential components and best practices for building educational chatbots using local LLMs.</p>
 
-                <div class="diagram">
+                <div id="core-components" class="subsection">
                     <h3>Core Components</h3>
-                    <div class="component-grid">
-                        <div class="component">
-                            <h4>Dialog Manager</h4>
-                            <p>Controls conversation flow and maintains context</p>
+                    <div class="diagram">
+                        <div class="component-grid">
+                            <div class="component system-component">
+                                <h4>Dialog Manager</h4>
+                                <p>Controls conversation flow and maintains context</p>
+                            </div>
+                            <div class="component memory-component">
+                                <h4>State Tracker</h4>
+                                <p>Monitors interaction progress and user engagement</p>
+                            </div>
+                            <div class="component llm-component">
+                                <h4>Response Generator</h4>
+                                <p>Creates contextual and educational responses</p>
+                            </div>
                         </div>
-                        <div class="component">
-                            <h4>State Tracker</h4>
-                            <p>Monitors interaction progress and user engagement</p>
-                        </div>
-                        <div class="component">
-                            <h4>Response Generator</h4>
-                            <p>Creates contextual and educational responses</p>
-                        </div>
+                    </div>
+                </div>
+
+                <div id="architecture" class="subsection">
+                    <h3>Architecture Overview</h3>
+                    <div class="example">
+                        <h4>System Architecture</h4>
+                        <ul>
+                            <li><strong>Input Processing:</strong> Natural language understanding and intent classification</li>
+                            <li><strong>Context Management:</strong> Maintaining conversation state and history</li>
+                            <li><strong>Response Generation:</strong> LLM-based response creation and formatting</li>
+                            <li><strong>Educational Logic:</strong> Teaching strategies and assessment</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
             <div id="conversation-management" class="section">
                 <h2>Conversation Management</h2>
-                <div class="example">
-                    <h3>Key Features</h3>
-                    <ul>
-                        <li>Context retention across multiple turns</li>
-                        <li>Memory management for long conversations</li>
-                        <li>Topic tracking and transition handling</li>
-                        <li>Error recovery and clarification requests</li>
-                    </ul>
+
+                <div id="context" class="subsection">
+                    <h3>Context Management</h3>
+                    <div class="example">
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li>Context retention across multiple turns</li>
+                            <li>Topic tracking and transition handling</li>
+                            <li>User state monitoring</li>
+                            <li>Learning progress tracking</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="memory" class="subsection">
+                    <h3>Memory Systems</h3>
+                    <div class="note">
+                        <h4>Memory Types</h4>
+                        <ul>
+                            <li><strong>Short-term Memory:</strong> Current conversation context</li>
+                            <li><strong>Long-term Memory:</strong> User profile and learning history</li>
+                            <li><strong>Working Memory:</strong> Active teaching objectives</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="flow" class="subsection">
+                    <h3>Conversation Flow</h3>
+                    <div class="example">
+                        <h4>Flow Management</h4>
+                        <ul>
+                            <li>Dynamic topic selection</li>
+                            <li>Adaptive difficulty adjustment</li>
+                            <li>Natural transitions between topics</li>
+                            <li>Error recovery strategies</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <div id="educational-features" class="section">
                 <h2>Educational Features</h2>
-                <div class="example">
-                    <h3>Core Capabilities</h3>
-                    <ul>
-                        <li>Personalized learning paths</li>
-                        <li>Progress tracking and assessment</li>
-                        <li>Adaptive feedback generation</li>
-                        <li>Multi-modal interaction support</li>
-                    </ul>
+
+                <div id="personalization" class="subsection">
+                    <h3>Personalization</h3>
+                    <div class="example">
+                        <h4>Adaptive Learning</h4>
+                        <ul>
+                            <li>Learning style recognition</li>
+                            <li>Pace adjustment</li>
+                            <li>Content customization</li>
+                            <li>Difficulty scaling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="assessment" class="subsection">
+                    <h3>Progress Tracking</h3>
+                    <div class="note">
+                        <h4>Assessment Methods</h4>
+                        <ul>
+                            <li>Continuous evaluation</li>
+                            <li>Skill mastery tracking</li>
+                            <li>Performance analytics</li>
+                            <li>Progress visualization</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="feedback" class="subsection">
+                    <h3>Feedback Systems</h3>
+                    <div class="example">
+                        <h4>Feedback Types</h4>
+                        <ul>
+                            <li>Immediate response validation</li>
+                            <li>Detailed explanations</li>
+                            <li>Constructive suggestions</li>
+                            <li>Progress summaries</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <div id="implementation" class="section">
-                <h2>Implementation Guide</h2>
-                <div class="example">
-                    <h3>Basic Implementation</h3>
-                    <pre>
+                <h2>Implementation</h2>
+
+                <div id="setup" class="subsection">
+                    <h3>Basic Setup</h3>
+                    <div class="example">
+                        <pre>
 class EducationalChatbot:
     def __init__(self):
         self.dialog_manager = DialogManager()
@@ -92,24 +221,81 @@ class EducationalChatbot:
         # Update conversation history
         self.dialog_manager.update(user_input, response)
         return response</pre>
+                    </div>
                 </div>
-            </div>
 
-            <div id="best-practices" class="section">
-                <h2>Best Practices</h2>
-                <div class="warning">
-                    <h3>Implementation Guidelines</h3>
-                    <ul>
-                        <li>Maintain consistent teaching persona</li>
-                        <li>Implement proper error handling</li>
-                        <li>Monitor conversation quality</li>
-                        <li>Provide clear learning objectives</li>
-                        <li>Include progress assessments</li>
-                    </ul>
+                <div id="examples" class="subsection">
+                    <h3>Code Examples</h3>
+                    <div class="example">
+                        <h4>Dialog Management</h4>
+                        <pre>
+class DialogManager:
+    def __init__(self):
+        self.context = ConversationContext()
+        self.history = []
+        
+    def get_context(self):
+        return self.context.current_state()
+        
+    def update(self, user_input, response):
+        self.history.append({
+            'user': user_input,
+            'system': response,
+            'timestamp': time.time()
+        })
+        self.context.update(user_input, response)</pre>
+                    </div>
+                </div>
+
+                <div id="best-practices" class="subsection">
+                    <h3>Best Practices</h3>
+                    <div class="warning">
+                        <h4>Implementation Guidelines</h4>
+                        <ul>
+                            <li>Maintain consistent teaching persona</li>
+                            <li>Implement proper error handling</li>
+                            <li>Monitor conversation quality</li>
+                            <li>Provide clear learning objectives</li>
+                            <li>Include progress assessments</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
+
+    <a href="#" class="back-to-top">↑ Back to Top</a>
+
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const toc = document.querySelector('.toc');
+            toc.classList.toggle('show');
+        }
+
+        // Back to Top button visibility
+        window.onscroll = function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        };
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
