@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>Chatbot Development - UTTA Documentation</title>
-    <meta name="title" content="Chatbot Development - UTTA Documentation">
-    <meta name="description" content="Guide to building educational chatbots using LLMs, including architecture, implementation, and best practices.">
+    <title>Educational Chatbot Development - UTTA Documentation</title>
+    <meta name="title" content="Educational Chatbot Development - UTTA Documentation">
+    <meta name="description" content="Comprehensive guide to building AI-powered educational chatbots using modern LLMs, including best practices for conversation management, educational features, and implementation details.">
     <meta name="keywords" content="chatbot, education, AI, LLM, teaching, conversation management, educational technology">
     <meta name="author" content="AI Teacher Training Project">
     <meta name="robots" content="index, follow">
@@ -72,25 +72,45 @@
 
             <div id="overview" class="section">
                 <h2>Overview</h2>
-                <p>This guide covers the essential components and best practices for building educational chatbots using local LLMs.</p>
+                <p>This guide covers the essential components and best practices for building educational chatbots using modern LLM architectures, with a focus on creating engaging and effective learning experiences.</p>
 
                 <div id="core-components" class="subsection">
                     <h3>Core Components</h3>
                     <div class="diagram">
-                        <div class="component-grid">
-                            <div class="component system-component">
-                                <h4>Dialog Manager</h4>
-                                <p>Controls conversation flow and maintains context</p>
-                            </div>
-                            <div class="component memory-component">
-                                <h4>State Tracker</h4>
-                                <p>Monitors interaction progress and user engagement</p>
-                            </div>
-                            <div class="component llm-component">
-                                <h4>Response Generator</h4>
-                                <p>Creates contextual and educational responses</p>
-                            </div>
-                        </div>
+                        <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="padding: 12px; border: 1px solid #ddd;">Component</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">Responsibility</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">Key Features</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Dialog Manager</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • Conversation flow control<br> • Context maintenance<br> • State tracking
+                                </td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • Dynamic topic handling<br> • Multi-turn conversations<br> • Context window management
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">LLM Interface</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • Model interaction<br> • Response generation<br> • Prompt management
+                                </td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • Temperature control<br> • Context optimization<br> • Response filtering
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Knowledge Base</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • Content storage<br> • Information retrieval<br> • Pattern matching
+                                </td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">
+                                    • Vector search<br> • Semantic matching<br> • Content updates
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
@@ -114,25 +134,55 @@
                 <div id="context" class="subsection">
                     <h3>Context Management</h3>
                     <div class="example">
-                        <h4>Key Features</h4>
-                        <ul>
-                            <li>Context retention across multiple turns</li>
-                            <li>Topic tracking and transition handling</li>
-                            <li>User state monitoring</li>
-                            <li>Learning progress tracking</li>
-                        </ul>
+                        <pre>
+class ConversationContext:
+    def __init__(self):
+        self.history = []
+        self.current_topic = None
+        self.student_state = StudentState()
+        self.teaching_goals = TeachingGoals()
+
+    def update(self, message: Message):
+        self.history.append(message)
+        self._update_topic(message)
+        self._update_student_state(message)
+        self._check_teaching_goals(message)
+
+    def get_relevant_context(self, window_size: int = 5):
+        return {
+            'history': self.history[-window_size:],
+            'topic': self.current_topic,
+            'student_state': self.student_state.current,
+            'goals': self.teaching_goals.pending
+        }</pre>
                     </div>
                 </div>
 
                 <div id="memory" class="subsection">
                     <h3>Memory Systems</h3>
                     <div class="note">
-                        <h4>Memory Types</h4>
-                        <ul>
-                            <li><strong>Short-term Memory:</strong> Current conversation context</li>
-                            <li><strong>Long-term Memory:</strong> User profile and learning history</li>
-                            <li><strong>Working Memory:</strong> Active teaching objectives</li>
-                        </ul>
+                        <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="padding: 8px; border: 1px solid #ddd;">Memory Type</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Purpose</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Implementation</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Short-term</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Current conversation state</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">In-memory queue with size limit</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Working</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Active learning objectives</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Priority queue with decay</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Long-term</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Student profile & history</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Persistent storage with indexing</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
@@ -154,28 +204,64 @@
                 <h2>Educational Features</h2>
 
                 <div id="personalization" class="subsection">
-                    <h3>Personalization</h3>
+                    <h3>Personalization Engine</h3>
                     <div class="example">
-                        <h4>Adaptive Learning</h4>
-                        <ul>
-                            <li>Learning style recognition</li>
-                            <li>Pace adjustment</li>
-                            <li>Content customization</li>
-                            <li>Difficulty scaling</li>
-                        </ul>
+                        <pre>
+class PersonalizationEngine:
+    def __init__(self, config: Config):
+        self.learning_styles = LearningStyleDetector()
+        self.difficulty_adjuster = DifficultyAdjuster()
+        self.engagement_monitor = EngagementMonitor()
+
+    async def adapt_response(
+        self,
+        base_response: str,
+        student_profile: StudentProfile,
+        interaction_history: List[Interaction]
+    ) -> str:
+        style = self.learning_styles.detect(student_profile)
+        difficulty = self.difficulty_adjuster.compute_next_level(
+            interaction_history
+        )
+        engagement = self.engagement_monitor.get_current_level(
+            interaction_history
+        )
+        
+        return await self.optimize_response(
+            base_response,
+            style=style,
+            difficulty=difficulty,
+            engagement=engagement
+        )</pre>
                     </div>
                 </div>
 
                 <div id="assessment" class="subsection">
                     <h3>Progress Tracking</h3>
                     <div class="note">
-                        <h4>Assessment Methods</h4>
-                        <ul>
-                            <li>Continuous evaluation</li>
-                            <li>Skill mastery tracking</li>
-                            <li>Performance analytics</li>
-                            <li>Progress visualization</li>
-                        </ul>
+                        <h4>Assessment Framework</h4>
+                        <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+                            <tr style="background-color: #f5f5f5;">
+                                <th style="padding: 8px; border: 1px solid #ddd;">Metric</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Measurement</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">Application</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Comprehension</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Response analysis</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Adaptive questioning</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Engagement</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Interaction patterns</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Content adjustment</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Progress</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Milestone completion</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Learning path updates</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
