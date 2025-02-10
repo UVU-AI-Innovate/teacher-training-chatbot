@@ -4,16 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
     <title>System Architecture - UTTA Documentation</title>
+    <meta name="title" content="System Architecture - UTTA Documentation">
+    <meta name="description" content="Detailed guide to the UTTA system architecture, including core components, data flow, and integration points.">
+    <meta name="keywords" content="system architecture, AI education, LLM integration, software design, educational technology">
+    <meta name="author" content="AI Teacher Training Project">
+    <meta name="robots" content="index, follow">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Theme Color for Mobile -->
+    <meta name="theme-color" content="#2c3e50">
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="nav-container">
-        <a href="index.html">← Back to LLM Guide</a>
+        <a href="index.html">← Back to Main Guide</a>
+        <button class="nav-toggle" onclick="toggleTOC()">☰ Table of Contents</button>
     </div>
 
     <div class="main-content">
+        <aside class="sidebar">
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#overview">1. System Overview</a>
+                        <ul>
+                            <li><a href="#high-level">1.1 High-Level Architecture</a></li>
+                            <li><a href="#key-components">1.2 Key Components</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#components">2. Core Components</a>
+                        <ul>
+                            <li><a href="#training-agent">2.1 Teacher Training Agent</a></li>
+                            <li><a href="#knowledge-manager">2.2 Knowledge Manager</a></li>
+                            <li><a href="#language-processor">2.3 Language Processor</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#data-flow">3. Data Flow</a>
+                        <ul>
+                            <li><a href="#process-flow">3.1 Process Flow</a></li>
+                            <li><a href="#state-management">3.2 State Management</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#integration">4. Integration Points</a>
+                        <ul>
+                            <li><a href="#interfaces">4.1 Component Interfaces</a></li>
+                            <li><a href="#extension">4.2 Extension Guidelines</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
         <main>
             <h1>UTTA System Architecture</h1>
 
@@ -21,33 +72,48 @@
                 <h2>System Overview</h2>
                 <p>The UTTA system is designed as a modular, extensible platform for AI-powered teacher training. This guide covers the system's architecture and component interactions.</p>
 
-                <div class="diagram">
+                <div id="high-level" class="subsection">
                     <h3>High-Level Architecture</h3>
-                    <div class="component-grid">
-                        <div class="component system-component">
-                            <h4>Core Engine</h4>
-                            <ul>
-                                <li>LLM Integration</li>
-                                <li>State Management</li>
-                                <li>Event Processing</li>
-                            </ul>
+                    <div class="diagram">
+                        <div class="component-grid">
+                            <div class="component system-component">
+                                <h4>Core Engine</h4>
+                                <ul>
+                                    <li>LLM Integration</li>
+                                    <li>State Management</li>
+                                    <li>Event Processing</li>
+                                </ul>
+                            </div>
+                            <div class="component data-flow">
+                                <h4>Data Layer</h4>
+                                <ul>
+                                    <li>Knowledge Base</li>
+                                    <li>Session Storage</li>
+                                    <li>Analytics</li>
+                                </ul>
+                            </div>
+                            <div class="component user-component">
+                                <h4>Interface Layer</h4>
+                                <ul>
+                                    <li>Web Interface</li>
+                                    <li>CLI Interface</li>
+                                    <li>API Endpoints</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="component data-flow">
-                            <h4>Data Layer</h4>
-                            <ul>
-                                <li>Knowledge Base</li>
-                                <li>Session Storage</li>
-                                <li>Analytics</li>
-                            </ul>
-                        </div>
-                        <div class="component user-component">
-                            <h4>Interface Layer</h4>
-                            <ul>
-                                <li>Web Interface</li>
-                                <li>CLI Interface</li>
-                                <li>API Endpoints</li>
-                            </ul>
-                        </div>
+                    </div>
+                </div>
+
+                <div id="key-components" class="subsection">
+                    <h3>Key Components</h3>
+                    <div class="example">
+                        <h4>Component Overview</h4>
+                        <ul>
+                            <li><strong>Core Engine:</strong> Central processing and coordination</li>
+                            <li><strong>Data Layer:</strong> Information storage and retrieval</li>
+                            <li><strong>Interface Layer:</strong> User interaction and display</li>
+                            <li><strong>Analytics Engine:</strong> Performance monitoring and reporting</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -55,8 +121,8 @@
             <div id="components" class="section">
                 <h2>Core Components</h2>
 
-                <div class="subsection">
-                    <h3>TeacherTrainingAgent</h3>
+                <div id="training-agent" class="subsection">
+                    <h3>Teacher Training Agent</h3>
                     <div class="example">
                         <h4>Responsibilities</h4>
                         <ul>
@@ -68,8 +134,8 @@
                     </div>
                 </div>
 
-                <div class="subsection">
-                    <h3>PedagogicalKnowledgeManager</h3>
+                <div id="knowledge-manager" class="subsection">
+                    <h3>Knowledge Manager</h3>
                     <div class="example">
                         <h4>Features</h4>
                         <ul>
@@ -81,8 +147,8 @@
                     </div>
                 </div>
 
-                <div class="subsection">
-                    <h3>PedagogicalLanguageProcessor</h3>
+                <div id="language-processor" class="subsection">
+                    <h3>Language Processor</h3>
                     <div class="example">
                         <h4>Capabilities</h4>
                         <ul>
@@ -97,9 +163,11 @@
 
             <div id="data-flow" class="section">
                 <h2>Data Flow</h2>
-                <div class="example">
+
+                <div id="process-flow" class="subsection">
                     <h3>Process Flow</h3>
-                    <pre>
+                    <div class="example">
+                        <pre>
 1. User Input
    ↓
 2. Interface Layer Processing
@@ -114,24 +182,87 @@
 5. Response Generation
    ↓
 6. User Interface Update</pre>
+                    </div>
+                </div>
+
+                <div id="state-management" class="subsection">
+                    <h3>State Management</h3>
+                    <div class="note">
+                        <h4>State Types</h4>
+                        <ul>
+                            <li><strong>Session State:</strong> Current interaction context</li>
+                            <li><strong>User State:</strong> Learning progress and preferences</li>
+                            <li><strong>System State:</strong> Resource allocation and performance</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
             <div id="integration" class="section">
                 <h2>Integration Points</h2>
-                <div class="warning">
+
+                <div id="interfaces" class="subsection">
+                    <h3>Component Interfaces</h3>
+                    <div class="example">
+                        <h4>Interface Types</h4>
+                        <ul>
+                            <li>Event-driven communication</li>
+                            <li>RESTful API endpoints</li>
+                            <li>WebSocket connections</li>
+                            <li>Message queues</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="extension" class="subsection">
                     <h3>Extension Guidelines</h3>
-                    <ul>
-                        <li>Use standard interfaces for component communication</li>
-                        <li>Implement proper error handling</li>
-                        <li>Follow event-driven architecture patterns</li>
-                        <li>Maintain loose coupling between components</li>
-                        <li>Document all integration points</li>
-                    </ul>
+                    <div class="warning">
+                        <h4>Best Practices</h4>
+                        <ul>
+                            <li>Use standard interfaces for component communication</li>
+                            <li>Implement proper error handling</li>
+                            <li>Follow event-driven architecture patterns</li>
+                            <li>Maintain loose coupling between components</li>
+                            <li>Document all integration points</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
+
+    <a href="#" class="back-to-top">↑ Back to Top</a>
+
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const toc = document.querySelector('.toc');
+            toc.classList.toggle('show');
+        }
+
+        // Back to Top button visibility
+        window.onscroll = function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        };
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
