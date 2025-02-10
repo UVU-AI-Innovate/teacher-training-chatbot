@@ -70,6 +70,8 @@
                 <div id="what-are-llms" class="subsection">
                     <h3>What are LLMs?</h3>
                     <p>Large Language Models (LLMs) are advanced AI systems trained on vast amounts of text data. They represent a breakthrough in natural language processing, enabling sophisticated language understanding and generation capabilities.</p>
+                    <p>LLMs have evolved significantly over the past decade, from early neural network models to cutting-edge transformer architectures such as GPT, BERT, and others. These models are capable of capturing nuanced language patterns, adapting
+                        to diverse contexts, and generating human-like text, which makes them indispensable for applications ranging from conversational agents to content creation and educational tools.</p>
 
                     <div class="note">
                         <h4>Key Concepts</h4>
@@ -93,6 +95,8 @@
                             <li><strong>Context Windows:</strong> Managing the scope of text processing</li>
                         </ul>
                     </div>
+                    <p>After tokenization converts text into numerical representations and self-attention mechanisms build contextual relationships between tokens, the processed data passes through multiple layers of neural networks. This multi-stage processing
+                        enables the model to understand complex language structures. Advanced techniques like fine-tuning and prompt engineering can further tailor the model's behavior for specific tasks.</p>
                 </div>
 
                 <div id="llm-capabilities" class="subsection">
@@ -116,6 +120,8 @@
                             <li>Privacy and data security concerns</li>
                         </ul>
                     </div>
+                    <p>While LLMs excel in generating detailed and context-aware responses, they may sometimes produce inaccuracies or ambiguous outputs. It is crucial to employ iterative prompt refinement and incorporate human oversight to ensure that the
+                        outcomes are reliable and pedagogically sound, especially in educational settings.</p>
                 </div>
             </div>
 
@@ -132,6 +138,7 @@
                                     <li>Size: 2.7B parameters</li>
                                     <li>License: MIT License</li>
                                     <li>Specialized in code and education</li>
+                                    <li>Optimized for quick responses and efficiency, making it ideal for lightweight applications and real-time educational interactions.</li>
                                 </ul>
                             </li>
                             <li><strong>Mistral 7B</strong> (Mistral AI, 2023)
@@ -139,6 +146,7 @@
                                     <li>Size: 7B parameters</li>
                                     <li>License: Apache 2.0</li>
                                     <li>Industry-leading performance for its size</li>
+                                    <li>Offers a balanced trade-off between speed and contextual understanding, making it suitable for interactive learning environments.</li>
                                 </ul>
                             </li>
                             <li><strong>ORCA 2</strong> (Microsoft Research, 2023)
@@ -146,6 +154,7 @@
                                     <li>Size: 7B parameters</li>
                                     <li>License: MIT License</li>
                                     <li>Built on Mistral architecture</li>
+                                    <li>Designed specifically for educational applications, ORCA 2 delivers detailed explanations and nuanced responses, though it may require higher computational resources.</li>
                                 </ul>
                             </li>
                             <li><strong>Llama 2</strong> (Meta AI, 2023)
@@ -153,6 +162,7 @@
                                     <li>Sizes: 7B, 13B, 70B parameters</li>
                                     <li>License: Llama 2 Community License</li>
                                     <li>Allows commercial use</li>
+                                    <li>Offers versatility with multiple model sizes, enabling deployments that range from small-scale interactive tools to large-scale enterprise applications with advanced reasoning capabilities.</li>
                                 </ul>
                             </li>
                         </ul>
@@ -267,6 +277,8 @@
                                     <li>Long (8K+ tokens): Complex discussions</li>
                                 </ul>
                             </li>
+                            <li><strong>Frequency Penalty</strong>: Adjusts the repetition of phrases, promoting a diverse and creative output.</li>
+                            <li><strong>Presence Penalty</strong>: Controls the model's tendency to introduce new topics, ensuring responses remain focused on the conversation.</li>
                         </ul>
                     </div>
                 </div>
@@ -290,6 +302,7 @@
                                     <li>Batch similar requests when possible</li>
                                 </ul>
                             </li>
+                            <li>Consider exploring model quantization and pruning techniques to accelerate inference without significant loss in accuracy.</li>
                         </ul>
                     </div>
                 </div>
@@ -306,6 +319,7 @@
                             <li>Implement rate limiting</li>
                         </ul>
                     </div>
+                    <li>Continuously refine and iterate on prompts based on user feedback and performance analytics to enhance model reliability and educational impact.</li>
                 </div>
             </div>
         </main>
