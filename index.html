@@ -567,6 +567,105 @@
                             </ul>
                         </div>
 
+                        <div class="example">
+                            <h5>Key LLM Parameters and Capabilities</h5>
+
+                            <div class="subsection">
+                                <h6>Context Window Size</h6>
+                                <ul>
+                                    <li><strong>Phi-2</strong>: 2,048 tokens (~1,500 words)</li>
+                                    <li><strong>Mistral 7B</strong>: 8,192 tokens (~6,000 words)</li>
+                                    <li><strong>ORCA 2</strong>: 8,192 tokens (~6,000 words)</li>
+                                    <li><strong>Llama 2</strong>: 4,096 tokens (~3,000 words)</li>
+                                    <p><em>Note: Longer context windows allow for more detailed conversations and better memory of previous interactions.</em></p>
+                                </ul>
+                            </div>
+
+                            <div class="subsection">
+                                <h6>Adjustable Parameters for Chatbot Behavior</h6>
+                                <ul>
+                                    <li><strong>Temperature</strong> (Creativity vs Precision):
+                                        <ul>
+                                            <li>0.2-0.4: High precision, factual responses</li>
+                                            <li>0.5-0.7: Balanced creativity and accuracy</li>
+                                            <li>0.8-1.0: More creative, varied responses</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Top-P</strong> (Response Diversity):
+                                        <ul>
+                                            <li>0.1-0.3: Very focused, consistent</li>
+                                            <li>0.4-0.6: Balanced variety</li>
+                                            <li>0.7-0.9: More diverse responses</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Max Tokens</strong> (Response Length):
+                                        <ul>
+                                            <li>Short (50-100): Quick answers</li>
+                                            <li>Medium (100-300): Detailed explanations</li>
+                                            <li>Long (300+): In-depth discussions</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="subsection">
+                                <h6>Model-Specific Characteristics</h6>
+                                <ul>
+                                    <li><strong>Phi-2</strong>
+                                        <ul>
+                                            <li>Optimal Temperature: 0.3-0.5</li>
+                                            <li>Best for: Precise, concise responses</li>
+                                            <li>Token Processing: ~150 tokens/second on CPU</li>
+                                            <li>Specialization: Code and technical content</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Mistral 7B</strong>
+                                        <ul>
+                                            <li>Optimal Temperature: 0.5-0.7</li>
+                                            <li>Best for: Balanced interactions</li>
+                                            <li>Token Processing: ~100 tokens/second on CPU</li>
+                                            <li>Specialization: General-purpose teaching</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>ORCA 2</strong>
+                                        <ul>
+                                            <li>Optimal Temperature: 0.6-0.8</li>
+                                            <li>Best for: Educational explanations</li>
+                                            <li>Token Processing: ~100 tokens/second on CPU</li>
+                                            <li>Specialization: Step-by-step teaching</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="warning">
+                                <h6>Optimization Tips</h6>
+                                <ul>
+                                    <li><strong>For Basic Q&A</strong>:
+                                        <ul>
+                                            <li>Lower temperature (0.3)</li>
+                                            <li>Shorter context window</li>
+                                            <li>Faster response times</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>For Teaching Interactions</strong>:
+                                        <ul>
+                                            <li>Medium temperature (0.6)</li>
+                                            <li>Longer context retention</li>
+                                            <li>Balance between creativity and accuracy</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>For Complex Discussions</strong>:
+                                        <ul>
+                                            <li>Higher temperature (0.7-0.8)</li>
+                                            <li>Maximum context window</li>
+                                            <li>Focus on detailed explanations</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <ul>
                             <li><strong>Phi-2 (Recommended for Low-Resource Systems)</strong>
                                 <ul>
