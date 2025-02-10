@@ -1,6 +1,6 @@
 # UTTA Development (Phase One - Chatbot)
 
-📚 **[View the Complete Tutorial & Documentation](https://[your-username].github.io/[repo-name]/)** - Comprehensive guide for implementation and usage.
+📚 **[View the Complete Tutorial & Documentation](https://uvu-ai-innovate.github.io/UTTA/)** - Comprehensive guide for implementation and usage.
 
 An AI-powered educational simulation chatbot designed to help teachers develop and refine their teaching strategies through interactive text-based practice with a simulated second-grade student.
 
