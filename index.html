@@ -485,6 +485,88 @@
                                 <li>GPU: Optional - improves performance but not required</li>
                             </ul>
                         </div>
+
+                        <div class="definition">
+                            <h5>Ideal LLM Characteristics for Educational Chatbots</h5>
+                            <p>For educational chatbot applications, the following characteristics are crucial:</p>
+                            <ul>
+                                <li><strong>Context Retention</strong>: Ability to maintain coherent conversations</li>
+                                <li><strong>Response Consistency</strong>: Stable and reliable answers</li>
+                                <li><strong>Instruction Following</strong>: Accurate responses to specific prompts</li>
+                                <li><strong>Knowledge Accuracy</strong>: Reliable educational content delivery</li>
+                            </ul>
+                        </div>
+
+                        <div class="example">
+                            <h5>Best Models for Educational Chatbots</h5>
+                            <ol>
+                                <li><strong>For Basic Implementation (Limited Resources)</strong>
+                                    <ul>
+                                        <li>Phi-2 (2.7B)
+                                            <ul>
+                                                <li>Perfect for simple Q&A interactions</li>
+                                                <li>Quick responses for basic tutoring</li>
+                                                <li>Works well on standard laptops</li>
+                                                <li>Good for pilot projects and testing</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><strong>For Production Use (Recommended)</strong>
+                                    <ul>
+                                        <li>Mistral 7B
+                                            <ul>
+                                                <li>Excellent context understanding</li>
+                                                <li>Strong conversational abilities</li>
+                                                <li>Balanced performance and resource usage</li>
+                                                <li>Ideal for most educational scenarios</li>
+                                            </ul>
+                                        </li>
+                                        <li>ORCA 2
+                                            <ul>
+                                                <li>Specialized in educational interactions</li>
+                                                <li>Better at complex explanations</li>
+                                                <li>Strong pedagogical capabilities</li>
+                                                <li>Good for advanced tutoring</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><strong>For Advanced Features (High Resources)</strong>
+                                    <ul>
+                                        <li>Llama 2 (13B/70B)
+                                            <ul>
+                                                <li>Superior reasoning capabilities</li>
+                                                <li>Better handling of complex topics</li>
+                                                <li>More nuanced responses</li>
+                                                <li>Requires significant computing power</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+
+                        <div class="warning">
+                            <h5>Important Considerations for Chatbot Implementation</h5>
+                            <ul>
+                                <li><strong>Response Time</strong>: Aim for under 2 seconds per response to maintain engagement</li>
+                                <li><strong>Memory Usage</strong>: Consider concurrent users when choosing model size</li>
+                                <li><strong>Conversation Length</strong>: Longer contexts require more capable models</li>
+                                <li><strong>Error Handling</strong>: Larger models generally provide more reliable responses</li>
+                            </ul>
+                        </div>
+
+                        <div class="definition">
+                            <h5>Understanding Model Sizes</h5>
+                            <p>Model size (in billions of parameters) affects both performance and resource requirements:</p>
+                            <ul>
+                                <li><strong>Small (1-3B)</strong>: Fast, efficient, good for basic tasks</li>
+                                <li><strong>Medium (6-8B)</strong>: Balanced performance and resource usage</li>
+                                <li><strong>Large (13B+)</strong>: Better quality but higher resource demands</li>
+                            </ul>
+                        </div>
+
                         <ul>
                             <li><strong>Phi-2 (Recommended for Low-Resource Systems)</strong>
                                 <ul>
@@ -493,8 +575,24 @@
                                     <li>4GB VRAM if using GPU</li>
                                     <li>Model size: ~1.5GB on disk</li>
                                     <li>Great for laptops and basic desktops</li>
+                                    <li>Key Features:
+                                        <ul>
+                                            <li>Trained on high-quality educational data</li>
+                                            <li>Excellent at explaining concepts</li>
+                                            <li>Fast response times</li>
+                                            <li>Good at code understanding and generation</li>
+                                        </ul>
+                                    </li>
+                                    <li>Best Use Cases:
+                                        <ul>
+                                            <li>Basic tutoring interactions</li>
+                                            <li>Quick concept explanations</li>
+                                            <li>Resource-constrained environments</li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
+
                             <li><strong>Mistral 7B (Our Default Choice)</strong>
                                 <ul>
                                     <li>7B parameters - balanced size/performance</li>
@@ -502,8 +600,24 @@
                                     <li>6GB VRAM if using GPU</li>
                                     <li>Model size: ~4GB on disk</li>
                                     <li>Works well on mid-range hardware</li>
+                                    <li>Key Features:
+                                        <ul>
+                                            <li>Sliding Window Attention for longer context</li>
+                                            <li>Strong reasoning capabilities</li>
+                                            <li>Excellent instruction following</li>
+                                            <li>Good balance of speed and quality</li>
+                                        </ul>
+                                    </li>
+                                    <li>Best Use Cases:
+                                        <ul>
+                                            <li>Complex teaching scenarios</li>
+                                            <li>Multi-turn conversations</li>
+                                            <li>Detailed explanations</li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
+
                             <li><strong>ORCA 2 (7B version)</strong>
                                 <ul>
                                     <li>Similar requirements to Mistral 7B</li>
@@ -511,23 +625,78 @@
                                     <li>6GB VRAM for GPU acceleration</li>
                                     <li>Model size: ~4GB on disk</li>
                                     <li>Optimized for teaching tasks</li>
+                                    <li>Key Features:
+                                        <ul>
+                                            <li>Fine-tuned specifically for instruction</li>
+                                            <li>Enhanced reasoning capabilities</li>
+                                            <li>Better at understanding context</li>
+                                            <li>Strong at step-by-step explanations</li>
+                                        </ul>
+                                    </li>
+                                    <li>Best Use Cases:
+                                        <ul>
+                                            <li>Detailed problem-solving</li>
+                                            <li>Complex concept breakdowns</li>
+                                            <li>Educational scaffolding</li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
+
                             <li><strong>Llama 2 (Multiple Sizes)</strong>
                                 <ul>
                                     <li>7B version: Similar to Mistral requirements</li>
                                     <li>13B and 70B versions need more resources</li>
                                     <li>7B version recommended for most users</li>
                                     <li>Model size: 4GB-40GB depending on version</li>
+                                    <li>Available Versions:
+                                        <ul>
+                                            <li>7B: Good balance for most uses</li>
+                                            <li>13B: Better quality, needs 12GB+ VRAM</li>
+                                            <li>70B: Best quality, needs 32GB+ VRAM</li>
+                                        </ul>
+                                    </li>
+                                    <li>Key Features:
+                                        <ul>
+                                            <li>Extensive pre-training</li>
+                                            <li>Strong safety features</li>
+                                            <li>Good at following complex instructions</li>
+                                            <li>Commercial use allowed</li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
+
+                        <div class="note">
+                            <h5>Performance Comparison</h5>
+                            <ul>
+                                <li><strong>Response Speed (CPU only)</strong>:
+                                    <ul>
+                                        <li>Phi-2: Fastest (0.5-1 second)</li>
+                                        <li>Mistral 7B: Moderate (1-2 seconds)</li>
+                                        <li>ORCA 2: Similar to Mistral</li>
+                                        <li>Llama 2: Varies by size (1-3 seconds)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Response Quality</strong>:
+                                    <ul>
+                                        <li>Phi-2: Good for basic interactions</li>
+                                        <li>Mistral 7B: Excellent all-around</li>
+                                        <li>ORCA 2: Best for teaching tasks</li>
+                                        <li>Llama 2: Scales with model size</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="warning">
+                            <p><strong>Performance Note:</strong> CPU-only operation is possible but slower. For optimal performance in educational settings where quick responses are important, a GPU with at least 6GB VRAM is recommended but not required.</p>
+                        </div>
+
                         <div class="note">
                             <p><strong>Recommendation:</strong> For resource-constrained environments (like basic laptops or older desktops), start with Phi-2. For better performance on standard hardware, use our default Mistral 7B model. All models can
                                 run on CPU-only systems, but inference will be slower.</p>
-                        </div>
-                        <div class="warning">
-                            <p><strong>Performance Note:</strong> CPU-only operation is possible but slower. For optimal performance in educational settings where quick responses are important, a GPU with at least 6GB VRAM is recommended but not required.</p>
                         </div>
                     </div>
                 </div>
