@@ -192,21 +192,31 @@ code {
 /* Diagrams */
 
 .diagram {
-    background: white;
-    padding: 30px;
-    margin: 30px 0;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
 }
 
-.diagram-container {
-    gap: 20px;
-    padding: 20px;
+.component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: stretch;
 }
 
 .component {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .component:hover {
@@ -214,35 +224,50 @@ code {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+.component-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-/* Component styles */
+.component h4 {
+    color: #2c3e50;
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.component ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.component li {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    background: #f8f9fa;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.component li:hover {
+    background: #e9ecef;
+}
 
 .system-component {
-    background: #e3f2fd;
-    border: 2px solid #1976d2;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
+    border-top: 4px solid #3498db;
 }
 
 .data-flow {
-    border: 2px solid #2e7d32;
-    background: #e8f5e9;
+    border-top: 4px solid #2ecc71;
 }
 
 .user-component {
-    border: 2px solid #c62828;
-    background: #ffebee;
-}
-
-.llm-component {
-    border: 2px solid #6a1b9a;
-    background: #f3e5f5;
-}
-
-.memory-component {
-    border: 2px solid #ef6c00;
-    background: #fff3e0;
+    border-top: 4px solid #e74c3c;
 }
 
 
@@ -313,6 +338,12 @@ th {
     }
     .toc.show {
         display: block;
+    }
+    .component-grid {
+        grid-template-columns: 1fr;
+    }
+    .component {
+        min-height: 180px;
     }
 }
 
