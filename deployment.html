@@ -11,9 +11,33 @@
 <body>
     <div class="nav-container">
         <a href="index.html">← Back to LLM Guide</a>
+        <button class="nav-toggle" onclick="toggleTOC()">☰ Table of Contents</button>
     </div>
 
     <div class="main-content">
+        <aside class="sidebar">
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#prerequisites">1. Prerequisites</a></li>
+                    <li><a href="#installation">2. Installation Steps</a>
+                        <ul>
+                            <li><a href="#standard-installation">2.1 Standard Installation</a></li>
+                            <li><a href="#docker-installation">2.2 Docker Installation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#configuration">3. Production Configuration</a>
+                        <ul>
+                            <li><a href="#env-variables">3.1 Environment Variables</a></li>
+                            <li><a href="#nginx-config">3.2 Nginx Configuration</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#monitoring">4. Monitoring and Maintenance</a></li>
+                    <li><a href="#scaling">5. Scaling Considerations</a></li>
+                </ul>
+            </div>
+        </aside>
+
         <main>
             <h1>Deployment Guide</h1>
 
@@ -176,6 +200,39 @@ nvidia-smi  # for GPU usage</pre>
             </div>
         </main>
     </div>
+
+    <a href="#" class="back-to-top">↑ Back to Top</a>
+
+    <script>
+        // Toggle Table of Contents
+        function toggleTOC() {
+            const toc = document.querySelector('.toc');
+            toc.classList.toggle('show');
+        }
+
+        // Back to Top button visibility
+        window.onscroll = function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        };
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
